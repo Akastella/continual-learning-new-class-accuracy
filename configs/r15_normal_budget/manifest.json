@@ -1,0 +1,83 @@
+{
+  "schema": "r15_normal_budget_v1",
+  "status": "frozen",
+  "frozen_utc": "2026-09-17T07:11:59.052150+00:00",
+  "settings": {
+    "seeds": [
+      3101,
+      3102,
+      3103,
+      3104,
+      3105
+    ],
+    "methods": [
+      "sgd",
+      "er"
+    ],
+    "tasks": 10,
+    "diagnostic_tasks": [
+      6,
+      7,
+      8,
+      9
+    ],
+    "epochs_first": 200,
+    "epochs_later": 70,
+    "probe_epochs": 70,
+    "batch_current": 64,
+    "memory_per_old_class": 20,
+    "replay_allocation": "fixed_1_to_1",
+    "lr": 0.1,
+    "momentum": 0.9,
+    "nesterov": false,
+    "weight_decay_first": 0.0005,
+    "weight_decay_later": 0.0002,
+    "milestones_first": [
+      60,
+      120,
+      170
+    ],
+    "milestones_later": [
+      30,
+      50
+    ],
+    "gamma": 0.1,
+    "reset_optimizer_each_branch": true,
+    "new_head_rows_reset": true,
+    "dtype": "float32",
+    "deterministic": true,
+    "tf32": false,
+    "threads": 2,
+    "evaluation_batch": 256,
+    "memory_format": "channels_last",
+    "training_autocast": "bfloat16",
+    "evaluation_autocast": "disabled",
+    "gradient_scaler": false,
+    "augmentation": "cuda_zero_pad4_crop32_flip0.5_continuous_brightness63over255_clip01_normalize",
+    "test_access": "after_all_jobs_training_complete"
+  },
+  "job_timeout_seconds": 5400,
+  "dataset": {
+    "archive_sha256": "85cd44d02ba6437773c5bbd22e183051d648de2e7d6b014e1ef29b855ba677a7"
+  },
+  "sources_sha256": {
+    "analysis/analyze_r15_normal_budget.py": "a0dd9d9307383914b5044a5cb7cd28a1758b9b8e11100d5f63726ab2da9ab1e7",
+    "experiments/r15_normal_budget/__init__.py": "9aaad5bbae135569012bb187451ba627c1f654a66655aef24c3a7786dc60f603",
+    "experiments/r15_normal_budget/core.py": "de01aa495bc29867553227bacb8cd8a7ed1c4a61b4c0356bd077e585b66d6f5e",
+    "experiments/r9_external/data.py": "027529cafa706e4ebaefe7ecf71637f0f919e09d575bb906ce1dca9841d6c9e8",
+    "experiments/r9_external/model.py": "88a4410b259e062c6ae592e31e434fff98978b5f7727c14831cb64b119c0eeba",
+    "protocol/R15_NORMAL_BUDGET.md": "36400113f51b72b61db9adf13a074ed0c45eca18975cd7117feccc695852a059",
+    "requirements-r9-windows-lock.txt": "013e0583614e4f61659bfb10a047319c0c9d38b7b0b9990c3b42d1dcf86a4790",
+    "tests/test_r15_analysis.py": "3cc389a61d79d2667119dcd7c668a62ab76c0d855a879b250caf29f1c7d874d3",
+    "third_party/pycil_reference/LICENSE": "0b349ecc68e75ab59493b80ff2308dc9fe144e6fcbb789ff62de427c4cea6920",
+    "third_party/pycil_reference/cifar_resnet.py": "cb24b7d3de97f28fc94205ac128a15465501b45e938449c6b60b329b8800ad91",
+    "third_party/pycil_reference/data.py": "087cba1fe9f2fc65aa3625588956d8d940592628c324d935b9e2dd2b8bbd5300",
+    "tools/build_r15_evidence.py": "de653bd87fee48ed62f5f63c83d7531f0a15a19320bf2272296d2e0085ce6ef7",
+    "tools/finalize_r15_statistics.py": "57d37dc700387bdc35e597af9951e652198fc831646cbcaf85966b9568551817",
+    "tools/freeze_r15_normal_budget.py": "27708bc2f319cb8a031dfda84df30371915b792bab8ac5fcaca44d0b87ea7bf0",
+    "tools/run_r15_normal_budget.py": "15a3a28fab218b2cef46cf216809169c9fe6d633cb84fe603bfd1117286f68db"
+  },
+  "scientific_role": "Fixed external long-budget falsification on previously accessed CIFAR-100 test; not an unseen-dataset confirmation.",
+  "analysis_unit": "Five paired seeds, equal average of diagnostic tasks 6,7,8,9 before seed aggregation.",
+  "strict_gate": "Every seed: d_actual<0 AND d_probe>0 AND d_masked>0; exact integer-derived signs; zeros fail."
+}

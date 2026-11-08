@@ -1,0 +1,267 @@
+{
+  "seed": 205,
+  "config": {
+    "schema": "r18_architecture_bridge_v1",
+    "seeds": [
+      201,
+      202,
+      203,
+      204,
+      205
+    ],
+    "tasks": 5,
+    "epochs": 4,
+    "batch_size": 64,
+    "learning_rate": 0.01,
+    "momentum": 0.0,
+    "weight_decay": 0.0,
+    "memory_size": 500,
+    "replay_batch": 32,
+    "threads": 2,
+    "device": "cuda",
+    "deadline_seconds_per_seed": 3500,
+    "initialization_seed_offset": 10000,
+    "minibatch_order_seed_offset": 30000,
+    "class_order_seed_offset": 40000,
+    "reservoir_seed_offset": 77001,
+    "dataset": "official CIFAR-10 train/test splits",
+    "setting": "five two-class tasks, class-incremental ten-output prediction",
+    "normalization": {
+      "mean": [
+        0.4914,
+        0.4822,
+        0.4465
+      ],
+      "std": [
+        0.247,
+        0.2435,
+        0.2616
+      ]
+    },
+    "augmentation": "none",
+    "architecture": "pinned PyCIL CIFAR ResNet-32 with BatchNorm replaced by GroupNorm(8,C) and a ten-output head",
+    "upstream_commit": "f3509b8ca3f20660ce4aa13f19d5283de81b4b35",
+    "seed": 205,
+    "init_seed": 10205,
+    "order_seed": 30205,
+    "class_order_seed": 40205,
+    "reservoir_seed": 77206
+  },
+  "tasks": [
+    {
+      "task": 0,
+      "fresh": {
+        "optimizer_steps": 628,
+        "current_examples": 40000,
+        "replay_examples": 0,
+        "forward_examples": 40000
+      },
+      "sgd_actual_probe": {
+        "optimizer_steps": 628,
+        "current_examples": 40000,
+        "replay_examples": 0,
+        "forward_examples": 40000
+      },
+      "er_probe": {
+        "optimizer_steps": 628,
+        "current_examples": 40000,
+        "replay_examples": 0,
+        "forward_examples": 40000
+      },
+      "er_actual": {
+        "optimizer_steps": 628,
+        "current_examples": 40000,
+        "replay_examples": 20064,
+        "forward_examples": 60064
+      },
+      "reservoir": {
+        "seen": 40000,
+        "slots": 500,
+        "unique_source_examples": 490,
+        "duplicate_slots": 10
+      },
+      "current_correct_counts": {
+        "fresh": 1518,
+        "sgd_actual_probe": 1518,
+        "er_probe": 1518,
+        "er_actual": 1521
+      },
+      "full_test_correct_counts": {
+        "sgd_actual": 1518,
+        "er_actual": 1521
+      }
+    },
+    {
+      "task": 1,
+      "fresh": {
+        "optimizer_steps": 628,
+        "current_examples": 40000,
+        "replay_examples": 0,
+        "forward_examples": 40000
+      },
+      "sgd_actual_probe": {
+        "optimizer_steps": 628,
+        "current_examples": 40000,
+        "replay_examples": 0,
+        "forward_examples": 40000
+      },
+      "er_probe": {
+        "optimizer_steps": 628,
+        "current_examples": 40000,
+        "replay_examples": 0,
+        "forward_examples": 40000
+      },
+      "er_actual": {
+        "optimizer_steps": 628,
+        "current_examples": 40000,
+        "replay_examples": 20096,
+        "forward_examples": 60096
+      },
+      "reservoir": {
+        "seen": 80000,
+        "slots": 500,
+        "unique_source_examples": 496,
+        "duplicate_slots": 4
+      },
+      "current_correct_counts": {
+        "fresh": 1257,
+        "sgd_actual_probe": 1348,
+        "er_probe": 1341,
+        "er_actual": 620
+      },
+      "full_test_correct_counts": {
+        "sgd_actual": 1348,
+        "er_actual": 2007
+      }
+    },
+    {
+      "task": 2,
+      "fresh": {
+        "optimizer_steps": 628,
+        "current_examples": 40000,
+        "replay_examples": 0,
+        "forward_examples": 40000
+      },
+      "sgd_actual_probe": {
+        "optimizer_steps": 628,
+        "current_examples": 40000,
+        "replay_examples": 0,
+        "forward_examples": 40000
+      },
+      "er_probe": {
+        "optimizer_steps": 628,
+        "current_examples": 40000,
+        "replay_examples": 0,
+        "forward_examples": 40000
+      },
+      "er_actual": {
+        "optimizer_steps": 628,
+        "current_examples": 40000,
+        "replay_examples": 20096,
+        "forward_examples": 60096
+      },
+      "reservoir": {
+        "seen": 120000,
+        "slots": 500,
+        "unique_source_examples": 496,
+        "duplicate_slots": 4
+      },
+      "current_correct_counts": {
+        "fresh": 1530,
+        "sgd_actual_probe": 1443,
+        "er_probe": 1535,
+        "er_actual": 952
+      },
+      "full_test_correct_counts": {
+        "sgd_actual": 1443,
+        "er_actual": 2864
+      }
+    },
+    {
+      "task": 3,
+      "fresh": {
+        "optimizer_steps": 628,
+        "current_examples": 40000,
+        "replay_examples": 0,
+        "forward_examples": 40000
+      },
+      "sgd_actual_probe": {
+        "optimizer_steps": 628,
+        "current_examples": 40000,
+        "replay_examples": 0,
+        "forward_examples": 40000
+      },
+      "er_probe": {
+        "optimizer_steps": 628,
+        "current_examples": 40000,
+        "replay_examples": 0,
+        "forward_examples": 40000
+      },
+      "er_actual": {
+        "optimizer_steps": 628,
+        "current_examples": 40000,
+        "replay_examples": 20096,
+        "forward_examples": 60096
+      },
+      "reservoir": {
+        "seen": 160000,
+        "slots": 500,
+        "unique_source_examples": 495,
+        "duplicate_slots": 5
+      },
+      "current_correct_counts": {
+        "fresh": 1778,
+        "sgd_actual_probe": 1786,
+        "er_probe": 1571,
+        "er_actual": 660
+      },
+      "full_test_correct_counts": {
+        "sgd_actual": 1786,
+        "er_actual": 2580
+      }
+    },
+    {
+      "task": 4,
+      "fresh": {
+        "optimizer_steps": 628,
+        "current_examples": 40000,
+        "replay_examples": 0,
+        "forward_examples": 40000
+      },
+      "sgd_actual_probe": {
+        "optimizer_steps": 628,
+        "current_examples": 40000,
+        "replay_examples": 0,
+        "forward_examples": 40000
+      },
+      "er_probe": {
+        "optimizer_steps": 628,
+        "current_examples": 40000,
+        "replay_examples": 0,
+        "forward_examples": 40000
+      },
+      "er_actual": {
+        "optimizer_steps": 628,
+        "current_examples": 40000,
+        "replay_examples": 20096,
+        "forward_examples": 60096
+      },
+      "reservoir": {
+        "seen": 200000,
+        "slots": 500,
+        "unique_source_examples": 497,
+        "duplicate_slots": 3
+      },
+      "current_correct_counts": {
+        "fresh": 1753,
+        "sgd_actual_probe": 1855,
+        "er_probe": 1836,
+        "er_actual": 387
+      },
+      "full_test_correct_counts": {
+        "sgd_actual": 1855,
+        "er_actual": 2317
+      }
+    }
+  ]
+}

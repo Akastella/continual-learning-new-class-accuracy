@@ -1,0 +1,58 @@
+{
+  "actual_er_summary": {
+    "current_accuracy_pct": 55.85,
+    "current_correct": 1117,
+    "current_n": 2000,
+    "n_seeds": 10,
+    "old_accuracy_pct": 27.4,
+    "old_correct": 2192,
+    "old_n": 8000,
+    "thresholds": {
+      "10": {
+        "below": 0,
+        "evaluated": 10,
+        "satisfied": 10
+      },
+      "20": {
+        "below": 0,
+        "evaluated": 10,
+        "satisfied": 10
+      }
+    }
+  },
+  "generator": "tools/build_r9_trajectory_anchor_table.py",
+  "generator_sha256": "cbdc5be2cd44ca6f12848702a3ab1bcc9bbf25f10c39c565d19ca1d5ad210636",
+  "independent_audit": {
+    "actual_er_integer_units_matched": 10,
+    "auditor_sha256": "c46219e4b1ef93bdb1d3b055a7736851f554d14a0d5ef2029d381e36bf4d869f",
+    "manifest_sha256": "60ef2ac448e9e77c3f5285510b3a0ba937c198541f77aa73a6a3f74491261aa0",
+    "status": "passed_independent_retention_trajectory_audit"
+  },
+  "input_sha256": {
+    "audit/r9/RETENTION_TRAJECTORY_INDEPENDENT.json": "48b5c4788777a6a0932e8f8c85b1e5d3f0917225c5bdb009bec0ac9629fa85a6",
+    "paper_r9/generated/trajectory_table.tex": "04bb08cc3abd101b61a53bdebab6f10e44b0dcef0358f131d33597194d46f1f4",
+    "results/r9_retention_trajectory/artifacts.json": "2464a0c15441d25be345679580493bdb0c1936278cc6a603f434b28c2bc5813a",
+    "results/r9_retention_trajectory/split_cifar10_classil_er_s201/test.json": "9c3985f2368f2643d4d6c88b1f77a75a9ad0fe49eb035435981206f347df4d36",
+    "results/r9_retention_trajectory/split_cifar10_classil_er_s202/test.json": "8e6740c4522efcfd187a775bc87dd10037b213ad4df972de8c67242d5596f550",
+    "results/r9_retention_trajectory/split_cifar10_classil_er_s203/test.json": "a0b566cb0d98492e4ac8834a50284c8f79679c338438636a0ece5bbabc6921af",
+    "results/r9_retention_trajectory/split_cifar10_classil_er_s204/test.json": "672ef69c09c36532b867b0913e0d914c2b30bd72d23ca6de0b42f866789160bd",
+    "results/r9_retention_trajectory/split_cifar10_classil_er_s205/test.json": "25a738c5196a259d3c92af2a7ed36a412b7d5e343c4b4333fe3df287b17f9694",
+    "results/r9_retention_trajectory/split_cifar10_classil_er_s206/test.json": "f2d3524ff42b931c1e206ca762b876f899427720e2de665599560475497aaac3",
+    "results/r9_retention_trajectory/split_cifar10_classil_er_s207/test.json": "e0d527eb206428aa41e5dd0286bd8a6617075045d16eeae8dce7bd9e240bc3a0",
+    "results/r9_retention_trajectory/split_cifar10_classil_er_s208/test.json": "0203a740c218a86a3105a90fb6d85c01f9fca13f3662e766c832cb6f8bb87d67",
+    "results/r9_retention_trajectory/split_cifar10_classil_er_s209/test.json": "15d0b2fe1c10f2d12b12680f48224c342c8a2bbfc4994f72ff44d22cc98bf30d",
+    "results/r9_retention_trajectory/split_cifar10_classil_er_s210/test.json": "02587f56c77d680815e77182476f53baee49f9f65cb178ae38fc0535702b949c"
+  },
+  "output_sha256": {
+    "paper_r9/generated/trajectory_actual_er_anchor.csv": "591e8817f9cd8f4e5d47d62e3f814847cc819558341b5ce21fc75458901d82fa",
+    "paper_r9/generated/trajectory_with_anchor_table.tex": "0734160b4837cd3c805be6b5ef377bdb4c5a9e1b4af5d824cea2b9ca7ac37545"
+  },
+  "scope": "Fixed actual ER checkpoints evaluated on the same CIFAR-10.1 test split; not validation-selected endpoints.",
+  "selected_rows_preserved_verbatim": [
+    "20 & SGD & 7/10 & 2/7 & 20.48 & 1.36 \\\\",
+    "20 & ER & 10/10 & 0/10 & 30.74 & 18.15 \\\\",
+    "10 & SGD & 10/10 & 0/10 & 18.66 & 14.45 \\\\",
+    "10 & ER & 10/10 & 0/10 & 22.45 & 36.20 \\\\"
+  ],
+  "status": "passed_raw_and_independent_audit_crosscheck"
+}

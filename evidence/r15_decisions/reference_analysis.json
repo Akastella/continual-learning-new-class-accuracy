@@ -1,0 +1,7741 @@
+{
+  "schema": "r15_analysis_v1",
+  "utc": "2026-09-17T13:02:41.557274+00:00",
+  "manifest_sha256": "bb167857aec7b9dcfd6c5f36a54dff7cd687f4903830cbefed108a8973dbc332",
+  "analysis_sha256": "a0dd9d9307383914b5044a5cb7cd28a1758b9b8e11100d5f63726ab2da9ab1e7",
+  "lineage": {
+    "training_seal_sha256": "d9c79a16ba827eb875941ce3d7fa0dd0fbd047492dbb1bedc021884a0c8f754b",
+    "batch_sha256": "0f442251ce1da290e8799a3e28dccee4f91151da78cae236b5290116205f3c59",
+    "jobs": {
+      "seed3101_sgd": {
+        "training_complete_sha256": "6c3d16c2860598a92ca9a9ca0e98ed6a4de093151460e0e23e91825c185f4b17",
+        "result_sha256": "0dead82b3bd31b96871252ab877edd08b3be055e741f5c546d46ed1c4a23c15e"
+      },
+      "seed3101_er": {
+        "training_complete_sha256": "b89005c94a77c9662a2e60bbbcd6b9bcfadc06059ca36f1dca6a23f5c71d4d14",
+        "result_sha256": "5e7d0968e0f29aec419d33fbac1b7f7d7542cf8c0a0cd6702f56e92fdddf3c83"
+      },
+      "seed3102_sgd": {
+        "training_complete_sha256": "11308e8dbf90af5ffd66f8702e032a065712ed33de7905eaeb8da4913d1f1e27",
+        "result_sha256": "5bff55acb8c9b2c3bc6ca1c1ab969e55e13596bb2d85106b82d05272d4f974fe"
+      },
+      "seed3102_er": {
+        "training_complete_sha256": "3fce421e43110d1ebaaf4d57f5af88de3ee1e8014b6b7eed02137c7043a4e47a",
+        "result_sha256": "441c441922868f8151f3e0b3c37134af7c98d34073885b052085893bd29897bb"
+      },
+      "seed3103_sgd": {
+        "training_complete_sha256": "8c52421f45b20a4e5a005ff886f92d2b690ddd22ed41579292c02127c4a2dd20",
+        "result_sha256": "839f3883b3de447e1ed3ef60553b1a175a05b32dad3ea2deb0d92dd76b60bc00"
+      },
+      "seed3103_er": {
+        "training_complete_sha256": "a78cf6d44fcbd88d190065a59711ea1367ab8d8417c58b31c8e48676f088ef2c",
+        "result_sha256": "44858ec118ecd0fda0ec8be648046be5bd93378c1ec78979ef25e7e1aa0891a7"
+      },
+      "seed3104_sgd": {
+        "training_complete_sha256": "03fefd1f32176716123ffd8ed6864f4437c3972c66299497402fb745bdf25305",
+        "result_sha256": "10109e4929fee960300132f3b6966fbbd35591dd0b6a744b95983a740a5d9a69"
+      },
+      "seed3104_er": {
+        "training_complete_sha256": "a7bd61695c9566e4724cbb35438170c05ef2e6eb86b0f9d09e0a8d7f7f45cec7",
+        "result_sha256": "91eaf997a997962380820d4e1e5c8895b7a0a84afb4645ac185b57ecad794f4f"
+      },
+      "seed3105_sgd": {
+        "training_complete_sha256": "eaf4f320cfe5b229747a9132d1f500e7d4759729c814751450c5131ea30054d6",
+        "result_sha256": "7149e0542253f6b2e9c011546f8c1c103d02fc0935f4abcbe943ff44c4b56fa5"
+      },
+      "seed3105_er": {
+        "training_complete_sha256": "410a1acd7c70902cbcf96f01167b843d75b580c41a9f2912355e2203b64fe7e6",
+        "result_sha256": "0e3bcf8408b326a4960515f0625415da9483a2602ca54564ea7425376d1e3075"
+      }
+    },
+    "scope": "File/manifest/endpoint lineage verified; independent official-label and checkpoint forward audit is separate."
+  },
+  "seeds": [
+    3101,
+    3102,
+    3103,
+    3104,
+    3105
+  ],
+  "tasks": [
+    6,
+    7,
+    8,
+    9
+  ],
+  "n_endpoints": 120,
+  "paired_seed_contrasts": [
+    {
+      "seed": 3101,
+      "d_actual": 5.775,
+      "d_actual_exact": "231/40",
+      "d_actual_per_task": [
+        5.3,
+        5.6,
+        6.6,
+        5.6
+      ],
+      "d_probe": 13.2,
+      "d_probe_exact": "66/5",
+      "d_probe_per_task": [
+        11.2,
+        11.8,
+        16.1,
+        13.7
+      ],
+      "d_masked": 9.575,
+      "d_masked_exact": "383/40",
+      "d_masked_per_task": [
+        9.0,
+        9.5,
+        9.7,
+        10.1
+      ],
+      "joint_direction": false
+    },
+    {
+      "seed": 3102,
+      "d_actual": 10.075,
+      "d_actual_exact": "403/40",
+      "d_actual_per_task": [
+        7.1,
+        11.2,
+        10.9,
+        11.1
+      ],
+      "d_probe": 16.125,
+      "d_probe_exact": "129/8",
+      "d_probe_per_task": [
+        14.5,
+        18.5,
+        14.9,
+        16.6
+      ],
+      "d_masked": 13.1,
+      "d_masked_exact": "131/10",
+      "d_masked_per_task": [
+        10.2,
+        13.9,
+        13.8,
+        14.5
+      ],
+      "joint_direction": false
+    },
+    {
+      "seed": 3103,
+      "d_actual": 9.025,
+      "d_actual_exact": "361/40",
+      "d_actual_per_task": [
+        5.6,
+        7.8,
+        11.9,
+        10.8
+      ],
+      "d_probe": 14.925,
+      "d_probe_exact": "597/40",
+      "d_probe_per_task": [
+        9.9,
+        15.2,
+        14.6,
+        20.0
+      ],
+      "d_masked": 12.625,
+      "d_masked_exact": "101/8",
+      "d_masked_per_task": [
+        7.9,
+        10.8,
+        15.5,
+        16.3
+      ],
+      "joint_direction": false
+    },
+    {
+      "seed": 3104,
+      "d_actual": 1.65,
+      "d_actual_exact": "33/20",
+      "d_actual_per_task": [
+        -0.5,
+        2.9,
+        3.3,
+        0.9
+      ],
+      "d_probe": 10.275,
+      "d_probe_exact": "411/40",
+      "d_probe_per_task": [
+        6.6,
+        12.2,
+        11.9,
+        10.4
+      ],
+      "d_masked": 4.8,
+      "d_masked_exact": "24/5",
+      "d_masked_per_task": [
+        3.3,
+        5.0,
+        6.2,
+        4.7
+      ],
+      "joint_direction": false
+    },
+    {
+      "seed": 3105,
+      "d_actual": 6.85,
+      "d_actual_exact": "137/20",
+      "d_actual_per_task": [
+        3.9,
+        4.3,
+        6.1,
+        13.1
+      ],
+      "d_probe": 11.9,
+      "d_probe_exact": "119/10",
+      "d_probe_per_task": [
+        8.8,
+        9.9,
+        11.4,
+        17.5
+      ],
+      "d_masked": 9.85,
+      "d_masked_exact": "197/20",
+      "d_masked_per_task": [
+        6.2,
+        7.1,
+        9.2,
+        16.9
+      ],
+      "joint_direction": false
+    }
+  ],
+  "summary": {
+    "d_actual": {
+      "mean": 6.675,
+      "sample_sd": 3.285336740731458,
+      "approximate_bootstrap_percentile_95": [
+        3.95,
+        9.01
+      ],
+      "bootstrap_resamples": 3125,
+      "direction_count": 0,
+      "zero_count": 0
+    },
+    "d_probe": {
+      "mean": 13.285,
+      "sample_sd": 2.331348858493726,
+      "approximate_bootstrap_percentile_95": [
+        11.51,
+        15.059999999999999
+      ],
+      "bootstrap_resamples": 3125,
+      "direction_count": 5,
+      "zero_count": 0
+    },
+    "d_masked": {
+      "mean": 9.989999999999998,
+      "sample_sd": 3.306934002970123,
+      "approximate_bootstrap_percentile_95": [
+        7.32,
+        12.3
+      ],
+      "bootstrap_resamples": 3125,
+      "direction_count": 5,
+      "zero_count": 0
+    }
+  },
+  "endpoint_summary": [
+    {
+      "method": "sgd",
+      "branch": "actual",
+      "current": {
+        "per_seed": [
+          64.35,
+          62.375,
+          60.975,
+          67.95,
+          66.325
+        ],
+        "mean": 64.395,
+        "sample_sd": 2.834684726737703,
+        "approximate_bootstrap_percentile_95": [
+          62.21,
+          66.58
+        ],
+        "bootstrap_resamples": 3125
+      },
+      "current_masked": {
+        "per_seed": [
+          64.35,
+          62.375,
+          60.975,
+          67.95,
+          66.325
+        ],
+        "mean": 64.395,
+        "sample_sd": 2.834684726737703,
+        "approximate_bootstrap_percentile_95": [
+          62.21,
+          66.58
+        ],
+        "bootstrap_resamples": 3125
+      },
+      "old": {
+        "per_seed": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "approximate_bootstrap_percentile_95": [
+          0.0,
+          0.0
+        ],
+        "bootstrap_resamples": 3125
+      },
+      "seen": {
+        "per_seed": [
+          7.740059523809524,
+          7.447202380952381,
+          7.376498015873016,
+          8.189146825396826,
+          8.034940476190476
+        ],
+        "mean": 7.757569444444444,
+        "sample_sd": 0.35533205248625277,
+        "approximate_bootstrap_percentile_95": [
+          7.477492063492063,
+          8.037646825396825
+        ],
+        "bootstrap_resamples": 3125
+      }
+    },
+    {
+      "method": "sgd",
+      "branch": "probe",
+      "current": {
+        "per_seed": [
+          64.35,
+          62.375,
+          60.975,
+          67.95,
+          66.325
+        ],
+        "mean": 64.395,
+        "sample_sd": 2.834684726737703,
+        "approximate_bootstrap_percentile_95": [
+          62.21,
+          66.58
+        ],
+        "bootstrap_resamples": 3125
+      },
+      "current_masked": {
+        "per_seed": [
+          64.35,
+          62.375,
+          60.975,
+          67.95,
+          66.325
+        ],
+        "mean": 64.395,
+        "sample_sd": 2.834684726737703,
+        "approximate_bootstrap_percentile_95": [
+          62.21,
+          66.58
+        ],
+        "bootstrap_resamples": 3125
+      },
+      "old": {
+        "per_seed": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "approximate_bootstrap_percentile_95": [
+          0.0,
+          0.0
+        ],
+        "bootstrap_resamples": 3125
+      },
+      "seen": {
+        "per_seed": [
+          7.740059523809524,
+          7.447202380952381,
+          7.376498015873016,
+          8.189146825396826,
+          8.034940476190476
+        ],
+        "mean": 7.757569444444444,
+        "sample_sd": 0.35533205248625277,
+        "approximate_bootstrap_percentile_95": [
+          7.477492063492063,
+          8.037646825396825
+        ],
+        "bootstrap_resamples": 3125
+      }
+    },
+    {
+      "method": "sgd",
+      "branch": "fresh",
+      "current": {
+        "per_seed": [
+          64.0,
+          59.45,
+          59.375,
+          64.6,
+          61.3
+        ],
+        "mean": 61.74499999999999,
+        "sample_sd": 2.4656642107148308,
+        "approximate_bootstrap_percentile_95": [
+          59.79,
+          63.7
+        ],
+        "bootstrap_resamples": 3125
+      },
+      "current_masked": {
+        "per_seed": [
+          64.0,
+          59.45,
+          59.375,
+          64.6,
+          61.3
+        ],
+        "mean": 61.74499999999999,
+        "sample_sd": 2.4656642107148308,
+        "approximate_bootstrap_percentile_95": [
+          59.79,
+          63.7
+        ],
+        "bootstrap_resamples": 3125
+      },
+      "old": {
+        "per_seed": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "approximate_bootstrap_percentile_95": [
+          0.0,
+          0.0
+        ],
+        "bootstrap_resamples": 3125
+      },
+      "seen": {
+        "per_seed": [
+          7.72625,
+          7.081240079365079,
+          7.149464285714286,
+          7.76171626984127,
+          7.439821428571428
+        ],
+        "mean": 7.431698412698412,
+        "sample_sd": 0.31552161290440606,
+        "approximate_bootstrap_percentile_95": [
+          7.180246031746033,
+          7.6831507936507935
+        ],
+        "bootstrap_resamples": 3125
+      }
+    },
+    {
+      "method": "er",
+      "branch": "actual",
+      "current": {
+        "per_seed": [
+          70.125,
+          72.45,
+          70.0,
+          69.6,
+          73.175
+        ],
+        "mean": 71.07,
+        "sample_sd": 1.622825468126503,
+        "approximate_bootstrap_percentile_95": [
+          69.865,
+          72.39500000000001
+        ],
+        "bootstrap_resamples": 3125
+      },
+      "current_masked": {
+        "per_seed": [
+          73.925,
+          75.475,
+          73.6,
+          72.75,
+          76.175
+        ],
+        "mean": 74.385,
+        "sample_sd": 1.404746418397284,
+        "approximate_bootstrap_percentile_95": [
+          73.325,
+          75.52
+        ],
+        "bootstrap_resamples": 3125
+      },
+      "old": {
+        "per_seed": [
+          14.435714285714285,
+          15.021676587301588,
+          15.573660714285714,
+          13.500992063492063,
+          14.936160714285714
+        ],
+        "mean": 14.693640873015875,
+        "sample_sd": 0.7793900710781296,
+        "approximate_bootstrap_percentile_95": [
+          14.061825396825395,
+          15.235674603174601
+        ],
+        "bootstrap_resamples": 3125
+      },
+      "seen": {
+        "per_seed": [
+          21.152083333333334,
+          21.842311507936508,
+          22.138363095238095,
+          20.261607142857144,
+          21.952132936507937
+        ],
+        "mean": 21.4692996031746,
+        "sample_sd": 0.7712099431807985,
+        "approximate_bootstrap_percentile_95": [
+          20.79589285714286,
+          22.004660714285713
+        ],
+        "bootstrap_resamples": 3125
+      }
+    },
+    {
+      "method": "er",
+      "branch": "probe",
+      "current": {
+        "per_seed": [
+          77.55,
+          78.5,
+          75.9,
+          78.225,
+          78.225
+        ],
+        "mean": 77.67999999999999,
+        "sample_sd": 1.0549585299906306,
+        "approximate_bootstrap_percentile_95": [
+          76.75,
+          78.335
+        ],
+        "bootstrap_resamples": 3125
+      },
+      "current_masked": {
+        "per_seed": [
+          77.55,
+          78.5,
+          75.9,
+          78.225,
+          78.225
+        ],
+        "mean": 77.67999999999999,
+        "sample_sd": 1.0549585299906306,
+        "approximate_bootstrap_percentile_95": [
+          76.75,
+          78.335
+        ],
+        "bootstrap_resamples": 3125
+      },
+      "old": {
+        "per_seed": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "approximate_bootstrap_percentile_95": [
+          0.0,
+          0.0
+        ],
+        "bootstrap_resamples": 3125
+      },
+      "seen": {
+        "per_seed": [
+          9.298531746031745,
+          9.372073412698413,
+          9.110625,
+          9.396666666666667,
+          9.412767857142857
+        ],
+        "mean": 9.318132936507936,
+        "sample_sd": 0.12397241661932573,
+        "approximate_bootstrap_percentile_95": [
+          9.208634920634921,
+          9.398188492063491
+        ],
+        "bootstrap_resamples": 3125
+      }
+    },
+    {
+      "method": "er",
+      "branch": "fresh",
+      "current": {
+        "per_seed": [
+          64.0,
+          59.45,
+          59.375,
+          64.6,
+          61.3
+        ],
+        "mean": 61.74499999999999,
+        "sample_sd": 2.4656642107148308,
+        "approximate_bootstrap_percentile_95": [
+          59.79,
+          63.7
+        ],
+        "bootstrap_resamples": 3125
+      },
+      "current_masked": {
+        "per_seed": [
+          64.0,
+          59.45,
+          59.375,
+          64.6,
+          61.3
+        ],
+        "mean": 61.74499999999999,
+        "sample_sd": 2.4656642107148308,
+        "approximate_bootstrap_percentile_95": [
+          59.79,
+          63.7
+        ],
+        "bootstrap_resamples": 3125
+      },
+      "old": {
+        "per_seed": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "sample_sd": 0.0,
+        "approximate_bootstrap_percentile_95": [
+          0.0,
+          0.0
+        ],
+        "bootstrap_resamples": 3125
+      },
+      "seen": {
+        "per_seed": [
+          7.72625,
+          7.081240079365079,
+          7.149464285714286,
+          7.76171626984127,
+          7.439821428571428
+        ],
+        "mean": 7.431698412698412,
+        "sample_sd": 0.31552161290440606,
+        "approximate_bootstrap_percentile_95": [
+          7.180246031746033,
+          7.6831507936507935
+        ],
+        "bootstrap_resamples": 3125
+      }
+    }
+  ],
+  "joint_direction_seeds": 0,
+  "strict_replication_gate": false,
+  "joint_direction_binomial_tail_p_half": 1.0,
+  "binomial_scope": "Seed-level joint-direction probability conditional on fixed dataset and implementation; not three mean tests.",
+  "scope": "New training runs on already accessed CIFAR-100 test; 5 paired seeds and fixed four late tasks. Bootstrap coverage is approximate.",
+  "raw_endpoint_counts": [
+    {
+      "seed": 3101,
+      "method": "sgd",
+      "task": 6,
+      "branch": "actual",
+      "path": "jobs/seed3101_sgd/evaluation/actual_task_06.npz",
+      "current": {
+        "correct": 667,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 667,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 667,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "af85d0de5433d940f54653eb5180ea9b7254dcf622e32324948973a7fd327284",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "45b71672c32405b198d66a8667fb2d199f6e9a7ba63722d86103313eb404a573"
+    },
+    {
+      "seed": 3101,
+      "method": "sgd",
+      "task": 6,
+      "branch": "probe",
+      "path": "jobs/seed3101_sgd/evaluation/probe_task_06.npz",
+      "current": {
+        "correct": 667,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 667,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 667,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "af85d0de5433d940f54653eb5180ea9b7254dcf622e32324948973a7fd327284",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "45b71672c32405b198d66a8667fb2d199f6e9a7ba63722d86103313eb404a573"
+    },
+    {
+      "seed": 3101,
+      "method": "sgd",
+      "task": 6,
+      "branch": "fresh",
+      "path": "jobs/seed3101_sgd/evaluation/fresh_task_06.npz",
+      "current": {
+        "correct": 665,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 665,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 665,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "c5565d4836f3ab083af08c6b89c20b5be4112ab3aec90b54075205f23d5fed79",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "2ebf1ffe7874dc94c45af95a7f80f980a66a930b56c619e14c63399c57777b67"
+    },
+    {
+      "seed": 3101,
+      "method": "sgd",
+      "task": 7,
+      "branch": "actual",
+      "path": "jobs/seed3101_sgd/evaluation/actual_task_07.npz",
+      "current": {
+        "correct": 694,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 694,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 694,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "04446ac9e855b8b6a09031a5c619ab6988d5dd2982a6414ef2b8a9cce985ee9a",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "701391921b514617a9de4124bfb82fa6a7bb9b79c5e9a9b7f83d5f84255d4346"
+    },
+    {
+      "seed": 3101,
+      "method": "sgd",
+      "task": 7,
+      "branch": "probe",
+      "path": "jobs/seed3101_sgd/evaluation/probe_task_07.npz",
+      "current": {
+        "correct": 694,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 694,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 694,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "04446ac9e855b8b6a09031a5c619ab6988d5dd2982a6414ef2b8a9cce985ee9a",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "701391921b514617a9de4124bfb82fa6a7bb9b79c5e9a9b7f83d5f84255d4346"
+    },
+    {
+      "seed": 3101,
+      "method": "sgd",
+      "task": 7,
+      "branch": "fresh",
+      "path": "jobs/seed3101_sgd/evaluation/fresh_task_07.npz",
+      "current": {
+        "correct": 742,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 742,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 742,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "86be4ec53a5fab79373a2cf5d1f5a5d1a37bc14acaf147ff1bc08e6c9451f648",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "08c8930682a37db8abad7d868505c89b5e7dd850951bf8acc0a1054a20d75438"
+    },
+    {
+      "seed": 3101,
+      "method": "sgd",
+      "task": 8,
+      "branch": "actual",
+      "path": "jobs/seed3101_sgd/evaluation/actual_task_08.npz",
+      "current": {
+        "correct": 564,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 564,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 564,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "8324095a17c517713117251cc24ed3cc776c72d5277010d1066d40290173525e",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "1842118c18457ab3fe778ddafb52867c46d2081d9a6fd990793f41e370618fb2"
+    },
+    {
+      "seed": 3101,
+      "method": "sgd",
+      "task": 8,
+      "branch": "probe",
+      "path": "jobs/seed3101_sgd/evaluation/probe_task_08.npz",
+      "current": {
+        "correct": 564,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 564,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 564,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "8324095a17c517713117251cc24ed3cc776c72d5277010d1066d40290173525e",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "1842118c18457ab3fe778ddafb52867c46d2081d9a6fd990793f41e370618fb2"
+    },
+    {
+      "seed": 3101,
+      "method": "sgd",
+      "task": 8,
+      "branch": "fresh",
+      "path": "jobs/seed3101_sgd/evaluation/fresh_task_08.npz",
+      "current": {
+        "correct": 540,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 540,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 540,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "be15f6ca0f50bc93740f6bbf3f9857b41e9051902ea785d03baeafa5bab6a93d",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "c24c099eb10b42f39d427f28289950d170e460cd21b07f1f343219de21e9938c"
+    },
+    {
+      "seed": 3101,
+      "method": "sgd",
+      "task": 9,
+      "branch": "actual",
+      "path": "jobs/seed3101_sgd/evaluation/actual_task_09.npz",
+      "current": {
+        "correct": 649,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 649,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 649,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "19e4449e21fe3c0203edc336836ca8b3438976b8d80420ab4b4b31fd4931b813",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "04a6713f4cb71a35f31fbe7353a769fe1575413a74c21a9d595d0f39f6112d2c"
+    },
+    {
+      "seed": 3101,
+      "method": "sgd",
+      "task": 9,
+      "branch": "probe",
+      "path": "jobs/seed3101_sgd/evaluation/probe_task_09.npz",
+      "current": {
+        "correct": 649,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 649,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 649,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "19e4449e21fe3c0203edc336836ca8b3438976b8d80420ab4b4b31fd4931b813",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "04a6713f4cb71a35f31fbe7353a769fe1575413a74c21a9d595d0f39f6112d2c"
+    },
+    {
+      "seed": 3101,
+      "method": "sgd",
+      "task": 9,
+      "branch": "fresh",
+      "path": "jobs/seed3101_sgd/evaluation/fresh_task_09.npz",
+      "current": {
+        "correct": 613,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 613,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 613,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "f53616c4c2d7bf394f2ce4f435b1ba30cbd378c799bdeeec5bcbc6ae5fefd9f7",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "d34c43e90823feecbbc50985ec2d7e2eb64dedd28da141c34ce8f1cdc6cb2884"
+    },
+    {
+      "seed": 3101,
+      "method": "er",
+      "task": 6,
+      "branch": "actual",
+      "path": "jobs/seed3101_er/evaluation/actual_task_06.npz",
+      "current": {
+        "correct": 720,
+        "n": 1000
+      },
+      "old": {
+        "correct": 757,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 1477,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 757,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 107,
+          "n": 1000
+        },
+        {
+          "correct": 178,
+          "n": 1000
+        },
+        {
+          "correct": 104,
+          "n": 1000
+        },
+        {
+          "correct": 74,
+          "n": 1000
+        },
+        {
+          "correct": 138,
+          "n": 1000
+        },
+        {
+          "correct": 156,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 59,
+      "sha256": "860b84eeac2b2e200acc3fe5d9ecace6320416350e41a663a1ddd4bf83ac6247",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "cad3c7301f5508537ea5e089acbdabf8a7977a9957d7e0249645d8347550bb13"
+    },
+    {
+      "seed": 3101,
+      "method": "er",
+      "task": 6,
+      "branch": "probe",
+      "path": "jobs/seed3101_er/evaluation/probe_task_06.npz",
+      "current": {
+        "correct": 779,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 779,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 779,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "92b031fed3cf0c52a503486ba42665d14c0f67d465c5311ad6add5c5b6f0f016",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "836bfc66729b7a4c0e6f1ee7e562dc9266b987f9bcfc97f0022b72544dd98763"
+    },
+    {
+      "seed": 3101,
+      "method": "er",
+      "task": 6,
+      "branch": "fresh",
+      "path": "jobs/seed3101_er/evaluation/fresh_task_06.npz",
+      "current": {
+        "correct": 665,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 665,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 665,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "c5565d4836f3ab083af08c6b89c20b5be4112ab3aec90b54075205f23d5fed79",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "2ebf1ffe7874dc94c45af95a7f80f980a66a930b56c619e14c63399c57777b67"
+    },
+    {
+      "seed": 3101,
+      "method": "er",
+      "task": 7,
+      "branch": "actual",
+      "path": "jobs/seed3101_er/evaluation/actual_task_07.npz",
+      "current": {
+        "correct": 750,
+        "n": 1000
+      },
+      "old": {
+        "correct": 948,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 1698,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 789,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 128,
+          "n": 1000
+        },
+        {
+          "correct": 164,
+          "n": 1000
+        },
+        {
+          "correct": 99,
+          "n": 1000
+        },
+        {
+          "correct": 78,
+          "n": 1000
+        },
+        {
+          "correct": 140,
+          "n": 1000
+        },
+        {
+          "correct": 141,
+          "n": 1000
+        },
+        {
+          "correct": 198,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 62,
+      "sha256": "b4a5d0fbd1098862de40a5b75df5cd2104d37ffb7d47d3977175cbc76c878282",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "30116ee3e7b84dee13f71cb707da5ddf3c03d2eeaac7c4a03f32c0827c74cf28"
+    },
+    {
+      "seed": 3101,
+      "method": "er",
+      "task": 7,
+      "branch": "probe",
+      "path": "jobs/seed3101_er/evaluation/probe_task_07.npz",
+      "current": {
+        "correct": 812,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 812,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 812,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "9d4c7df86e0868b759576561e5f063468e31791694fc288967233dc1f884bfa3",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "8b2793da7c3c4b3387971ff8f9727406d68223a6ef9ac1cc1449e60f22e2e919"
+    },
+    {
+      "seed": 3101,
+      "method": "er",
+      "task": 7,
+      "branch": "fresh",
+      "path": "jobs/seed3101_er/evaluation/fresh_task_07.npz",
+      "current": {
+        "correct": 742,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 742,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 742,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "86be4ec53a5fab79373a2cf5d1f5a5d1a37bc14acaf147ff1bc08e6c9451f648",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "08c8930682a37db8abad7d868505c89b5e7dd850951bf8acc0a1054a20d75438"
+    },
+    {
+      "seed": 3101,
+      "method": "er",
+      "task": 8,
+      "branch": "actual",
+      "path": "jobs/seed3101_er/evaluation/actual_task_08.npz",
+      "current": {
+        "correct": 630,
+        "n": 1000
+      },
+      "old": {
+        "correct": 1380,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 2010,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 661,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 159,
+          "n": 1000
+        },
+        {
+          "correct": 211,
+          "n": 1000
+        },
+        {
+          "correct": 98,
+          "n": 1000
+        },
+        {
+          "correct": 92,
+          "n": 1000
+        },
+        {
+          "correct": 127,
+          "n": 1000
+        },
+        {
+          "correct": 131,
+          "n": 1000
+        },
+        {
+          "correct": 291,
+          "n": 1000
+        },
+        {
+          "correct": 271,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 75,
+      "sha256": "f8094618df6a5678f92a6b114ffcad6ef8528c2b73e3fc1e49295d8204c65936",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "40595732dcc5e9ad2dbc81b3c96c15c8cc7380fcde9c77ed9e8fba328db13d99"
+    },
+    {
+      "seed": 3101,
+      "method": "er",
+      "task": 8,
+      "branch": "probe",
+      "path": "jobs/seed3101_er/evaluation/probe_task_08.npz",
+      "current": {
+        "correct": 725,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 725,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 725,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "cec87af88bf202432dd76a07c9b9d2827dd1ad3724ee771bc0d9b0594d2a04af",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "3fcd3902a51fae081b1a3ab6391f53d4e92c5ed8ee9b3b22f59afd4e056d07bd"
+    },
+    {
+      "seed": 3101,
+      "method": "er",
+      "task": 8,
+      "branch": "fresh",
+      "path": "jobs/seed3101_er/evaluation/fresh_task_08.npz",
+      "current": {
+        "correct": 540,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 540,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 540,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "be15f6ca0f50bc93740f6bbf3f9857b41e9051902ea785d03baeafa5bab6a93d",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "c24c099eb10b42f39d427f28289950d170e460cd21b07f1f343219de21e9938c"
+    },
+    {
+      "seed": 3101,
+      "method": "er",
+      "task": 9,
+      "branch": "actual",
+      "path": "jobs/seed3101_er/evaluation/actual_task_09.npz",
+      "current": {
+        "correct": 705,
+        "n": 1000
+      },
+      "old": {
+        "correct": 1290,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 1995,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 750,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 147,
+          "n": 1000
+        },
+        {
+          "correct": 200,
+          "n": 1000
+        },
+        {
+          "correct": 75,
+          "n": 1000
+        },
+        {
+          "correct": 67,
+          "n": 1000
+        },
+        {
+          "correct": 127,
+          "n": 1000
+        },
+        {
+          "correct": 95,
+          "n": 1000
+        },
+        {
+          "correct": 236,
+          "n": 1000
+        },
+        {
+          "correct": 209,
+          "n": 1000
+        },
+        {
+          "correct": 134,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 88,
+      "sha256": "b8a8a35b9562082e5744cff3b863fdfb2e50fb2ecee932e53f0e8b472b4c7cee",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "b676f42ebe9e2cb3806b5235c0f235b21da2bdd06c9f1c5a5885d2dc8ef4ed65"
+    },
+    {
+      "seed": 3101,
+      "method": "er",
+      "task": 9,
+      "branch": "probe",
+      "path": "jobs/seed3101_er/evaluation/probe_task_09.npz",
+      "current": {
+        "correct": 786,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 786,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 786,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "31e325b2b88bcf228041f856772f7adba30e0854fe648797121a484f1e86f13a",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "ff53dd2d86d888c92bdf114b41820a9d4ae20f420405e2f570cec204e19077b2"
+    },
+    {
+      "seed": 3101,
+      "method": "er",
+      "task": 9,
+      "branch": "fresh",
+      "path": "jobs/seed3101_er/evaluation/fresh_task_09.npz",
+      "current": {
+        "correct": 613,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 613,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 613,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "f53616c4c2d7bf394f2ce4f435b1ba30cbd378c799bdeeec5bcbc6ae5fefd9f7",
+      "identity_sha256": "29c2ce79b2cfe0d005d5aff51180166a9f89dbeb383d686c785d302449df9f7f",
+      "logits_sha256": "d34c43e90823feecbbc50985ec2d7e2eb64dedd28da141c34ce8f1cdc6cb2884"
+    },
+    {
+      "seed": 3102,
+      "method": "sgd",
+      "task": 6,
+      "branch": "actual",
+      "path": "jobs/seed3102_sgd/evaluation/actual_task_06.npz",
+      "current": {
+        "correct": 606,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 606,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 606,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "a53491be3c576b8b163ccf6abfb5fdb588e270459c30ec53124ce17bf0506037",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "852d8397143b9efb24ecbe28b1d463c57a72e915ade6a13b5c9e904b006994b2"
+    },
+    {
+      "seed": 3102,
+      "method": "sgd",
+      "task": 6,
+      "branch": "probe",
+      "path": "jobs/seed3102_sgd/evaluation/probe_task_06.npz",
+      "current": {
+        "correct": 606,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 606,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 606,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "a53491be3c576b8b163ccf6abfb5fdb588e270459c30ec53124ce17bf0506037",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "852d8397143b9efb24ecbe28b1d463c57a72e915ade6a13b5c9e904b006994b2"
+    },
+    {
+      "seed": 3102,
+      "method": "sgd",
+      "task": 6,
+      "branch": "fresh",
+      "path": "jobs/seed3102_sgd/evaluation/fresh_task_06.npz",
+      "current": {
+        "correct": 576,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 576,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 576,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "f6d946f6853899f72cb0bc9117d5a490541ae15e926ff275d196befac2129c72",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "5c5ccabbfcc6308efcb1d4a774f48135c39a38c70e873b79389da6315c37b8cc"
+    },
+    {
+      "seed": 3102,
+      "method": "sgd",
+      "task": 7,
+      "branch": "actual",
+      "path": "jobs/seed3102_sgd/evaluation/actual_task_07.npz",
+      "current": {
+        "correct": 590,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 590,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 590,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "be92f1fdaa2f13c7cbaf3188c1364879a11363cfd6033c17bdc92cf8ca82941b",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "63244b2df6c2e4293ad84e35eee20552d9d509cb8436bf54b1b3e63ae214869d"
+    },
+    {
+      "seed": 3102,
+      "method": "sgd",
+      "task": 7,
+      "branch": "probe",
+      "path": "jobs/seed3102_sgd/evaluation/probe_task_07.npz",
+      "current": {
+        "correct": 590,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 590,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 590,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "be92f1fdaa2f13c7cbaf3188c1364879a11363cfd6033c17bdc92cf8ca82941b",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "63244b2df6c2e4293ad84e35eee20552d9d509cb8436bf54b1b3e63ae214869d"
+    },
+    {
+      "seed": 3102,
+      "method": "sgd",
+      "task": 7,
+      "branch": "fresh",
+      "path": "jobs/seed3102_sgd/evaluation/fresh_task_07.npz",
+      "current": {
+        "correct": 539,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 539,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 539,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "1e691ef14baee7b11e15ec30ffbe0c8b6c950897ded65659e023ac51cb8f44f1",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "6ec50dac9a5cc6ed191433148c8d0e67a5afd471effc3fb4c6b19a1ae997a3df"
+    },
+    {
+      "seed": 3102,
+      "method": "sgd",
+      "task": 8,
+      "branch": "actual",
+      "path": "jobs/seed3102_sgd/evaluation/actual_task_08.npz",
+      "current": {
+        "correct": 690,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 690,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 690,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "55592d32df4e1f4d0f6bda12513a9d0f19d97e6ff1df9a39bbdc9102c4223840",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "4a2b43287f7988278ea9a9556ea7622b016dd5cdc72337154bf340cd9441ac7f"
+    },
+    {
+      "seed": 3102,
+      "method": "sgd",
+      "task": 8,
+      "branch": "probe",
+      "path": "jobs/seed3102_sgd/evaluation/probe_task_08.npz",
+      "current": {
+        "correct": 690,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 690,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 690,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "55592d32df4e1f4d0f6bda12513a9d0f19d97e6ff1df9a39bbdc9102c4223840",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "4a2b43287f7988278ea9a9556ea7622b016dd5cdc72337154bf340cd9441ac7f"
+    },
+    {
+      "seed": 3102,
+      "method": "sgd",
+      "task": 8,
+      "branch": "fresh",
+      "path": "jobs/seed3102_sgd/evaluation/fresh_task_08.npz",
+      "current": {
+        "correct": 656,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 656,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 656,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "1f6c15830f941eb172e2279cabc693653534b5ef613b731d8c09b6c4ce36b3a8",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "b4531c840881c48798666a3aea2aa3b9ee9105f6e740e3a0213596dce4c67410"
+    },
+    {
+      "seed": 3102,
+      "method": "sgd",
+      "task": 9,
+      "branch": "actual",
+      "path": "jobs/seed3102_sgd/evaluation/actual_task_09.npz",
+      "current": {
+        "correct": 609,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 609,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 609,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "ff75fd82aed2f2219c48686a79ddbec571c3985fa20f22dcb68fc7000cb1ce00",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "4dfdbdbea9b9698dd0cc79b02d8b1e40a2469959b2218a455e2eb5fd989357db"
+    },
+    {
+      "seed": 3102,
+      "method": "sgd",
+      "task": 9,
+      "branch": "probe",
+      "path": "jobs/seed3102_sgd/evaluation/probe_task_09.npz",
+      "current": {
+        "correct": 609,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 609,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 609,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "ff75fd82aed2f2219c48686a79ddbec571c3985fa20f22dcb68fc7000cb1ce00",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "4dfdbdbea9b9698dd0cc79b02d8b1e40a2469959b2218a455e2eb5fd989357db"
+    },
+    {
+      "seed": 3102,
+      "method": "sgd",
+      "task": 9,
+      "branch": "fresh",
+      "path": "jobs/seed3102_sgd/evaluation/fresh_task_09.npz",
+      "current": {
+        "correct": 607,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 607,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 607,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "4908095d077074fc1920b4bd2d8f4afdab10280beaac17508beb19be49e70958",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "80a4826ecb239781d8450d086e07d61f55cc7f7075bb55a300c63612f1df9cf1"
+    },
+    {
+      "seed": 3102,
+      "method": "er",
+      "task": 6,
+      "branch": "actual",
+      "path": "jobs/seed3102_er/evaluation/actual_task_06.npz",
+      "current": {
+        "correct": 677,
+        "n": 1000
+      },
+      "old": {
+        "correct": 992,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 1669,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 708,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 182,
+          "n": 1000
+        },
+        {
+          "correct": 158,
+          "n": 1000
+        },
+        {
+          "correct": 153,
+          "n": 1000
+        },
+        {
+          "correct": 186,
+          "n": 1000
+        },
+        {
+          "correct": 185,
+          "n": 1000
+        },
+        {
+          "correct": 128,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 61,
+      "sha256": "ea9350335124e11a415a9f450e675e4669e323bf4ab99903db509b7d6acfbc60",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "168908847a07326d374ab76a2805577a69bffaa1bde54de5c3c9c3fbe971dcf4"
+    },
+    {
+      "seed": 3102,
+      "method": "er",
+      "task": 6,
+      "branch": "probe",
+      "path": "jobs/seed3102_er/evaluation/probe_task_06.npz",
+      "current": {
+        "correct": 751,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 751,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 751,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "92b5d58ba21ce22b901ba815e2ebbc7332e5169126ec958963163be5f1011fd6",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "b50bfa38c4bde0fa71dd911065bcbf2ce1453bd452fcd68bd6c986068c0a21e0"
+    },
+    {
+      "seed": 3102,
+      "method": "er",
+      "task": 6,
+      "branch": "fresh",
+      "path": "jobs/seed3102_er/evaluation/fresh_task_06.npz",
+      "current": {
+        "correct": 576,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 576,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 576,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "f6d946f6853899f72cb0bc9117d5a490541ae15e926ff275d196befac2129c72",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "5c5ccabbfcc6308efcb1d4a774f48135c39a38c70e873b79389da6315c37b8cc"
+    },
+    {
+      "seed": 3102,
+      "method": "er",
+      "task": 7,
+      "branch": "actual",
+      "path": "jobs/seed3102_er/evaluation/actual_task_07.npz",
+      "current": {
+        "correct": 702,
+        "n": 1000
+      },
+      "old": {
+        "correct": 1013,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 1715,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 729,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 177,
+          "n": 1000
+        },
+        {
+          "correct": 149,
+          "n": 1000
+        },
+        {
+          "correct": 145,
+          "n": 1000
+        },
+        {
+          "correct": 180,
+          "n": 1000
+        },
+        {
+          "correct": 119,
+          "n": 1000
+        },
+        {
+          "correct": 84,
+          "n": 1000
+        },
+        {
+          "correct": 159,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 54,
+      "sha256": "4ccaecbbf9b46b6e15507a46f47b1659931269a19f35b29669858d657c5f908d",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "acdaa0e895fb750448e6201ae8c5a4e1ca22da7de384f754a47d58a12150e2d5"
+    },
+    {
+      "seed": 3102,
+      "method": "er",
+      "task": 7,
+      "branch": "probe",
+      "path": "jobs/seed3102_er/evaluation/probe_task_07.npz",
+      "current": {
+        "correct": 775,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 775,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 775,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "f872745b608fa879742b8b654f5243b6d6b27a1b14630224f0c1acc216c9d7dc",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "939425f1b7f1cb03137da52bf5ac4182c3a8011b2492801b5350bef2544680df"
+    },
+    {
+      "seed": 3102,
+      "method": "er",
+      "task": 7,
+      "branch": "fresh",
+      "path": "jobs/seed3102_er/evaluation/fresh_task_07.npz",
+      "current": {
+        "correct": 539,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 539,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 539,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "1e691ef14baee7b11e15ec30ffbe0c8b6c950897ded65659e023ac51cb8f44f1",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "6ec50dac9a5cc6ed191433148c8d0e67a5afd471effc3fb4c6b19a1ae997a3df"
+    },
+    {
+      "seed": 3102,
+      "method": "er",
+      "task": 8,
+      "branch": "actual",
+      "path": "jobs/seed3102_er/evaluation/actual_task_08.npz",
+      "current": {
+        "correct": 799,
+        "n": 1000
+      },
+      "old": {
+        "correct": 1171,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 1970,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 828,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 171,
+          "n": 1000
+        },
+        {
+          "correct": 130,
+          "n": 1000
+        },
+        {
+          "correct": 177,
+          "n": 1000
+        },
+        {
+          "correct": 167,
+          "n": 1000
+        },
+        {
+          "correct": 166,
+          "n": 1000
+        },
+        {
+          "correct": 89,
+          "n": 1000
+        },
+        {
+          "correct": 109,
+          "n": 1000
+        },
+        {
+          "correct": 162,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 64,
+      "sha256": "d051d4be0b62f6361a5b9c0f3214d4f58104cb644d8d9a6a98b5053f7f9531f6",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "099314c156c3a9bd2cd7024072ca8b2a6a7f5c47ed664fb9c51a3f803cecdc50"
+    },
+    {
+      "seed": 3102,
+      "method": "er",
+      "task": 8,
+      "branch": "probe",
+      "path": "jobs/seed3102_er/evaluation/probe_task_08.npz",
+      "current": {
+        "correct": 839,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 839,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 839,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "ecbfcd998cf1f817b24122a69dd0ee8306012d82d893d394eb68d07f384615a9",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "acdb62bfe93db154055b19d55c03ec8fa38491957e9d9bb046722f7a5ca7081b"
+    },
+    {
+      "seed": 3102,
+      "method": "er",
+      "task": 8,
+      "branch": "fresh",
+      "path": "jobs/seed3102_er/evaluation/fresh_task_08.npz",
+      "current": {
+        "correct": 656,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 656,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 656,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "1f6c15830f941eb172e2279cabc693653534b5ef613b731d8c09b6c4ce36b3a8",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "b4531c840881c48798666a3aea2aa3b9ee9105f6e740e3a0213596dce4c67410"
+    },
+    {
+      "seed": 3102,
+      "method": "er",
+      "task": 9,
+      "branch": "actual",
+      "path": "jobs/seed3102_er/evaluation/actual_task_09.npz",
+      "current": {
+        "correct": 720,
+        "n": 1000
+      },
+      "old": {
+        "correct": 1300,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 2020,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 754,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 208,
+          "n": 1000
+        },
+        {
+          "correct": 127,
+          "n": 1000
+        },
+        {
+          "correct": 174,
+          "n": 1000
+        },
+        {
+          "correct": 131,
+          "n": 1000
+        },
+        {
+          "correct": 157,
+          "n": 1000
+        },
+        {
+          "correct": 93,
+          "n": 1000
+        },
+        {
+          "correct": 94,
+          "n": 1000
+        },
+        {
+          "correct": 125,
+          "n": 1000
+        },
+        {
+          "correct": 191,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 75,
+      "sha256": "64460bbb67bc4be79f5079488ecf0e3e9996bcc63454d12af82126bea26772b7",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "e5a5b168d84f2f5d61cd57d5e2975d95d1d9fe28fb27a608ff03762c94400398"
+    },
+    {
+      "seed": 3102,
+      "method": "er",
+      "task": 9,
+      "branch": "probe",
+      "path": "jobs/seed3102_er/evaluation/probe_task_09.npz",
+      "current": {
+        "correct": 775,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 775,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 775,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "793981370fe949d76859b8367279a6afe34e035412f15d9b799acd514066d64b",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "51a9246d4024ceeafeafead49e5ccd123f78ac9845a14c94768cf98f1c0ac83a"
+    },
+    {
+      "seed": 3102,
+      "method": "er",
+      "task": 9,
+      "branch": "fresh",
+      "path": "jobs/seed3102_er/evaluation/fresh_task_09.npz",
+      "current": {
+        "correct": 607,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 607,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 607,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "4908095d077074fc1920b4bd2d8f4afdab10280beaac17508beb19be49e70958",
+      "identity_sha256": "18c0f48d86186a5825cc725d637ecefabefd296cd28b738420dd6bd21a7467c0",
+      "logits_sha256": "80a4826ecb239781d8450d086e07d61f55cc7f7075bb55a300c63612f1df9cf1"
+    },
+    {
+      "seed": 3103,
+      "method": "sgd",
+      "task": 6,
+      "branch": "actual",
+      "path": "jobs/seed3103_sgd/evaluation/actual_task_06.npz",
+      "current": {
+        "correct": 664,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 664,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 664,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "3d71f9ba02be280be5edce68773b11f7f6f3db10b114895df5b7423fe79c8fd1",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "212650e6cd4c9bbff70776d2a8d8be764a95f0dc6cec3c1241f527f81dd737c2"
+    },
+    {
+      "seed": 3103,
+      "method": "sgd",
+      "task": 6,
+      "branch": "probe",
+      "path": "jobs/seed3103_sgd/evaluation/probe_task_06.npz",
+      "current": {
+        "correct": 664,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 664,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 664,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "3d71f9ba02be280be5edce68773b11f7f6f3db10b114895df5b7423fe79c8fd1",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "212650e6cd4c9bbff70776d2a8d8be764a95f0dc6cec3c1241f527f81dd737c2"
+    },
+    {
+      "seed": 3103,
+      "method": "sgd",
+      "task": 6,
+      "branch": "fresh",
+      "path": "jobs/seed3103_sgd/evaluation/fresh_task_06.npz",
+      "current": {
+        "correct": 661,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 661,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 661,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "5eedba2164e0119f464ac4a075b7b3422497c8503d66b333bc9ccf810fc0348e",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "224de1a6a8960f0c06148b872227511a6babda5ccb513c3b1ce49d2a6bfb8f4d"
+    },
+    {
+      "seed": 3103,
+      "method": "sgd",
+      "task": 7,
+      "branch": "actual",
+      "path": "jobs/seed3103_sgd/evaluation/actual_task_07.npz",
+      "current": {
+        "correct": 653,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 653,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 653,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "be5b3ea559fcce271d75d8949a416e3fee45202f3fced78ce177383f2a0db2ec",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "0640024900d03bb167482b639babc9e02db98939e81c61bdcd2e35f45f11d8cf"
+    },
+    {
+      "seed": 3103,
+      "method": "sgd",
+      "task": 7,
+      "branch": "probe",
+      "path": "jobs/seed3103_sgd/evaluation/probe_task_07.npz",
+      "current": {
+        "correct": 653,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 653,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 653,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "be5b3ea559fcce271d75d8949a416e3fee45202f3fced78ce177383f2a0db2ec",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "0640024900d03bb167482b639babc9e02db98939e81c61bdcd2e35f45f11d8cf"
+    },
+    {
+      "seed": 3103,
+      "method": "sgd",
+      "task": 7,
+      "branch": "fresh",
+      "path": "jobs/seed3103_sgd/evaluation/fresh_task_07.npz",
+      "current": {
+        "correct": 574,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 574,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 574,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "12aec77674bc66f882310f1f51bbbaf521475af9d9bd7fdc0ebd28ad94399f3d",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "f7be625d5ce9917c6ff0fd3b0c40e6a69368541fd050ae47dd36872cfdca272d"
+    },
+    {
+      "seed": 3103,
+      "method": "sgd",
+      "task": 8,
+      "branch": "actual",
+      "path": "jobs/seed3103_sgd/evaluation/actual_task_08.npz",
+      "current": {
+        "correct": 574,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 574,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 574,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "a85d4263a5e8e713a97279a86b5c64780d096bf700bbd3f364c2300a803a023b",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "c214b1fa3a4eb88d1f0be0800f0e159d3bf3b19a54652aa06769685c7ce59802"
+    },
+    {
+      "seed": 3103,
+      "method": "sgd",
+      "task": 8,
+      "branch": "probe",
+      "path": "jobs/seed3103_sgd/evaluation/probe_task_08.npz",
+      "current": {
+        "correct": 574,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 574,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 574,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "a85d4263a5e8e713a97279a86b5c64780d096bf700bbd3f364c2300a803a023b",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "c214b1fa3a4eb88d1f0be0800f0e159d3bf3b19a54652aa06769685c7ce59802"
+    },
+    {
+      "seed": 3103,
+      "method": "sgd",
+      "task": 8,
+      "branch": "fresh",
+      "path": "jobs/seed3103_sgd/evaluation/fresh_task_08.npz",
+      "current": {
+        "correct": 522,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 522,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 522,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "6a244ae5ec9bdd09e7706274dc09628ee5330854be4e7109676f953f3083f5f8",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "b11fbee6bc55fa7dd65ed0af7dd816f7e4b98e022c5622a82934b156926b6cdb"
+    },
+    {
+      "seed": 3103,
+      "method": "sgd",
+      "task": 9,
+      "branch": "actual",
+      "path": "jobs/seed3103_sgd/evaluation/actual_task_09.npz",
+      "current": {
+        "correct": 548,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 548,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 548,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "9f77ed9487899c0f9c9a6ad1e09b16c2780cbfbad341f9f9be43e794eaa738eb",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "920f8c6cea764fe51f8d86c2bc4ccf6d220dba25f5b7588bb44cdf1e0591d031"
+    },
+    {
+      "seed": 3103,
+      "method": "sgd",
+      "task": 9,
+      "branch": "probe",
+      "path": "jobs/seed3103_sgd/evaluation/probe_task_09.npz",
+      "current": {
+        "correct": 548,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 548,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 548,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "9f77ed9487899c0f9c9a6ad1e09b16c2780cbfbad341f9f9be43e794eaa738eb",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "920f8c6cea764fe51f8d86c2bc4ccf6d220dba25f5b7588bb44cdf1e0591d031"
+    },
+    {
+      "seed": 3103,
+      "method": "sgd",
+      "task": 9,
+      "branch": "fresh",
+      "path": "jobs/seed3103_sgd/evaluation/fresh_task_09.npz",
+      "current": {
+        "correct": 618,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 618,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 618,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "db0a1fc1ea9225512f68112dc34676c32a0f2e48548f715cb08b881cb622d7fe",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "1521a2102f97e37b9f29334f14a241869e8799afc1b0506ee0384d27eecf6936"
+    },
+    {
+      "seed": 3103,
+      "method": "er",
+      "task": 6,
+      "branch": "actual",
+      "path": "jobs/seed3103_er/evaluation/actual_task_06.npz",
+      "current": {
+        "correct": 720,
+        "n": 1000
+      },
+      "old": {
+        "correct": 919,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 1639,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 743,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 155,
+          "n": 1000
+        },
+        {
+          "correct": 144,
+          "n": 1000
+        },
+        {
+          "correct": 73,
+          "n": 1000
+        },
+        {
+          "correct": 155,
+          "n": 1000
+        },
+        {
+          "correct": 175,
+          "n": 1000
+        },
+        {
+          "correct": 217,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 58,
+      "sha256": "494d9731ef9ae658868845e11dec86e043f897f4f04b28daca7d4faf9c29b73d",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "e1eff1f704f165e3addf8e694b2848b5796dd3378c003f7fe0b83348f2da1fa3"
+    },
+    {
+      "seed": 3103,
+      "method": "er",
+      "task": 6,
+      "branch": "probe",
+      "path": "jobs/seed3103_er/evaluation/probe_task_06.npz",
+      "current": {
+        "correct": 763,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 763,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 763,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "5f68168e92be9b2c7b1b153b9bdd304380e7a93a4525d23fadb129be0ec06616",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "b4e7f743adfc3130e94c7d3bc52c5b523e57ce89e9cb8345e8bf8e7d1ec90539"
+    },
+    {
+      "seed": 3103,
+      "method": "er",
+      "task": 6,
+      "branch": "fresh",
+      "path": "jobs/seed3103_er/evaluation/fresh_task_06.npz",
+      "current": {
+        "correct": 661,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 661,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 661,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "5eedba2164e0119f464ac4a075b7b3422497c8503d66b333bc9ccf810fc0348e",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "224de1a6a8960f0c06148b872227511a6babda5ccb513c3b1ce49d2a6bfb8f4d"
+    },
+    {
+      "seed": 3103,
+      "method": "er",
+      "task": 7,
+      "branch": "actual",
+      "path": "jobs/seed3103_er/evaluation/actual_task_07.npz",
+      "current": {
+        "correct": 731,
+        "n": 1000
+      },
+      "old": {
+        "correct": 998,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 1729,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 761,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 146,
+          "n": 1000
+        },
+        {
+          "correct": 145,
+          "n": 1000
+        },
+        {
+          "correct": 88,
+          "n": 1000
+        },
+        {
+          "correct": 120,
+          "n": 1000
+        },
+        {
+          "correct": 173,
+          "n": 1000
+        },
+        {
+          "correct": 136,
+          "n": 1000
+        },
+        {
+          "correct": 190,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 55,
+      "sha256": "d777164b708974ad0f080183a7e9e7502c421081999aa3aea1ae0a860e2f6d69",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "e0939568e9f863d955065a94fe34324b159df7ac0172335923288d24adbbec53"
+    },
+    {
+      "seed": 3103,
+      "method": "er",
+      "task": 7,
+      "branch": "probe",
+      "path": "jobs/seed3103_er/evaluation/probe_task_07.npz",
+      "current": {
+        "correct": 805,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 805,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 805,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "f133f6e801ac04aed04d907646dbe91ce9f5bc34cf6b3fa6956bc3d1d5f9921e",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "abc01235a41b2bc760b1fc3dfd25a9c0bd27a32589d49df7b1dd6d9fdec34173"
+    },
+    {
+      "seed": 3103,
+      "method": "er",
+      "task": 7,
+      "branch": "fresh",
+      "path": "jobs/seed3103_er/evaluation/fresh_task_07.npz",
+      "current": {
+        "correct": 574,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 574,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 574,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "12aec77674bc66f882310f1f51bbbaf521475af9d9bd7fdc0ebd28ad94399f3d",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "f7be625d5ce9917c6ff0fd3b0c40e6a69368541fd050ae47dd36872cfdca272d"
+    },
+    {
+      "seed": 3103,
+      "method": "er",
+      "task": 8,
+      "branch": "actual",
+      "path": "jobs/seed3103_er/evaluation/actual_task_08.npz",
+      "current": {
+        "correct": 693,
+        "n": 1000
+      },
+      "old": {
+        "correct": 1311,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 2004,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 729,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 152,
+          "n": 1000
+        },
+        {
+          "correct": 184,
+          "n": 1000
+        },
+        {
+          "correct": 112,
+          "n": 1000
+        },
+        {
+          "correct": 147,
+          "n": 1000
+        },
+        {
+          "correct": 149,
+          "n": 1000
+        },
+        {
+          "correct": 207,
+          "n": 1000
+        },
+        {
+          "correct": 168,
+          "n": 1000
+        },
+        {
+          "correct": 192,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 75,
+      "sha256": "bd3f58a448f30f2b54a9f1f408cddf7a7e137c9833806d49d8a7d1df3390534b",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "d4df50fd889a21e203ab2de725de105b2e3d751ce137a7395b8e09b9c2d6d820"
+    },
+    {
+      "seed": 3103,
+      "method": "er",
+      "task": 8,
+      "branch": "probe",
+      "path": "jobs/seed3103_er/evaluation/probe_task_08.npz",
+      "current": {
+        "correct": 720,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 720,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 720,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "7996740dd5b5486ee78aeed8c12adf716183178d759261daafe916143c3b4547",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "17c541badce44ef24ced092523f076caedb563f373165420b3dce90319799d0c"
+    },
+    {
+      "seed": 3103,
+      "method": "er",
+      "task": 8,
+      "branch": "fresh",
+      "path": "jobs/seed3103_er/evaluation/fresh_task_08.npz",
+      "current": {
+        "correct": 522,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 522,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 522,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "6a244ae5ec9bdd09e7706274dc09628ee5330854be4e7109676f953f3083f5f8",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "b11fbee6bc55fa7dd65ed0af7dd816f7e4b98e022c5622a82934b156926b6cdb"
+    },
+    {
+      "seed": 3103,
+      "method": "er",
+      "task": 9,
+      "branch": "actual",
+      "path": "jobs/seed3103_er/evaluation/actual_task_09.npz",
+      "current": {
+        "correct": 656,
+        "n": 1000
+      },
+      "old": {
+        "correct": 1470,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 2126,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 711,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 148,
+          "n": 1000
+        },
+        {
+          "correct": 169,
+          "n": 1000
+        },
+        {
+          "correct": 101,
+          "n": 1000
+        },
+        {
+          "correct": 158,
+          "n": 1000
+        },
+        {
+          "correct": 141,
+          "n": 1000
+        },
+        {
+          "correct": 202,
+          "n": 1000
+        },
+        {
+          "correct": 172,
+          "n": 1000
+        },
+        {
+          "correct": 174,
+          "n": 1000
+        },
+        {
+          "correct": 205,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 94,
+      "sha256": "19047a4bed754f116c8f6c63d6fc600d29b714a171d2cb799744cd498a8ceb1a",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "7e077b60e49147fbe2cf2ebf75cdce48c9406155c76a1c0d6581cfc6ada94914"
+    },
+    {
+      "seed": 3103,
+      "method": "er",
+      "task": 9,
+      "branch": "probe",
+      "path": "jobs/seed3103_er/evaluation/probe_task_09.npz",
+      "current": {
+        "correct": 748,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 748,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 748,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "ea9c175ca22a3251d3ce9e0bfd3235d8dae9a62276d28d09c2453258a8ba2fec",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "892698969956721853ca9187e51b97421b36c3106e616561fd28cd7d7eed50bc"
+    },
+    {
+      "seed": 3103,
+      "method": "er",
+      "task": 9,
+      "branch": "fresh",
+      "path": "jobs/seed3103_er/evaluation/fresh_task_09.npz",
+      "current": {
+        "correct": 618,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 618,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 618,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "db0a1fc1ea9225512f68112dc34676c32a0f2e48548f715cb08b881cb622d7fe",
+      "identity_sha256": "1aafa544f71a4ea2262424f07140a17fec241f78e1530126128e669248db333d",
+      "logits_sha256": "1521a2102f97e37b9f29334f14a241869e8799afc1b0506ee0384d27eecf6936"
+    },
+    {
+      "seed": 3104,
+      "method": "sgd",
+      "task": 6,
+      "branch": "actual",
+      "path": "jobs/seed3104_sgd/evaluation/actual_task_06.npz",
+      "current": {
+        "correct": 774,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 774,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 774,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "33352b06300ac41af4a35dc85e357491b8ea76f7fbd852ec2f6895a82b556ee8",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "7d7c7cdf434e22811c6f0a25465b2e916c4c83786aaabc84096bda3acaaaef46"
+    },
+    {
+      "seed": 3104,
+      "method": "sgd",
+      "task": 6,
+      "branch": "probe",
+      "path": "jobs/seed3104_sgd/evaluation/probe_task_06.npz",
+      "current": {
+        "correct": 774,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 774,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 774,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "33352b06300ac41af4a35dc85e357491b8ea76f7fbd852ec2f6895a82b556ee8",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "7d7c7cdf434e22811c6f0a25465b2e916c4c83786aaabc84096bda3acaaaef46"
+    },
+    {
+      "seed": 3104,
+      "method": "sgd",
+      "task": 6,
+      "branch": "fresh",
+      "path": "jobs/seed3104_sgd/evaluation/fresh_task_06.npz",
+      "current": {
+        "correct": 746,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 746,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 746,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "b017d55b44a6439b4dd0af480104e996af2e6f4c88cf722815c326c5c802bbf2",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "72e65ae465677c91f2b88c39e067b173295b816596394b24f4b87510fd8b56f4"
+    },
+    {
+      "seed": 3104,
+      "method": "sgd",
+      "task": 7,
+      "branch": "actual",
+      "path": "jobs/seed3104_sgd/evaluation/actual_task_07.npz",
+      "current": {
+        "correct": 630,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 630,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 630,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "f70e3b7384158bf3afa3cbf83c073db3514be2ed933cf35195cfdd6646307437",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "a60a60b906bbcd2b3887515c1fee47c2c2be9bd7bbdcbec9375e5d884640186d"
+    },
+    {
+      "seed": 3104,
+      "method": "sgd",
+      "task": 7,
+      "branch": "probe",
+      "path": "jobs/seed3104_sgd/evaluation/probe_task_07.npz",
+      "current": {
+        "correct": 630,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 630,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 630,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "f70e3b7384158bf3afa3cbf83c073db3514be2ed933cf35195cfdd6646307437",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "a60a60b906bbcd2b3887515c1fee47c2c2be9bd7bbdcbec9375e5d884640186d"
+    },
+    {
+      "seed": 3104,
+      "method": "sgd",
+      "task": 7,
+      "branch": "fresh",
+      "path": "jobs/seed3104_sgd/evaluation/fresh_task_07.npz",
+      "current": {
+        "correct": 563,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 563,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 563,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "faebc99892fdca4b96a30add9a2578870799d6e924a5e20321dd06ebf2540289",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "d6e971ed7bc7634a879af660c8575760f669da228e7a636bbe747d371e97a038"
+    },
+    {
+      "seed": 3104,
+      "method": "sgd",
+      "task": 8,
+      "branch": "actual",
+      "path": "jobs/seed3104_sgd/evaluation/actual_task_08.npz",
+      "current": {
+        "correct": 616,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 616,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 616,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "f2c66fcf0862dffd6c83b3c86e89694f819a370129df83f3f404bc362a67d128",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "357bd7c1a2366ea953b4ad41d2c26bbb5767330e1d2976e49585e6f09a1ebcb3"
+    },
+    {
+      "seed": 3104,
+      "method": "sgd",
+      "task": 8,
+      "branch": "probe",
+      "path": "jobs/seed3104_sgd/evaluation/probe_task_08.npz",
+      "current": {
+        "correct": 616,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 616,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 616,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "f2c66fcf0862dffd6c83b3c86e89694f819a370129df83f3f404bc362a67d128",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "357bd7c1a2366ea953b4ad41d2c26bbb5767330e1d2976e49585e6f09a1ebcb3"
+    },
+    {
+      "seed": 3104,
+      "method": "sgd",
+      "task": 8,
+      "branch": "fresh",
+      "path": "jobs/seed3104_sgd/evaluation/fresh_task_08.npz",
+      "current": {
+        "correct": 542,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 542,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 542,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "d57ed65617cb8fbc75cf7f59ae6c949bcb21a83078ee4e288a5cd2b2b8f0abc0",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "f2bce9595fbf3eb708c66912af6be6ed5a1b3b08fc639d45827da51a394f3eda"
+    },
+    {
+      "seed": 3104,
+      "method": "sgd",
+      "task": 9,
+      "branch": "actual",
+      "path": "jobs/seed3104_sgd/evaluation/actual_task_09.npz",
+      "current": {
+        "correct": 698,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 698,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 698,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "0513abb1406ca256a41c3839e6c7ad25f6d2b2816ac1ae4c44ebf6f9590c694b",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "d6170f0d9531010ca49b649269e197b23717e8a0fd79da4e0b2e217fe0408470"
+    },
+    {
+      "seed": 3104,
+      "method": "sgd",
+      "task": 9,
+      "branch": "probe",
+      "path": "jobs/seed3104_sgd/evaluation/probe_task_09.npz",
+      "current": {
+        "correct": 698,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 698,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 698,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "0513abb1406ca256a41c3839e6c7ad25f6d2b2816ac1ae4c44ebf6f9590c694b",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "d6170f0d9531010ca49b649269e197b23717e8a0fd79da4e0b2e217fe0408470"
+    },
+    {
+      "seed": 3104,
+      "method": "sgd",
+      "task": 9,
+      "branch": "fresh",
+      "path": "jobs/seed3104_sgd/evaluation/fresh_task_09.npz",
+      "current": {
+        "correct": 733,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 733,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 733,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "ba19129b08e1ccf8e0e1bb80a4680716cb9f2b64a9a08db6d5a6c34e71994a39",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "4d70da4d228b6a4a198513f4869c6d64b2879f15f4432684cfd49e6bce8e0e76"
+    },
+    {
+      "seed": 3104,
+      "method": "er",
+      "task": 6,
+      "branch": "actual",
+      "path": "jobs/seed3104_er/evaluation/actual_task_06.npz",
+      "current": {
+        "correct": 769,
+        "n": 1000
+      },
+      "old": {
+        "correct": 811,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 1580,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 807,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 103,
+          "n": 1000
+        },
+        {
+          "correct": 136,
+          "n": 1000
+        },
+        {
+          "correct": 91,
+          "n": 1000
+        },
+        {
+          "correct": 154,
+          "n": 1000
+        },
+        {
+          "correct": 187,
+          "n": 1000
+        },
+        {
+          "correct": 140,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 69,
+      "sha256": "7b7345d1b67a8a18115f45464a9682264a3d5eef9d3f4bf98fcf943327258fca",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "5fd97c628e192e30c5c7499267f6b5a2bed98798d25f438f8c1cc8c5f95cc7ca"
+    },
+    {
+      "seed": 3104,
+      "method": "er",
+      "task": 6,
+      "branch": "probe",
+      "path": "jobs/seed3104_er/evaluation/probe_task_06.npz",
+      "current": {
+        "correct": 840,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 840,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 840,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "0cef1dd48ec3bce59f8a8e89087f1076262cc669400937a1ea0da812e3b74fb0",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "833a47b8fb42b82be7501bda9dae5aa724832172894ef02b5f7a331347c72e4b"
+    },
+    {
+      "seed": 3104,
+      "method": "er",
+      "task": 6,
+      "branch": "fresh",
+      "path": "jobs/seed3104_er/evaluation/fresh_task_06.npz",
+      "current": {
+        "correct": 746,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 746,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 746,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "b017d55b44a6439b4dd0af480104e996af2e6f4c88cf722815c326c5c802bbf2",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "72e65ae465677c91f2b88c39e067b173295b816596394b24f4b87510fd8b56f4"
+    },
+    {
+      "seed": 3104,
+      "method": "er",
+      "task": 7,
+      "branch": "actual",
+      "path": "jobs/seed3104_er/evaluation/actual_task_07.npz",
+      "current": {
+        "correct": 659,
+        "n": 1000
+      },
+      "old": {
+        "correct": 927,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 1586,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 680,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 83,
+          "n": 1000
+        },
+        {
+          "correct": 147,
+          "n": 1000
+        },
+        {
+          "correct": 63,
+          "n": 1000
+        },
+        {
+          "correct": 163,
+          "n": 1000
+        },
+        {
+          "correct": 183,
+          "n": 1000
+        },
+        {
+          "correct": 91,
+          "n": 1000
+        },
+        {
+          "correct": 197,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 56,
+      "sha256": "039ef199d33730c508b23df6e63a62b22559294719b48adaae5ba389cdc41687",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "f374ff71de8674871035915a7c85a482975f9100c47fc3b2979e26a953371fb8"
+    },
+    {
+      "seed": 3104,
+      "method": "er",
+      "task": 7,
+      "branch": "probe",
+      "path": "jobs/seed3104_er/evaluation/probe_task_07.npz",
+      "current": {
+        "correct": 752,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 752,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 752,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "0d5a0577d7db38e4562156e66b0b28055a4c2133c8d26c4bb35e0e62d299521e",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "fae0e4845be7742b2b53eecfffe76344ca8f4e06416b65f5061308665d420201"
+    },
+    {
+      "seed": 3104,
+      "method": "er",
+      "task": 7,
+      "branch": "fresh",
+      "path": "jobs/seed3104_er/evaluation/fresh_task_07.npz",
+      "current": {
+        "correct": 563,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 563,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 563,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "faebc99892fdca4b96a30add9a2578870799d6e924a5e20321dd06ebf2540289",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "d6e971ed7bc7634a879af660c8575760f669da228e7a636bbe747d371e97a038"
+    },
+    {
+      "seed": 3104,
+      "method": "er",
+      "task": 8,
+      "branch": "actual",
+      "path": "jobs/seed3104_er/evaluation/actual_task_08.npz",
+      "current": {
+        "correct": 649,
+        "n": 1000
+      },
+      "old": {
+        "correct": 1088,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 1737,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 678,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 86,
+          "n": 1000
+        },
+        {
+          "correct": 164,
+          "n": 1000
+        },
+        {
+          "correct": 93,
+          "n": 1000
+        },
+        {
+          "correct": 93,
+          "n": 1000
+        },
+        {
+          "correct": 176,
+          "n": 1000
+        },
+        {
+          "correct": 114,
+          "n": 1000
+        },
+        {
+          "correct": 174,
+          "n": 1000
+        },
+        {
+          "correct": 188,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 78,
+      "sha256": "b69c4ba98efddfe0a8b09b28f913b5b97a824b637448109f75ce6eeb7a43e4fd",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "fbc7e30bb33247aef5a3f782430ac094a48ae8328513184081e06114b32bdc56"
+    },
+    {
+      "seed": 3104,
+      "method": "er",
+      "task": 8,
+      "branch": "probe",
+      "path": "jobs/seed3104_er/evaluation/probe_task_08.npz",
+      "current": {
+        "correct": 735,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 735,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 735,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "a16c0a30f10eb08e51c0e2c3d31fbaf7d4d77865e90c452ab15933ed239975df",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "e203aa852e7132052711f47eae382ce54cabe02f66f93bcc885d73baad8457c2"
+    },
+    {
+      "seed": 3104,
+      "method": "er",
+      "task": 8,
+      "branch": "fresh",
+      "path": "jobs/seed3104_er/evaluation/fresh_task_08.npz",
+      "current": {
+        "correct": 542,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 542,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 542,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "d57ed65617cb8fbc75cf7f59ae6c949bcb21a83078ee4e288a5cd2b2b8f0abc0",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "f2bce9595fbf3eb708c66912af6be6ed5a1b3b08fc639d45827da51a394f3eda"
+    },
+    {
+      "seed": 3104,
+      "method": "er",
+      "task": 9,
+      "branch": "actual",
+      "path": "jobs/seed3104_er/evaluation/actual_task_09.npz",
+      "current": {
+        "correct": 707,
+        "n": 1000
+      },
+      "old": {
+        "correct": 1228,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 1935,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 745,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 110,
+          "n": 1000
+        },
+        {
+          "correct": 134,
+          "n": 1000
+        },
+        {
+          "correct": 101,
+          "n": 1000
+        },
+        {
+          "correct": 152,
+          "n": 1000
+        },
+        {
+          "correct": 176,
+          "n": 1000
+        },
+        {
+          "correct": 97,
+          "n": 1000
+        },
+        {
+          "correct": 156,
+          "n": 1000
+        },
+        {
+          "correct": 123,
+          "n": 1000
+        },
+        {
+          "correct": 179,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 70,
+      "sha256": "23a754ebb225b023e3eab101b456b28141605021fadd60bcda1100674fa0c61d",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "bad13db4d4938d1834ae606b1b2206244a77795d093c1276597bddc690897086"
+    },
+    {
+      "seed": 3104,
+      "method": "er",
+      "task": 9,
+      "branch": "probe",
+      "path": "jobs/seed3104_er/evaluation/probe_task_09.npz",
+      "current": {
+        "correct": 802,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 802,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 802,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "c88a40cdc229df0dd02673ee9cef6de2fe764e37c9bbf5c6b40aaf45e89165d8",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "e0815c279ce18cc5f40c529cb63ecce14f1e357905f6189fb082361ddef761c4"
+    },
+    {
+      "seed": 3104,
+      "method": "er",
+      "task": 9,
+      "branch": "fresh",
+      "path": "jobs/seed3104_er/evaluation/fresh_task_09.npz",
+      "current": {
+        "correct": 733,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 733,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 733,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "ba19129b08e1ccf8e0e1bb80a4680716cb9f2b64a9a08db6d5a6c34e71994a39",
+      "identity_sha256": "64abec04f4e1278f8aec2f441ca2db40f75c743664eca21dfcb20258c1d414ec",
+      "logits_sha256": "4d70da4d228b6a4a198513f4869c6d64b2879f15f4432684cfd49e6bce8e0e76"
+    },
+    {
+      "seed": 3105,
+      "method": "sgd",
+      "task": 6,
+      "branch": "actual",
+      "path": "jobs/seed3105_sgd/evaluation/actual_task_06.npz",
+      "current": {
+        "correct": 719,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 719,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 719,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "218ea87a6d635497d571074c7a092f3b007282018f313ea2ff4a56045661eb3a",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "9da65168e725574742d0ab4432239dc078ec8c6f2449c806322be948ac50ed8c"
+    },
+    {
+      "seed": 3105,
+      "method": "sgd",
+      "task": 6,
+      "branch": "probe",
+      "path": "jobs/seed3105_sgd/evaluation/probe_task_06.npz",
+      "current": {
+        "correct": 719,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 719,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 719,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "218ea87a6d635497d571074c7a092f3b007282018f313ea2ff4a56045661eb3a",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "9da65168e725574742d0ab4432239dc078ec8c6f2449c806322be948ac50ed8c"
+    },
+    {
+      "seed": 3105,
+      "method": "sgd",
+      "task": 6,
+      "branch": "fresh",
+      "path": "jobs/seed3105_sgd/evaluation/fresh_task_06.npz",
+      "current": {
+        "correct": 694,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 694,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 694,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "df666970c98a2cebe0c3cc1ea74503c22bbe03719d16736790f0e9ba4de4cb78",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "f07d4249b942413fda9ac01b1d762ddec679cab5c97b038022c6c879ae6ab08e"
+    },
+    {
+      "seed": 3105,
+      "method": "sgd",
+      "task": 7,
+      "branch": "actual",
+      "path": "jobs/seed3105_sgd/evaluation/actual_task_07.npz",
+      "current": {
+        "correct": 706,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 706,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 706,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "9c1fc5558975921fe922490a89af4dcba28a377c66288f2b33785f51cd6e75b6",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "933ba7092fe2e266c96f897de4bc505bccb2bcbeb9b667a6af62dcc4fbc16b18"
+    },
+    {
+      "seed": 3105,
+      "method": "sgd",
+      "task": 7,
+      "branch": "probe",
+      "path": "jobs/seed3105_sgd/evaluation/probe_task_07.npz",
+      "current": {
+        "correct": 706,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 706,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 706,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "9c1fc5558975921fe922490a89af4dcba28a377c66288f2b33785f51cd6e75b6",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "933ba7092fe2e266c96f897de4bc505bccb2bcbeb9b667a6af62dcc4fbc16b18"
+    },
+    {
+      "seed": 3105,
+      "method": "sgd",
+      "task": 7,
+      "branch": "fresh",
+      "path": "jobs/seed3105_sgd/evaluation/fresh_task_07.npz",
+      "current": {
+        "correct": 618,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 618,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 618,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "efed004113e93bf0ab93f5de90f4d2fdd066da1638642e3d0928df7766add2f1",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "cdcde541a2968a120babc9d1039bd39e3d0a3cce057d22306e7760c7ade470f5"
+    },
+    {
+      "seed": 3105,
+      "method": "sgd",
+      "task": 8,
+      "branch": "actual",
+      "path": "jobs/seed3105_sgd/evaluation/actual_task_08.npz",
+      "current": {
+        "correct": 687,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 687,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 687,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "7d3e549c1e4bc1e97d44eef2e9942753d56ae02fc5371d64f68a511faf14610d",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "4ed3b508aa2668249edcb6eed1eac0a89d88d8786092b7b192efd2cc0814f17d"
+    },
+    {
+      "seed": 3105,
+      "method": "sgd",
+      "task": 8,
+      "branch": "probe",
+      "path": "jobs/seed3105_sgd/evaluation/probe_task_08.npz",
+      "current": {
+        "correct": 687,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 687,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 687,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "7d3e549c1e4bc1e97d44eef2e9942753d56ae02fc5371d64f68a511faf14610d",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "4ed3b508aa2668249edcb6eed1eac0a89d88d8786092b7b192efd2cc0814f17d"
+    },
+    {
+      "seed": 3105,
+      "method": "sgd",
+      "task": 8,
+      "branch": "fresh",
+      "path": "jobs/seed3105_sgd/evaluation/fresh_task_08.npz",
+      "current": {
+        "correct": 648,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 648,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 648,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "be98d16c30be4e75c9c0b93b8007fc5091570bac04a0697c7ea943a5e4f80290",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "47ef342632a2ddf74ef3761056a765f48f9359e5bbbf58a7491e5014d5324c4e"
+    },
+    {
+      "seed": 3105,
+      "method": "sgd",
+      "task": 9,
+      "branch": "actual",
+      "path": "jobs/seed3105_sgd/evaluation/actual_task_09.npz",
+      "current": {
+        "correct": 541,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 541,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 541,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "c5c085523aae10ab161ac8297674be4536b8607382619b6ffa42d63382ba2516",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "0abd8a976a0ced2810032f9cfdbc88f818590dbbd14d09862f3db9cb3dccfb35"
+    },
+    {
+      "seed": 3105,
+      "method": "sgd",
+      "task": 9,
+      "branch": "probe",
+      "path": "jobs/seed3105_sgd/evaluation/probe_task_09.npz",
+      "current": {
+        "correct": 541,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 541,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 541,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "c5c085523aae10ab161ac8297674be4536b8607382619b6ffa42d63382ba2516",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "0abd8a976a0ced2810032f9cfdbc88f818590dbbd14d09862f3db9cb3dccfb35"
+    },
+    {
+      "seed": 3105,
+      "method": "sgd",
+      "task": 9,
+      "branch": "fresh",
+      "path": "jobs/seed3105_sgd/evaluation/fresh_task_09.npz",
+      "current": {
+        "correct": 492,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 492,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 492,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "e31b4a84f334b28d5d696d72680569274a3609345e40689c2e8cddb74d98cb36",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "eef63b5165b89ed0e83f8c17cfceb870ddb9684f399ae787a3d7a567c10193f5"
+    },
+    {
+      "seed": 3105,
+      "method": "er",
+      "task": 6,
+      "branch": "actual",
+      "path": "jobs/seed3105_er/evaluation/actual_task_06.npz",
+      "current": {
+        "correct": 758,
+        "n": 1000
+      },
+      "old": {
+        "correct": 905,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 1663,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 781,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 113,
+          "n": 1000
+        },
+        {
+          "correct": 167,
+          "n": 1000
+        },
+        {
+          "correct": 146,
+          "n": 1000
+        },
+        {
+          "correct": 90,
+          "n": 1000
+        },
+        {
+          "correct": 202,
+          "n": 1000
+        },
+        {
+          "correct": 187,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 43,
+      "sha256": "24eaa43d32ac621d8cabeb3cbc8471c6b7a383064c14ce87627582c460b798a0",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "2fce28441d0eb57f86c681c45397e2401a96a36029f08b73bc590fe179548953"
+    },
+    {
+      "seed": 3105,
+      "method": "er",
+      "task": 6,
+      "branch": "probe",
+      "path": "jobs/seed3105_er/evaluation/probe_task_06.npz",
+      "current": {
+        "correct": 807,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 807,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 807,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "de7e9fd020e7b73756e6085dfd94321815291f9bcfa39c50dd788d8988509683",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "35e260103499356aa0288b9b54e76169ec7732d132b70a73cc29595a10233dc8"
+    },
+    {
+      "seed": 3105,
+      "method": "er",
+      "task": 6,
+      "branch": "fresh",
+      "path": "jobs/seed3105_er/evaluation/fresh_task_06.npz",
+      "current": {
+        "correct": 694,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 6000
+      },
+      "seen": {
+        "correct": 694,
+        "n": 7000
+      },
+      "current_masked": {
+        "correct": 694,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "df666970c98a2cebe0c3cc1ea74503c22bbe03719d16736790f0e9ba4de4cb78",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "f07d4249b942413fda9ac01b1d762ddec679cab5c97b038022c6c879ae6ab08e"
+    },
+    {
+      "seed": 3105,
+      "method": "er",
+      "task": 7,
+      "branch": "actual",
+      "path": "jobs/seed3105_er/evaluation/actual_task_07.npz",
+      "current": {
+        "correct": 749,
+        "n": 1000
+      },
+      "old": {
+        "correct": 1096,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 1845,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 777,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 107,
+          "n": 1000
+        },
+        {
+          "correct": 145,
+          "n": 1000
+        },
+        {
+          "correct": 133,
+          "n": 1000
+        },
+        {
+          "correct": 108,
+          "n": 1000
+        },
+        {
+          "correct": 166,
+          "n": 1000
+        },
+        {
+          "correct": 177,
+          "n": 1000
+        },
+        {
+          "correct": 260,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 53,
+      "sha256": "8ff64a8f67c6a28f091cfd754a62fbbb7b1f81c138b485cb2cb1b5b45c9fa602",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "74546505da3859b5b8e7f1b6e977db10624afd69e1cce18ee8d8ad78cae70cdb"
+    },
+    {
+      "seed": 3105,
+      "method": "er",
+      "task": 7,
+      "branch": "probe",
+      "path": "jobs/seed3105_er/evaluation/probe_task_07.npz",
+      "current": {
+        "correct": 805,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 805,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 805,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "fd6464dc619ce3097cebb14164115dfccb291da0eab3c131979366a2c7937454",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "5cf466f690d5792c646442b5a49d40bf97d08d6900fe6e14a6c66312dd90b832"
+    },
+    {
+      "seed": 3105,
+      "method": "er",
+      "task": 7,
+      "branch": "fresh",
+      "path": "jobs/seed3105_er/evaluation/fresh_task_07.npz",
+      "current": {
+        "correct": 618,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 7000
+      },
+      "seen": {
+        "correct": 618,
+        "n": 8000
+      },
+      "current_masked": {
+        "correct": 618,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "efed004113e93bf0ab93f5de90f4d2fdd066da1638642e3d0928df7766add2f1",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "cdcde541a2968a120babc9d1039bd39e3d0a3cce057d22306e7760c7ade470f5"
+    },
+    {
+      "seed": 3105,
+      "method": "er",
+      "task": 8,
+      "branch": "actual",
+      "path": "jobs/seed3105_er/evaluation/actual_task_08.npz",
+      "current": {
+        "correct": 748,
+        "n": 1000
+      },
+      "old": {
+        "correct": 1051,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 1799,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 779,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 126,
+          "n": 1000
+        },
+        {
+          "correct": 161,
+          "n": 1000
+        },
+        {
+          "correct": 98,
+          "n": 1000
+        },
+        {
+          "correct": 89,
+          "n": 1000
+        },
+        {
+          "correct": 143,
+          "n": 1000
+        },
+        {
+          "correct": 113,
+          "n": 1000
+        },
+        {
+          "correct": 160,
+          "n": 1000
+        },
+        {
+          "correct": 161,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 60,
+      "sha256": "79ddf422ec018c6731985292c187bf4ebed538db4ced963921a0a97e4b67f429",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "d77debdbd0a2053a6966d6e15ac29a0ec6fa463c75ef76c7cdb6dbd33d737a44"
+    },
+    {
+      "seed": 3105,
+      "method": "er",
+      "task": 8,
+      "branch": "probe",
+      "path": "jobs/seed3105_er/evaluation/probe_task_08.npz",
+      "current": {
+        "correct": 801,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 801,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 801,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "3a7b4e4229b14d29451dae28a80127b9611cdf2c87fe307380cb1b70ded70b6e",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "83fb9c6977b1f375f8acfed3675066c6b2994e3830885258e4ff570322b26d3d"
+    },
+    {
+      "seed": 3105,
+      "method": "er",
+      "task": 8,
+      "branch": "fresh",
+      "path": "jobs/seed3105_er/evaluation/fresh_task_08.npz",
+      "current": {
+        "correct": 648,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 8000
+      },
+      "seen": {
+        "correct": 648,
+        "n": 9000
+      },
+      "current_masked": {
+        "correct": 648,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "be98d16c30be4e75c9c0b93b8007fc5091570bac04a0697c7ea943a5e4f80290",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "47ef342632a2ddf74ef3761056a765f48f9359e5bbbf58a7491e5014d5324c4e"
+    },
+    {
+      "seed": 3105,
+      "method": "er",
+      "task": 9,
+      "branch": "actual",
+      "path": "jobs/seed3105_er/evaluation/actual_task_09.npz",
+      "current": {
+        "correct": 672,
+        "n": 1000
+      },
+      "old": {
+        "correct": 1428,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 2100,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 710,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 119,
+          "n": 1000
+        },
+        {
+          "correct": 166,
+          "n": 1000
+        },
+        {
+          "correct": 153,
+          "n": 1000
+        },
+        {
+          "correct": 90,
+          "n": 1000
+        },
+        {
+          "correct": 175,
+          "n": 1000
+        },
+        {
+          "correct": 164,
+          "n": 1000
+        },
+        {
+          "correct": 198,
+          "n": 1000
+        },
+        {
+          "correct": 150,
+          "n": 1000
+        },
+        {
+          "correct": 213,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 82,
+      "sha256": "5052237336e0e3cfea3711caeda98f8b716f6cfe44200bc1d4fd7c6bdbb5c725",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "c70554703d22f3ee143141af550f7a101cd670949d7591b280aa83e610c7a4e4"
+    },
+    {
+      "seed": 3105,
+      "method": "er",
+      "task": 9,
+      "branch": "probe",
+      "path": "jobs/seed3105_er/evaluation/probe_task_09.npz",
+      "current": {
+        "correct": 716,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 716,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 716,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "57c818298891e1b0250cc67cdb2edae4d8fceb64f437f3ad54be758f3023715f",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "b50be34d7bd1730e27500132e325261cd96f9baa49dcad70b9e6b7384f56538c"
+    },
+    {
+      "seed": 3105,
+      "method": "er",
+      "task": 9,
+      "branch": "fresh",
+      "path": "jobs/seed3105_er/evaluation/fresh_task_09.npz",
+      "current": {
+        "correct": 492,
+        "n": 1000
+      },
+      "old": {
+        "correct": 0,
+        "n": 9000
+      },
+      "seen": {
+        "correct": 492,
+        "n": 10000
+      },
+      "current_masked": {
+        "correct": 492,
+        "n": 1000
+      },
+      "old_tasks": [
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        },
+        {
+          "correct": 0,
+          "n": 1000
+        }
+      ],
+      "current_predictions_to_old": 0,
+      "sha256": "e31b4a84f334b28d5d696d72680569274a3609345e40689c2e8cddb74d98cb36",
+      "identity_sha256": "c08ac4217781a208141005eab1443635c2de3f21d4ede67888b272f8dca3a2ef",
+      "logits_sha256": "eef63b5165b89ed0e83f8c17cfceb870ddb9684f399ae787a3d7a567c10193f5"
+    }
+  ]
+}
