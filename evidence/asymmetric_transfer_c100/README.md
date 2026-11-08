@@ -1,0 +1,11 @@
+# CIFAR-100 final-task candidate restriction
+
+This directory is a compact reader package requiring only Python and NumPy. Run `python recompute.py` to derive every integer count and paired five-seed statistic directly from the fifteen prediction files, and to compare them with the retained counts and original statistics. It needs no PyTorch model or local training data.
+
+Seeds3101–3105 use their completed ER histories and identical final-task pre-state. `usual_er` is the existing70epoch ER endpoint, `current_mask` is the new70epoch endpoint whose current-image loss considers only current classes90–99, and `common_sgd` is the unchanged existing current-only endpoint. Replay always considers100classes. The current/replay batch mean and weights are unchanged. This intervention changes only final-task training loss, while the previous CIFAR-10 comparison changed entire histories.
+
+All endpoints predict the same10000 official CIFAR-100 test images. Each NPZ records seed/model/task, `predictions_all100`, `predictions_current10`, `mapped_labels`, `original_labels`, `official_test_indices`, and `class_order`. Current10 predictions use output indices90–99; they are evaluated on the1000 new-class images. The9000 old-class images use all100 candidates. `class_order[mapped_labels]` reproduces original labels. Files use numeric and Unicode arrays, with no pickle.
+
+The prespecified transfer test requires BOTH an increase in the same-network current10-minus-all100 accuracy gap (positive paired mean and at least3/5positive seeds), AND a decrease in usual new-class accuracy (negative paired mean and at least3/5negative seeds). Old-class changes and within-current10 changes are reported separately. Every seed, zero and counterexample is retained. `original_statistics.json` contains the initial analysis; `counts.csv` contains the initial integer counts; the `recomputed_` files reproduce them.
+
+The original recorded design, executed source, training inputs and per-epoch records are also supplied. Run `python compare_training_records.py` to compare all 350 paired epochs, their data and augmentation orders, learning rates, and starting-state identifiers. This command checks retained records; it does not reread large model states or repeat training. The local full-state comparison is recorded separately in `verification.json`.

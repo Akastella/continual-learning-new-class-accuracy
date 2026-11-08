@@ -4,6 +4,16 @@ This package accompanies the manuscript on interpreting new-class accuracy in cl
 
 ## Recompute the retention-target score comparison
 
+Three further sets of trained comparisons are supplied as plain NumPy-readable files:
+
+```powershell
+python -B -I -X utf8 evidence/classifier_initialization/recompute.py
+python -B -I -X utf8 evidence/asymmetric_loss/recompute.py
+python -B -I -X utf8 evidence/asymmetric_transfer_c100/recompute.py
+```
+
+The classifier-initialization comparison includes all 80 new models, corresponding original current-task counts, and same-model old-class evaluation. The asymmetric-loss comparison includes the 200 usual/current-only endpoints of four methods across five seeds and five tasks, with all earlier-task predictions. Each directory documents its arrays, available original parameter states, and seed aggregation. The CIFAR-100 intervention supplies 15 final-task endpoints on five paired seeds. It changes only the current-image candidate classes during the final 70-epoch update from each existing ER pre-task state, retaining the original replay and loss weighting. Its reported task-9 results are separate from the original tasks-6–9 averages. Full network parameters are unnecessary for these numerical calculations.
+
 The added journal comparison uses the same validation images and existing networks. Its complete numerical inputs include all 300 validation candidates and 600 test outputs across CIFAR-10.1 and CIFAR-10.2. From this directory, run:
 
 ```powershell
@@ -98,12 +108,12 @@ python -m pip install -r requirements-r9-windows-lock.txt --extra-index-url http
 An NVIDIA GPU and a compatible driver are needed for the supplied training settings. Other operating systems require the corresponding PyTorch wheels; the Windows package list records the original environment. The commands below show one seed per comparison. Use a new output directory for each run, and use the other supplied configurations for the remaining seeds.
 
 ```powershell
-python -B -s -X utf8 -m experiments.r9_followup.engine --config configs/r9_followup/split_cifar10_classil_er_s201.json --data-root data --output retraining/er_s201
-python -B -s -X utf8 -m experiments.r9_followup.engine --config configs/r9_followup/split_cifar10_classil_sgd_s201.json --data-root data --output retraining/sgd_s201
+python -B -s -X utf8 -m experiments.r9_followup.engine --config configs/r9_followup/split_cifar10_classil_er_s201.json --data-root data --output retraining/split_cifar10_classil_er_s201
+python -B -s -X utf8 -m experiments.r9_followup.engine --config configs/r9_followup/split_cifar10_classil_sgd_s201.json --data-root data --output retraining/split_cifar10_classil_sgd_s201
 python -B -s -X utf8 -m experiments.r9_followup.engine --config configs/r9_derpp_challenge/split_cifar10_classil_derpp_s201.json --data-root data --output retraining/derpp_s201
 python -B -s -X utf8 -m experiments.r18_cbp_official.engine --config configs/r18_cbp_official/nature_cifar_s201.json --data-root data --output retraining/cbp_s201
 python -B -s -X utf8 -m experiments.r18_architecture_bridge.run --seed 201 --config experiments/r18_architecture_bridge/config.json --data-root data --output retraining/resnet32_s201
-python -B -s -X utf8 -m experiments.r9_followup.engine --config evidence/history_controls/full_history16/er_s201/config.json --data-root data --output retraining/full_history16_er_s201
+python -B -s -X utf8 -m experiments.r9_followup.engine --config evidence/history_controls/full_history16/er_s201/config.json --data-root data --output retraining/history16/er_s201
 python -B -s -X utf8 tools/run_seen_classes.py --project . --method er --seed 201 --output retraining/seen_classes_er_s201
 ```
 
@@ -113,8 +123,30 @@ The full-training CIFAR-100 command runs the complete ten-task, five-seed compar
 python -B -s -X utf8 tools/run_r15_normal_budget.py --run --manifest configs/r15_normal_budget/manifest.json --output retraining/cifar100
 ```
 
-It uses 200 epochs on the first task and 70 on later tasks and the separate current-task comparisons. It takes substantially longer than the CPU analyses. The CPU results use completed training runs; no networks were trained during PAA preparation. Scripts that evaluate previously trained states require those states or newly trained replacements. Historical directory and argument names are retained so the original code remains runnable.
+It uses 200 epochs on the first task and 70 on later tasks and the separate current-task comparisons. It takes substantially longer than the CPU analyses. The original comparisons reuse completed training. PAA preparation additionally trained the classifier-initialization and asymmetric-loss comparisons documented below. Scripts that evaluate previously trained states require those states or newly trained replacements. Historical directory and argument names are retained so the original code remains runnable.
+
+## Additional training comparisons
+
+The entry points under `experiments/paa/` accept input and output locations. Keep original results as inputs and use a different output directory for each new run. All commands below run from this code directory. Obtain the official image files first. The full histories are produced by the preceding training commands; saved parameter states are needed for comparisons that start from those histories.
+
+```powershell
+python -B -s -X utf8 experiments/paa/asymmetric_loss/train.py --artifact-root . --data-root data --existing-results retraining --output-root retraining/asymmetric_loss
+python -B -s -X utf8 experiments/paa/asymmetric_transfer_c100/train.py --data-root data/r9_external --existing-results retraining/cifar100 --output-root retraining/cifar100_incoming_loss
+```
+
+The first command expects the original five-seed SGD/ER runs in `retraining` with their supplied configuration names, for example `split_cifar10_classil_er_s201`. It trains two complete five-task loss histories per seed. The second starts from `jobs/seed3101_er` through `seed3105_er` in the completed CIFAR-100 campaign and trains only task 9. Both retain a 55-minute limit for the supplied settings. Measured preparation times were 7.1 minutes and 15.4 minutes, respectively, on an RTX 4060 Laptop GPU.
+
+For the classifier-initialization comparison, prepare the saved four-epoch and sixteen-epoch histories, then run these stages in order:
+
+```powershell
+python -B -s -X utf8 experiments/paa/head_state/train.py --stage prepare --project-root . --history4-root retraining --history16-root retraining/history16 --data-root data --output-root retraining/classifier_initialization
+python -B -s -X utf8 experiments/paa/head_state/train.py --stage pilot --project-root . --history4-root retraining --history16-root retraining/history16 --data-root data --output-root retraining/classifier_initialization
+python -B -s -X utf8 experiments/paa/head_state/train.py --stage run --project-root . --history4-root retraining --history16-root retraining/history16 --data-root data --output-root retraining/classifier_initialization
+python -B -s -X utf8 experiments/paa/head_state/train.py --stage summarize --project-root . --history4-root retraining --history16-root retraining/history16 --data-root data --output-root retraining/classifier_initialization
+```
+
+The four-epoch history directory contains `split_cifar10_classil_er_s201` and corresponding method/seed directories. The sixteen-epoch directory contains `er_s201`, `sgd_s201`, and the other seeds 202–205. Each history must retain its pre-task models and original initialization. This comparison restores only the classifier parameters, then updates the entire model with the original current-only SGD procedure. The 80 new branches took 3.5 minutes. Training entry points use the bundled original experiment implementations; their comments and historical argument names are retained.
 
 ## Code availability
 
-**Author to complete:** provide the public repository or permanent archive URL for this study's code and statistical materials. No public URL for this study was found in the supplied package. The dataset and third-party links above identify their respective providers. This local preparation did not publish or upload the package.
+The accompanying files include experiment code, numerical evidence, original data-source links, dependency versions, and the commands above. Original image datasets remain subject to their providers' terms. Third-party licenses are retained with the corresponding source files. The publication repository will be released after author approval.

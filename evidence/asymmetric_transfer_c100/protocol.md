@@ -1,0 +1,7 @@
+# Fixed-history final-task CIFAR-100 intervention
+
+Five paired seeds 3101–3105 use the same ER pre-task-9 parameters, originally trained for 200 epochs on the first task and 70 on each subsequent task. Only the final 70-epoch task is trained again. Current-image cross-entropy uses the current ten classes (90–99 in the permuted class order), while replay images use all one hundred classes. A single concatenated forward and mean loss preserve original sample weights. Replay has 20 images per each of 90 old classes. Model, optimizer, training order, replay draws, augmentation, and learning-rate schedule match the original final-task run.
+
+Before training, the directional prediction required increased same-model competition loss and decreased unrestricted new-class accuracy, each in the paired mean and a strict majority of five seeds. Old-class improvement was reported separately. The current-ten score and unrestricted score use the same 1,000 current images. Old accuracy uses 9,000 old images; all-class accuracy uses all 10,000. Each paired seed is one statistical unit. The original current-only SGD endpoint is unchanged because the pre-task parameters and that procedure are identical.
+
+This comparison changes only the final task's training loss. It differs from the complete-history CIFAR-10 comparison, and its fixed ten-class incoming set differs from ER-ACE's minibatch-dependent incoming set. No test results determine training settings or select an endpoint.
