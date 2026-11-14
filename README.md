@@ -48,7 +48,7 @@ python -m pip install -r requirements-review.txt
 python -B -I -X utf8 tools/recompute_all.py --output recomputed_reader
 ```
 
-The output directory must not already exist. A completed run is supplied in `recomputed_paa/`; the example uses a different name to preserve that run. For an isolated environment, create a virtual environment first and use its Python executable for both commands.
+The output directory must not already exist. The command creates the numerical summaries and separate analysis logs. For an isolated environment, create a virtual environment first and use its Python executable for both commands.
 
 The command runs eleven CPU analyses and writes a separate `command_N.log` for each:
 
@@ -68,9 +68,20 @@ The command runs eleven CPU analyses and writes a separate `command_N.log` for e
 
 Within `ijcnn/`, `accuracy_summary.csv` contains aggregate accuracies; `paired_comparisons.csv` and `paired_seed_values.csv` contain paired summaries and individual seed values; `endpoint_accuracies.csv` contains individual model scores; and `selection.csv` contains model-selection results. Each seed is averaged over the specified tasks before computing paired differences and sample standard deviations. The two history controls each contain 120 evaluated models and 480 rows of integer counts.
 
-The package includes integer counts and saved per-example predictions, labels, official sample indices, and task identifiers where used by these analyses. Compact prediction files retain both the original argmax and the prediction among current classes. Some external-test analyses also include saved logits. These commands recompute statistics from saved evidence; they do not rerun network inference or training. Full model states and all original logits are retained in the research workspace rather than included in this compact package.
+The package includes integer counts and saved per-example predictions, labels, official sample indices, and task identifiers where used by these analyses. Compact prediction files retain both the original argmax and the prediction among current classes. Some external-test analyses also include saved logits. These commands recompute statistics from saved evidence; they do not rerun network inference or training. The research workspace retains selected model states for the main comparisons and the original numerical outputs. The training commands recreate other model states.
 
-The PAA preparation run completed all eleven commands on 7 November 2026 with Python 3.12.9 and NumPy 1.26.4. The log timestamps span approximately 24 seconds. See `recomputed_paa/RUN_REPORT.md` for the command, environment, and output counts.
+The PAA preparation run completed all eleven commands on 7 November 2026 with Python 3.12.9 and NumPy 1.26.4. The recorded elapsed time was approximately 24 seconds; the full run logs remain in the authors' working directory.
+
+## Recompute the cross-group supervision comparison
+
+The added CIFAR-100 supervision experiment trained fifteen 70-epoch final-task models (1,050 epochs) on the same five paired pre-task states. It compares incoming-loss restriction under old-only and mixed replay, and a fixed 5% all-class component on current images. Its saved numerical evidence is recomputed separately from the original eleven-command run:
+
+```powershell
+python -B -I -X utf8 evidence/cross_group_supervision/recompute_endpoints.py --output cross_group_counts_reader
+python -B -I -X utf8 evidence/cross_group_supervision/recompute_scores.py --output cross_group_scores_reader
+```
+
+Both commands need only NumPy and new output directories. The first reproduces all 30 integer-count rows and the complete seed-level and paired statistics. The second reads 30 compact group-score NPZs, verifies the fixed 2,000/8,000 calibration/test identities, and reproduces all 180 offset attempts (100 available), complete per-seed/per-old-task results, unavailable targets, violations, and summaries. It also generates every pair of the five methods and the policy interaction at 5/10/15/20 percent with n=5, plus all remaining recorded targets with their actual available seeds. Means and sample SDs are computed across paired seeds. The original paired-effect values are checked exactly; these descriptive comparisons do not imply equivalence. The commands create their output directories; the original numerical reference files are included in `evidence/cross_group_supervision/`. That directory's README describes the scientific protocol excerpt, complete score-analysis design, original source files, and 1,050 epoch records. Full models, full logits, images, and PyTorch are unnecessary for these calculations.
 
 ## Data for training and new inference
 
@@ -123,7 +134,7 @@ The full-training CIFAR-100 command runs the complete ten-task, five-seed compar
 python -B -s -X utf8 tools/run_r15_normal_budget.py --run --manifest configs/r15_normal_budget/manifest.json --output retraining/cifar100
 ```
 
-It uses 200 epochs on the first task and 70 on later tasks and the separate current-task comparisons. It takes substantially longer than the CPU analyses. The original comparisons reuse completed training. PAA preparation additionally trained the classifier-initialization and asymmetric-loss comparisons documented below. Scripts that evaluate previously trained states require those states or newly trained replacements. Historical directory and argument names are retained so the original code remains runnable.
+It uses 200 epochs on the first task and 70 on later tasks and the separate current-task comparisons. It takes substantially longer than the CPU analyses. The original comparisons reuse completed training. PAA preparation additionally trained the classifier-initialization, asymmetric-loss, and cross-group supervision comparisons documented below. Scripts that evaluate previously trained states require those states or newly trained replacements. Historical directory and argument names are retained so the original code remains runnable.
 
 ## Additional training comparisons
 
@@ -135,6 +146,16 @@ python -B -s -X utf8 experiments/paa/asymmetric_transfer_c100/train.py --data-ro
 ```
 
 The first command expects the original five-seed SGD/ER runs in `retraining` with their supplied configuration names, for example `split_cifar10_classil_er_s201`. It trains two complete five-task loss histories per seed. The second starts from `jobs/seed3101_er` through `seed3105_er` in the completed CIFAR-100 campaign and trains only task 9. Both retain a 55-minute limit for the supplied settings. Measured preparation times were 7.1 minutes and 15.4 minutes, respectively, on an RTX 4060 Laptop GPU.
+
+The cross-group supervision comparison starts from the same original CIFAR-100 campaign and uses a portable entry with the original training engine and recorded source files beside it:
+
+```powershell
+python -B -s -u -X utf8 experiments/paa/cross_group_supervision/train.py retraining/cifar100 data/r9_external retraining/cross_group_supervision --job mixed --check-inputs-only
+python -B -s -u -X utf8 experiments/paa/cross_group_supervision/train.py retraining/cifar100 data/r9_external retraining/cross_group_supervision --job mixed
+python -B -s -u -X utf8 experiments/paa/cross_group_supervision/train.py retraining/cifar100 data/r9_external retraining/cross_group_supervision --job blend
+```
+
+Run the two GPU jobs sequentially. The first trains ten models, the second five, each for 70 epochs with seeds 3101-3105. Each job has a 55-minute cap; the recorded times were 25.71 and 13.94 minutes. The entry performs training only and never loads test images. The CPU input check needs the original five saved pre-task states, but no image or plan document is loaded. See `experiments/paa/cross_group_supervision/README.md` for input layout and environment details.
 
 For the classifier-initialization comparison, prepare the saved four-epoch and sixteen-epoch histories, then run these stages in order:
 
@@ -150,3 +171,15 @@ The four-epoch history directory contains `split_cifar10_classil_er_s201` and co
 ## Code availability
 
 The accompanying files include experiment code, numerical evidence, original data-source links, dependency versions, and the commands above. Original image datasets remain subject to their providers' terms. Third-party licenses are retained with the corresponding source files. The publication repository will be released after author approval.
+
+The additional fixed-margin comparison can be recomputed from the same inputs:
+
+```powershell
+python -B -X utf8 tools/compare_fixed_margin.py --artifact . --data evidence/score_frontier --output fixed_margin_reader
+```
+
+It uses a fixed five-percentage-point validation margin for the 30% old-class target, retains unavailable seeds, and applies the same validation choices on both test sources. It is a descriptive comparison, with no population guarantee.
+
+## Recreate the article figures
+
+The `plotting/` directory supplies the recorded figure inputs, plotting scripts, editable vectors, and numerical table scripts. Its README lists the commands and separate plotting dependencies. The listed commands have been run from that directory without relying on the original research checkout.
