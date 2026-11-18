@@ -103,6 +103,15 @@ python -B -s tools/compare_validation_objectives.py --artifact . --output recomp
 
 The first command reproduces the fixed-exposure result for ten added models and the original comparisons at both CIFAR-100 task boundaries. Its [training instructions](evidence/revisit_supervision/README.md) use the same replay sampler and training engine as the mixed-replay experiment. The second recomputes the evaluation on ciFAIR-100 replacements using the existing CIFAR-100 offsets. Its [data and inference instructions](evidence/cifair_replacements/README.md) give the original dataset link and the CPU prediction command. The third compares new-class and overall validation accuracy using the same 30 models, validation labels, and feasible offsets. It reproduces the previous choices for the new-class objective at both validation thresholds. All three commands require only Python and NumPy for recomputation.
 
+The placement comparison moves the all-class loss from repeated to nonrepeated current images while retaining the mixed training stream. The CIFAR-10 comparison uses the original reservoir and later retrieval. Recompute both from the saved group scores:
+
+```text
+python -B -s evidence/shift_current_loss/recompute.py --artifact . --output relocated.json
+python -B -s evidence/reservoir_replay_loss/recompute.py --output reservoir.json
+python -B -s tools/compare_old_accuracy.py --artifact . --output original_and_replacement.json
+```
+
+The [placement instructions](evidence/shift_current_loss/README.md) reuse the same training entry as the fixed-exposure experiment. The [reservoir instructions](evidence/reservoir_replay_loss/README.md) use the original CIFAR-10 history and memory files. The last command compares old-accuracy bounds and the same original and replacement test positions, and reports group AUROC and test-sample accuracy at measured 20% old accuracy.
 
 ## Data for training and new inference
 

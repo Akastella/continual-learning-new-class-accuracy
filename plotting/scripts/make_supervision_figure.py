@@ -5,7 +5,6 @@ and Pillow installed. Inputs are recorded results from five ER histories.
 """
 from pathlib import Path
 import csv
-import json
 
 import matplotlib
 matplotlib.use("Agg")
@@ -22,7 +21,9 @@ SEEDS = list(range(3101, 3106))
 TARGETS = [5, 10, 15, 20]
 BLUE, ORANGE, GREEN = "#0072B2", "#D55E00", "#009E73"
 
-summary = json.loads((SOURCE / "summary.json").read_text())
+with (SOURCE / "score_analysis/unadjusted_results.csv").open() as handle:
+    unadjusted = {(row["model"], int(row["seed"])): float(row["new_pct"])
+                  for row in csv.DictReader(handle) if row["images"] == "test"}
 with (SOURCE / "score_analysis/offset_results.csv").open() as handle:
     offsets = {(row["model"], int(row["seed"]), int(row["target_pct"])): row
                for row in csv.DictReader(handle)}
@@ -50,9 +51,9 @@ fig.text(.62, .965, "b  Score adjustment", weight="bold", fontsize=9, va="top")
 # Connecting lines retain each history's paired incoming-loss comparison.
 for group, (first, second, label, color, marker, style) in enumerate([
     ("usual_er", "current_mask", "Old replay", BLUE, "o", "-"),
-    ("mixed_full", "mixed_restricted", "Mixed replay", ORANGE, "s", "--"),
+    ("mixed_full", "mixed_restricted", "Mixed replay", "#AD4B88", "s", "--"),
 ]):
-    values = np.array([summary["methods"][name]["new_all100_pct"]["values"]
+    values = np.array([[unadjusted[name, seed] for seed in SEEDS]
                        for name in (first, second)]).T
     pale = np.array(to_rgb(color)) * .5 + .5
     positions = np.array([0, 1]) + (-.035 if group == 0 else .035)
@@ -95,7 +96,7 @@ for index, target in enumerate(TARGETS):
     right.annotate(f"q={target}", (point[0], label_y), ha="center", va="bottom",
                    fontsize=8, color="#444444")
 right.set(xlim=(6, 26), ylim=(-2, 86), yticks=[0, 25, 50, 75], xticks=[8, 16, 24])
-right.set_xlabel("Old-class accuracy (%)", labelpad=4)
+right.set_xlabel("Test old-class accuracy (%)", labelpad=4)
 right.legend(loc="lower left", frameon=False, borderpad=0, labelspacing=.3,
              handlelength=1.6, handletextpad=.5, fontsize=8,
              bbox_to_anchor=(0, .015))

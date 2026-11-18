@@ -1,4 +1,4 @@
-"""Train one mixed-replay model with ten-class loss on all current images."""
+"""Train one mixed-replay model with a specified loss on current images."""
 
 import argparse
 import json
@@ -19,13 +19,19 @@ import portable_math as mixed
 core = mixed.core
 
 
-def train_task(model, dataset, images, labels, seed, task, output, deadline):
+def train_task(model, dataset, images, labels, seed, task, condition, output, deadline):
     old_classes = task * 10
     seen_classes = old_classes + 10
     old_columns = torch.arange(seen_classes, device=images.device) < old_classes
 
     def cross_entropy(logits, targets):
-        excluded = (targets >= old_classes)[:, None] & old_columns
+        if condition == "all_seen_on_nonrepeated":
+            half = len(targets) // 4
+            row = torch.arange(len(targets), device=targets.device)
+            restricted = (row < half) | (row >= 3 * half)
+        else:
+            restricted = targets >= old_classes
+        excluded = restricted[:, None] & old_columns
         return F.cross_entropy(logits.masked_fill(excluded, -1e9), targets)
 
     output.mkdir()
@@ -35,7 +41,7 @@ def train_task(model, dataset, images, labels, seed, task, output, deadline):
     try:
         return core.train_branch(
             model, dataset, images, labels, seed, task, "er",
-            "revisit_current10", 70, output, deadline, first_task=False,
+            condition, 70, output, deadline, first_task=False,
         )
     finally:
         core.F, core.data.epoch_plan = original_loss, original_plan
@@ -48,6 +54,8 @@ def main():
     parser.add_argument("output", type=Path)
     parser.add_argument("--task-index", type=int, choices=(7, 9), required=True)
     parser.add_argument("--seed", type=int, choices=range(3101, 3106), required=True)
+    parser.add_argument("--condition", choices=("revisit_current10", "all_seen_on_nonrepeated"),
+                        default="revisit_current10")
     parser.add_argument("--check-inputs-only", action="store_true")
     args = parser.parse_args()
     seed, task = args.seed, args.task_index
@@ -68,10 +76,10 @@ def main():
     labels = torch.as_tensor(inverse[dataset.labels], dtype=torch.long, device="cuda")
     model = core.make_model(seed + 10000, "cuda").to(memory_format=torch.channels_last)
     model.load_state_dict(state["model"])
-    record = train_task(model, dataset, images, labels, seed, task,
+    record = train_task(model, dataset, images, labels, seed, task, args.condition,
                         args.output / "run", started + 3300)
     record["checkpoint"] = core.save_checkpoint(args.output / "endpoint.pt", model,
-        {"seed": seed, "task": task, "epochs": 70, "branch": "revisit_current10"})
+        {"seed": seed, "task": task, "epochs": 70, "branch": args.condition})
     core.write_json(args.output / "training.json", record)
     print(json.dumps({"seed": seed, "task_index": task, "seconds": time.monotonic() - started}))
 
