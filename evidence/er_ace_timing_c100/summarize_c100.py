@@ -54,6 +54,24 @@ def summary(data, first_task):
                          **{stat:stats([x[stat] for x in complete])
                             for stat in ("old_forgetting","mean_final_old","worst_final_old")})
     result["task_results"] = matrix
+    last = {
+        m: {
+            "new": [current[s, tasks[-1], m][-1] for s in seeds],
+            "old": [mean(current[s, tasks[-1], m][:-1]) for s in seeds],
+            "overall": [mean(current[s, tasks[-1], m]) for s in seeds],
+        }
+        for m in policies
+    }
+    result["last_task"] = {
+        m: {
+            "means": {field: stats(values) for field, values in scores.items()},
+            "paired": {
+                field: stats([a-b for a, b in zip(values, last["retrieval"][field])])
+                for field, values in scores.items()
+            },
+        }
+        for m, scores in last.items()
+    }
     matched = {}
     for m in policies:
         by_q = {}

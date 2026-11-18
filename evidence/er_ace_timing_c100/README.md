@@ -11,7 +11,7 @@ python -B -s evidence/er_ace_timing_c100/summarize_c100.py --data evidence/er_ac
 python -B -s evidence/reservoir_supervision_timing/calibrate_timing.py --data evidence/er_ace_timing_c100/measurements --old-target 20 --output c100_calibrated.json
 ```
 
-The first command gives the early and terminal results, 10%, 20% and 30% matched accuracy, coverage, and earlier-task forgetting. The second fits each score offset on 20 evaluation images per class and tests on the other 80.
+The first command gives the early and mean end-of-task results, separate last-task results, 10%, 20% and 30% matched accuracy, coverage, and earlier-task forgetting. The second fits each score offset on 20 evaluation images per class and tests on the other 80.
 
 To retrain, use the GPU requirements in the repository README and prepare the official CIFAR-100 train and test data. In this example, DATA_ROOT is the parent directory of the extracted cifar-100-python directory.
 
