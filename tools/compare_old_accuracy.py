@@ -34,6 +34,15 @@ def group_auroc(record, test, old):
     return float(100 * (1 - ((left + right) / (2 * len(old_scores))).mean()))
 
 
+def at_old_target(margin, old_correct, new_correct, old_n, target):
+    eligible = np.sort(margin[old_correct])
+    needed = (target * old_n + 99) // 100
+    assert needed > 0 and len(eligible) >= needed
+    offset = eligible[-needed]
+    return (int((old_correct & (margin >= offset)).sum()),
+            int((new_correct & (margin < offset)).sum()))
+
+
 def read_original(evidence, task, seed, condition):
     if task == 7:
         folder = evidence / "supervision_task7/reader_data"
@@ -80,18 +89,17 @@ def compare(evidence):
                 test = ~x["calibration"] & (x["mapped_labels"] < seen)
                 test_old_n = int((test & (x["mapped_labels"] < old)).sum())
                 test_new_n = int(test.sum()) - test_old_n
-                eligible = np.sort(mx[test & ox])
-                needed = (20 * test_old_n + 99) // 100
-                assert len(eligible) >= needed
-                threshold = eligible[-needed]
-                fixed_old_correct = int((test & ox & (mx >= threshold)).sum())
-                fixed_new_correct = int((test & nx & (mx < threshold)).sum())
+                points = {
+                    q: at_old_target(mx, test & ox, test & nx, test_old_n, q)
+                    for q in (5, 10, 20)
+                }
+                fixed_old_correct, fixed_new_correct = points[20]
                 records.append(dict(task=task + 1, seed=seed, condition=condition,
                     old_n=old_n, old_cap_correct=cap, old_correct=actual,
                     matched_n=matched_n, original_matched_correct=first,
                     replacement_matched_correct=second, fixed_old_correct=fixed_old_correct,
                     fixed_new_correct=fixed_new_correct, fixed_old_n=test_old_n, fixed_new_n=test_new_n,
-                    group_auc=group_auroc(x, test, old)))
+                    group_auc=group_auroc(x, test, old), test_selected_points=points))
     return records
 
 
@@ -114,11 +122,40 @@ def summarize(records):
             100*(b["fixed_new_correct"]-a["fixed_new_correct"])/a["fixed_new_n"]
             for a,b in zip(full,restricted)
         ])
+        result["new_difference_at_old_target"] = {
+            q: stats([100*(b["test_selected_points"][q][1] - a["test_selected_points"][q][1]) / a["fixed_new_n"]
+                      for a,b in zip(full,restricted)])
+            for q in (5, 10, 20)
+        }
         result["group_auc_difference"] = stats([
             b["group_auc"]-a["group_auc"] for a,b in zip(full,restricted)
         ])
         results[task] = result
     return {"results": results, "individual_counts": records}
+
+
+def reservoir(evidence):
+    source = evidence / "reservoir_replay_loss/reader_data"
+    paired = {30: [], 40: []}
+    for seed in range(201, 211):
+        endpoints = []
+        for condition in ("all_class_replay", "current_two_replay"):
+            data = load(source / f"s{seed}_{condition}.npz")
+            labels = data["labels"]
+            new = np.isin(labels, data["new_classes"])
+            margin = data["old_score"].astype(float) - data["new_score"].astype(float)
+            old_correct = ~new & (data["old_prediction"] == labels)
+            new_correct = new & (data["new_prediction"] == labels)
+            counts = {}
+            for q in paired:
+                old_n = int((~new).sum())
+                old_hit, new_hit = at_old_target(margin, old_correct, new_correct, old_n, q)
+                assert 100 * old_hit == q * old_n
+                counts[q] = 100 * new_hit / int(new.sum())
+            endpoints.append(counts)
+        for q in paired:
+            paired[q].append(endpoints[0][q] - endpoints[1][q])
+    return {q: stats(values) for q, values in paired.items()}
 
 
 def main():
@@ -128,6 +165,7 @@ def main():
     args = parser.parse_args()
     evidence = args.artifact / "evidence"
     result = summarize(compare(evidence))
+    result["reservoir_new_difference_at_measured_old"] = reservoir(evidence)
     for task in (7, 9):
         changes = []
         for seed in range(3101, 3106):

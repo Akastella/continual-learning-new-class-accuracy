@@ -10,6 +10,7 @@ python scripts/make_figures.py
 python scripts/make_overview.py --export --publication
 python scripts/make_supervision_figure.py
 python scripts/make_replay_overview.py
+python scripts/make_single_pass_table.py
 python scripts/make_extra_tables.py
 python scripts/make_acquisition_tables.py
 python scripts/make_supervision_tables.py

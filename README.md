@@ -113,6 +113,12 @@ python -B -s tools/compare_old_accuracy.py --artifact . --output original_and_re
 
 The [placement instructions](evidence/shift_current_loss/README.md) reuse the same training entry as the fixed-exposure experiment. The [reservoir instructions](evidence/reservoir_replay_loss/README.md) use the original CIFAR-10 history and memory files. The last command compares old-accuracy bounds and the same original and replacement test positions, and reports group AUROC and test-sample accuracy at measured 20% old accuracy.
 
+The [single-pass stream comparison](evidence/full_reservoir_placement/README.md) also trains from the first task, using independently seeded class orders. Its three histories differ only in how the current-image group term is applied.
+
+```text
+python -B -s evidence/full_reservoir_placement/recompute.py --data evidence/full_reservoir_placement --output single_pass.json
+```
+
 ## Data for training and new inference
 
 No image download is needed for the CPU calculations above. For training or new inference, obtain the data from the original providers:
