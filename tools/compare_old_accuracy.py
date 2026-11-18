@@ -78,12 +78,14 @@ def compare(evidence):
                 old_labels = y["mapped_labels"] < old
                 old_n = int(old_labels.sum())
                 mx, ox, nx = correct(x, x["mapped_labels"], old)
-                my, oy, _ = correct(y, y["mapped_labels"], old)
+                my, oy, ny = correct(y, y["mapped_labels"], old)
                 matched_n = int(match.sum())
                 first = int((ox[rows][match] & (mx[rows][match] >= offset)).sum())
                 second = int((oy[match] & (my[match] >= offset)).sum())
                 cap = int(oy.sum())
                 actual = int((oy & (my >= offset)).sum())
+                replacement_fixed = (at_old_target(my, oy, ny, old_n, 20)
+                                     if 5*cap >= old_n else None)
 
                 # Trace a test-set operating point at the same measured old accuracy.
                 test = ~x["calibration"] & (x["mapped_labels"] < seen)
@@ -99,7 +101,8 @@ def compare(evidence):
                     matched_n=matched_n, original_matched_correct=first,
                     replacement_matched_correct=second, fixed_old_correct=fixed_old_correct,
                     fixed_new_correct=fixed_new_correct, fixed_old_n=test_old_n, fixed_new_n=test_new_n,
-                    group_auc=group_auroc(x, test, old), test_selected_points=points))
+                    group_auc=group_auroc(x, test, old), test_selected_points=points,
+                    replacement_fixed=replacement_fixed, replacement_new_n=len(my)-old_n))
     return records
 
 
@@ -122,6 +125,17 @@ def summarize(records):
             100*(b["fixed_new_correct"]-a["fixed_new_correct"])/a["fixed_new_n"]
             for a,b in zip(full,restricted)
         ])
+        replacement_pairs = []
+        for a,b in zip(full,restricted):
+            if a["replacement_fixed"] is None or b["replacement_fixed"] is None:
+                continue
+            old_full, new_full = a["replacement_fixed"]
+            old_limited, new_limited = b["replacement_fixed"]
+            replacement_pairs.append(dict(seed=a["seed"],
+                new_difference=100*(new_limited-new_full)/a["replacement_new_n"],
+                measured_old_full=100*old_full/a["old_n"],
+                measured_old_limited=100*old_limited/b["old_n"]))
+        result["replacement_old20_joint"] = replacement_pairs
         result["new_difference_at_old_target"] = {
             q: stats([100*(b["test_selected_points"][q][1] - a["test_selected_points"][q][1]) / a["fixed_new_n"]
                       for a,b in zip(full,restricted)])

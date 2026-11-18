@@ -59,8 +59,17 @@ def main():
                 if len(thresholds) >= needed:
                     bias = float(np.sort(thresholds)[-needed])
                     adjusted = analysis.measure(data, test, bias)
+                margin, correct_old, correct_new = score.correct(data, labels, old)
+                old_n = int((test & (labels < old)).sum())
+                new_n = int(test.sum())-old_n
+                old_ok = test & correct_old
+                fixed_old = None
+                if 5*int(old_ok.sum()) >= old_n:
+                    n_old, n_new = score.at_old_target(margin, old_ok, test & correct_new, old_n, 20)
+                    fixed_old = dict(old=100*n_old/old_n, new=100*n_new/new_n)
                 row = {"task": task+1, "seed": seed, "method": method, "raw": raw, "offset": bias,
-                       "group_auroc": score.group_auroc(data, test, old), "adjusted": adjusted}
+                       "group_auroc": score.group_auroc(data, test, old), "adjusted": adjusted,
+                       "fixed_old": fixed_old}
                 records.append(row)
                 measured.append(raw["new_correct"])
             b, c, d = measured
@@ -80,6 +89,13 @@ def main():
             "closeness_supported": (sum(abs(d) for d in raw_differences) <= 250
                                     and sum(abs(d) <= 50 for d in raw_differences) >= 4),
         }
+        b = [r["fixed_old"] for r in records if r["task"] == task+1 and r["method"] == METHODS[0]]
+        d = [r["fixed_old"] for r in records if r["task"] == task+1 and r["method"] == METHODS[-1]]
+        comparable = [(first,second) for first,second in zip(b,d) if first is not None and second is not None]
+        summary[task+1]["matched_old20_relocated_minus_replayed"] = [
+            dict(old_replayed=first["old"], old_relocated=second["old"], new_difference=second["new"]-first["new"])
+            for first,second in comparable
+        ]
         for method in METHODS:
             rows = [r for r in records if r["task"] == task+1 and r["method"] == method]
             eligible = [r["adjusted"] for r in rows if r["adjusted"] is not None]

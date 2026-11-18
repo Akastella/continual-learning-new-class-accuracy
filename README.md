@@ -204,6 +204,14 @@ python -B -s -X utf8 experiments/paa/head_state/train.py --stage summarize --pro
 
 The four-epoch history directory contains `split_cifar10_classil_er_s201` and corresponding method/seed directories. The sixteen-epoch directory contains `er_s201`, `sgd_s201`, and the other seeds 202–205. Each history must retain its pre-task models and original initialization. This comparison restores only the classifier parameters, then updates the entire model with the original current-only SGD procedure. The 80 new branches took 3.5 minutes. Training entry points use the bundled original experiment implementations; their comments and historical argument names are retained.
 
+## Compare the timing of supervision
+
+- [CIFAR-10 timing](evidence/reservoir_supervision_timing/README.md) compares identical new-image supervision at first presentation and at retrieval, plus an expected-count rule. It includes CPU commands for old, new, and overall accuracy during each task and at its endpoint.
+- [Twenty-task CIFAR-100 timing](evidence/er_ace_timing_c100/README.md) gives paired residual-network placement runs, old-task forgetting, matched retention, and a separate validation-offset comparison.
+- [Fashion-MNIST placement](evidence/fashion_placement/README.md) provides a second set of whole-stream training runs, the original data links, and the commands for the two measured-retention comparisons.
+- `python -B -s tools/compare_same_candidates.py --artifact . --output same_candidates.json` compares the same two or thirty models with and without fitted offsets.
+
+
 ## Code availability
 
 The accompanying files include experiment code, numerical evidence, original data-source links, dependency versions, and the commands above. Original image datasets remain subject to their providers' terms. Third-party licenses are retained with the corresponding source files. The publication repository will be released after author approval.
