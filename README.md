@@ -83,6 +83,16 @@ python -B -I -X utf8 evidence/cross_group_supervision/recompute_scores.py --outp
 
 Both commands need only NumPy and new output directories. The first reproduces all 30 integer-count rows and the complete seed-level and paired statistics. The second reads 30 compact group-score NPZs, verifies the fixed 2,000/8,000 calibration/test identities, and reproduces all 180 offset attempts (100 available), complete per-seed/per-old-task results, unavailable targets, violations, and summaries. It also generates every pair of the five methods and the policy interaction at 5/10/15/20 percent with n=5, plus all remaining recorded targets with their actual available seeds. Means and sample SDs are computed across paired seeds. The original paired-effect values are checked exactly; these descriptive comparisons do not imply equivalence. The commands create their output directories; the original numerical reference files are included in `evidence/cross_group_supervision/`. That directory's README describes the scientific protocol excerpt, complete score-analysis design, original source files, and 1,050 epoch records. Full models, full logits, images, and PyTorch are unnecessary for these calculations.
 
+## Recompute the earlier CIFAR-100 boundary
+
+The same two fixed supervision predictions were tested at the eighth task of the five histories. The four added conditions trained 20 models for 70 epochs each. Original full-loss ER and current-only models were reused. Training and prediction use the 80 seen classes, with 70 old and ten current classes. Each boundary has five paired seed units.
+
+```powershell
+python -B -s evidence/supervision_task7/recompute.py --output recomputed_task7
+```
+
+The package supplies 30 compact NPZs, integer counts, all fixed target choices, old-task scores, and paired statistics. It uses 1,600 calibration and 6,400 test images under the same per-original-class split rule and three-point validation margin. Image identities match across conditions within each seed and vary with the seed's seen-class set. The official image source was already used in the study. See `evidence/supervision_task7/README.md` for the single-condition training command. Generate its task-start state with the original CIFAR-100 history commands below or supply that saved state explicitly.
+
 ## Data for training and new inference
 
 No image download is needed for the CPU calculations above. For training or new inference, obtain the data from the original providers:

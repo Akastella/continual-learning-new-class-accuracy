@@ -7,12 +7,16 @@ From this plotting directory, use Python 3.12:
 ```powershell
 python -m pip install -r requirements.txt
 python scripts/make_figures.py
-python scripts/make_overview.py
+python scripts/make_overview.py --export --publication
+python scripts/make_supervision_figure.py
 python scripts/make_extra_tables.py
 python scripts/make_acquisition_tables.py
 python scripts/make_supervision_tables.py
+python scripts/make_task7_tables.py
 python scripts/make_score_tables.py
 python scripts/make_score_figure.py
 ```
 
-Run `make_overview.py` after `make_figures.py` to create the current journal overview. Outputs include editable SVG and PDF figures, PNG previews, grayscale previews, and LaTeX tables. Each point or table cell comes from the supplied inputs. With Poppler installed, EPS files can also be made from each PDF using `pdftops -eps figures/overview.pdf figures/overview.eps`, and similarly for the other figures. The article source package supplies the final editable manuscript and vectors separately.
+Run the overview command after `make_figures.py`. It reads the ten saved CIFAR-10 seed summaries and produces editable draw.io objects, SVG, PNG, PDF, EPS, and a numerical JSON. Complete export requires draw.io desktop, Comic Sans MS installed locally, Playwright Chromium (`python -m playwright install chromium`), and Poppler (`pdftops`). Supply `--drawio PATH` for a custom installation. Without `--export --publication`, the script rebuilds the draw.io source and numerical JSON.
+
+`make_supervision_figure.py` directly plots the five CIFAR-100 paired histories and validation-selected score results using Matplotlib. Its JSON/CSV inputs are supplied under `new_experiments/cross_group_supervision/`. This figure provides PDF/SVG/EPS, color PNG, and grayscale PNG. The manuscript source package supplies the article and all final vectors.

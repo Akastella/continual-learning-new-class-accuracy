@@ -6,7 +6,7 @@ SRC=ROOT/'new_experiments/cross_group_supervision'
 data=json.loads((SRC/'summary.json').read_text())
 names={'usual_er':'Old only, full','current_mask':'Old only, current ten',
        'mixed_full':'Mixed, full','mixed_restricted':'Mixed, current ten',
-       'old_blend05':r'Old only, 5\% full','common_sgd':'Common current-only'}
+       'old_blend05':r'Old only, 5\% full','common_sgd':'Current-only'}
 models=list(names)
 lines=[r'\begin{tabular}{lrrrr}',r'\toprule',
        r'Condition & \shortstack{New\\all 100} & \shortstack{New\\current ten} & \shortstack{Old\\all 100} & All 100\\',r'\midrule']
