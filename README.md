@@ -93,6 +93,17 @@ python -B -s evidence/supervision_task7/recompute.py --output recomputed_task7
 
 The package supplies 30 compact NPZs, integer counts, all fixed target choices, old-task scores, and paired statistics. It uses 1,600 calibration and 6,400 test images under the same per-original-class split rule and three-point validation margin. Image identities match across conditions within each seed and vary with the seed's seen-class set. The official image source was already used in the study. See `evidence/supervision_task7/README.md` for the single-condition training command. Generate its task-start state with the original CIFAR-100 history commands below or supply that saved state explicitly.
 
+## Repeated images, replacement images, and validation objectives
+
+```text
+python -B -s evidence/revisit_supervision/recompute.py --output recomputed_repeats
+python -B -s evidence/cifair_replacements/recompute.py --output recomputed_cifair
+python -B -s tools/compare_validation_objectives.py --artifact . --output recomputed_objectives
+```
+
+The first command reproduces the fixed-exposure result for ten added models and the original comparisons at both CIFAR-100 task boundaries. Its [training instructions](evidence/revisit_supervision/README.md) use the same replay sampler and training engine as the mixed-replay experiment. The second recomputes the evaluation on ciFAIR-100 replacements using the existing CIFAR-100 offsets. Its [data and inference instructions](evidence/cifair_replacements/README.md) give the original dataset link and the CPU prediction command. The third compares new-class and overall validation accuracy using the same 30 models, validation labels, and feasible offsets. It reproduces the previous choices for the new-class objective at both validation thresholds. All three commands require only Python and NumPy for recomputation.
+
+
 ## Data for training and new inference
 
 No image download is needed for the CPU calculations above. For training or new inference, obtain the data from the original providers:

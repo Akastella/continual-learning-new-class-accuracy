@@ -40,4 +40,24 @@ for dataset,title in [('cifar101','CIFAR-10.1'),('cifar102','CIFAR-10.2')]:
         lines.append(f"{names[r['policy']]} & {r['available']}/10 & {f('old')} & {f('current')} & {r['violations']}/{r['available']}"+r'\\')
 lines += [r'\bottomrule',r'\end{tabular}']
 (ROOT/'tables/fixed_margin.tex').write_text('\n'.join(lines)+'\n')
+
+objectives = json.loads(
+    (ROOT / "new_experiments/validation_objective/run2/summary.json").read_text(encoding="utf-8")
+)
+lines = [r"\begin{tabular}{lrrrrr}", r"\toprule",
+         r"Test source & \shortstack{Validation\\old (\%)} & $\Delta$New & $\Delta$Old & $\Delta$Overall & Misses\\",
+         r"\midrule"]
+for item in objectives:
+    source = {"cifar101": "CIFAR-10.1", "cifar102": "CIFAR-10.2"}[item["dataset"]]
+    paired = item["paired_new_minus_overall_objective"]
+    effects = [
+        "$" + f"{row['mean']:+.2f}\\pm{row['sample_sd']:.2f}$"
+        for row in (paired[metric + "_difference_pp"] for metric in ("new", "old", "all"))
+    ]
+    misses = [str(item["objectives"][name]["below30_count"])
+              for name in ("new_accuracy", "overall_accuracy")]
+    lines.append(" & ".join([source, str(item["validation_threshold_pct"]),
+                            *effects, "/".join(misses)]) + r"\\")
+lines += [r"\bottomrule", r"\end{tabular}"]
+(ROOT / "tables/validation_objective.tex").write_text("\n".join(lines) + "\n", encoding="utf-8")
 print('Generated score-adjustment tables from summary.csv')

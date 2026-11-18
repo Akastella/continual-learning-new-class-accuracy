@@ -1,15 +1,15 @@
 """Tables from the fixed-history supervision experiment and held-out score analysis."""
 from pathlib import Path
-import csv,json
+import json
 ROOT=Path(__file__).resolve().parents[1]
 SRC=ROOT/'new_experiments/cross_group_supervision'
 data=json.loads((SRC/'summary.json').read_text())
-names={'usual_er':'Old only, full','current_mask':'Old only, current ten',
-       'mixed_full':'Mixed, full','mixed_restricted':'Mixed, current ten',
-       'old_blend05':r'Old only, 5\% full','common_sgd':'Current-only'}
+names={'usual_er':'Old only, 100-way CE','current_mask':'Old only, 10-way CE',
+       'mixed_full':'Mixed, 100-way CE','mixed_restricted':'Mixed, 10-way CE',
+       'old_blend05':r'Old only, 95/5 loss','common_sgd':'Separate current-only run'}
 models=list(names)
 lines=[r'\begin{tabular}{lrrrr}',r'\toprule',
-       r'Condition & \shortstack{New\\all 100} & \shortstack{New\\current ten} & \shortstack{Old\\all 100} & All 100\\',r'\midrule']
+       r'Replay and incoming loss & \shortstack{New\\100-way} & \shortstack{New\\10-way} & \shortstack{Old\\100-way} & \shortstack{Overall\\100-way}\\',r'\midrule']
 for name in models:
     cells=[f"${data['methods'][name][k]['mean']:.2f}\\pm{data['methods'][name][k]['sample_sd']:.2f}$"
            for k in ['new_all100_pct','new_current10_pct','old_all100_pct','all100_pct']]
@@ -18,7 +18,7 @@ lines += [r'\bottomrule',r'\end{tabular}']
 (ROOT/'tables/supervision_raw.tex').write_text('\n'.join(lines)+'\n',encoding='utf-8')
 summary=json.loads((SRC/'score_analysis/summary.json').read_text())
 def offset_table(targets,filename):
-    lines=[r'\begin{tabular}{lrrrr}',r'\toprule',r'Condition & Available & Old & New & Violations\\',r'\midrule']
+    lines=[r'\begin{tabular}{lrrrr}',r'\toprule',r'Replay and incoming loss & \shortstack{Eligible\\seeds} & Old & New & \shortstack{Test target\\misses}\\',r'\midrule']
     for q in targets:
         lines.append(r'\multicolumn{5}{l}{$q='+str(q)+r'\%$; validation requires '+str(q+3)+r'\%}\\')
         for name in models:

@@ -44,12 +44,12 @@ plt.rcParams.update({
 fig = plt.figure(figsize=(4.72, 2.84))
 left = fig.add_axes([.105, .245, .36, .575])
 right = fig.add_axes([.62, .245, .36, .575])
-fig.text(.105, .965, "a  Training", weight="bold", fontsize=9, va="top")
+fig.text(.105, .965, "a  Incoming supervision", weight="bold", fontsize=9, va="top")
 fig.text(.62, .965, "b  Score adjustment", weight="bold", fontsize=9, va="top")
 
 # Connecting lines retain each history's paired incoming-loss comparison.
 for group, (first, second, label, color, marker, style) in enumerate([
-    ("usual_er", "current_mask", "Old-only replay", BLUE, "o", "-"),
+    ("usual_er", "current_mask", "Old replay", BLUE, "o", "-"),
     ("mixed_full", "mixed_restricted", "Mixed replay", ORANGE, "s", "--"),
 ]):
     values = np.array([summary["methods"][name]["new_all100_pct"]["values"]
@@ -72,9 +72,9 @@ left.legend(loc="lower left", bbox_to_anchor=(.015, .045), frameon=False,
 # Targets are selected on validation images and evaluated on separate images.
 means = []
 for name, label, color, marker, style in [
-    ("usual_er", "100-class loss", BLUE, "o", "-"),
-    ("current_mask", "10-class loss", ORANGE, "^", "--"),
-    ("old_blend05", "95/5 loss", GREEN, "s", ":"),
+    ("usual_er", "100-way incoming CE", BLUE, "o", "-"),
+    ("current_mask", "10-way incoming CE", ORANGE, "^", "--"),
+    ("old_blend05", "95/5 incoming CE", GREEN, "s", ":"),
 ]:
     values = np.array([[[float(offsets[name, seed, target][key])
                          for key in ("test_old_pct", "test_new_pct")]
@@ -99,7 +99,7 @@ right.set_xlabel("Old-class accuracy (%)", labelpad=4)
 right.legend(loc="lower left", frameon=False, borderpad=0, labelspacing=.3,
              handlelength=1.6, handletextpad=.5, fontsize=8,
              bbox_to_anchor=(0, .015))
-fig.text(.62, .875, "Old targets (%)", ha="left", va="bottom", fontsize=8)
+fig.text(.62, .875, "Validation requires q + 3 pp", ha="left", va="bottom", fontsize=8)
 
 for axis in (left, right):
     axis.grid(axis="y", color="#dddddd", linewidth=.5)
