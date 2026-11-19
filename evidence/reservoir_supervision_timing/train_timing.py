@@ -43,7 +43,8 @@ def planned_weights(task, cfg, memory, batches):
     return torch.from_numpy(weights), retrieval
 
 
-def run_task(model, memory, tasks, task_id, cfg, policy, device, output, weights=None, indices=None):
+def run_task(model, memory, tasks, task_id, cfg, policy, device, output,
+             weights=None, indices=None, schedule=None):
     task = tasks[task_id]
     images, labels = task["train"]
     current = torch.zeros(10, dtype=torch.bool, device=device)
@@ -81,6 +82,9 @@ def run_task(model, memory, tasks, task_id, cfg, policy, device, output, weights
                     coefficients = weights[ids].to(device=device, dtype=group.dtype)
                     loss += (coefficients*group).sum()
                     weight = float(weights[ids].sum())
+                elif schedule is not None:
+                    weight = schedule[step-1]
+                    loss += weight*group.mean()
                 elif policy == "expected_count":
                     weight = len(ry)*n_current/(memory.seen*size)
                     loss += weight*group.mean()

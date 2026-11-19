@@ -34,7 +34,7 @@ def metrics(data, q):
                 fixed_old=matched)
 
 
-def compare(data_dir, target):
+def compare(data_dir, target, reference_policy="retrieval"):
     training = json.loads((data_dir/"training.json").read_text())
     indexed = {}
     for row in training:
@@ -63,7 +63,7 @@ def compare(data_dir, target):
                 differences = []
                 for seed in seeds:
                     task_values = [indexed[seed,task,policy][step][field] for task in tasks]
-                    reference = [indexed[seed,task,"retrieval"][step][field] for task in tasks]
+                    reference = [indexed[seed,task,reference_policy][step][field] for task in tasks]
                     means.append(mean(task_values))
                     differences.append(mean(a-b for a,b in zip(task_values,reference)))
                 paired[field] = stats(differences)
@@ -73,11 +73,11 @@ def compare(data_dir, target):
                 deltas = {}
                 for field in ("new", "old"):
                     deltas[field] = stats([indexed[seed,task,policy][step][field] -
-                                           indexed[seed,task,"retrieval"][step][field] for seed in seeds])
+                                           indexed[seed,task,reference_policy][step][field] for seed in seeds])
                 by_task[task] = deltas
                 for seed in seeds:
                     first = indexed[seed,task,policy][step]["fixed_old"]
-                    reference = indexed[seed,task,"retrieval"][step]["fixed_old"]
+                    reference = indexed[seed,task,reference_policy][step]["fixed_old"]
                     if first is not None and reference is not None:
                         pairs.append({"seed":seed,"task":task,"new_difference":first["new"]-reference["new"],
                                       "old":first["old"],"reference_old":reference["old"]})
@@ -92,8 +92,9 @@ def main():
     parser.add_argument("--data", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--old-target", type=int, default=20)
+    parser.add_argument("--reference", default="retrieval")
     args = parser.parse_args()
-    report = compare(args.data, args.old_target)
+    report = compare(args.data, args.old_target, args.reference)
     with args.output.open("x", encoding="utf-8") as stream:
         json.dump(report, stream, indent=2)
         stream.write("\n")

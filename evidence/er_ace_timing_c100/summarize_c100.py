@@ -97,6 +97,20 @@ def summary(data, first_task):
             by_q[q] = row
         matched[m] = by_q
     result["matched_early_late"] = matched
+    result["per_task"] = {}
+    for m in policies:
+        result["per_task"][m] = {}
+        for t in tasks:
+            available = [x["differences"][1] for x in matched[m][20]["per_pair"] if x["task"] == t]
+            matched_new = {"mean": mean(available), "sample_sd": None} if available else None
+            if len(available) > 1:
+                matched_new = stats(available)
+            result["per_task"][m][t] = {
+                "raw_new": stats([current[s,t,m][-1] for s in seeds]),
+                "paired_raw_new": result["summaries"][250][m]["by_task"][t]["new"],
+                "paired_at_old20": matched_new,
+                "matched_old20_n": len(available),
+            }
     return result
 
 

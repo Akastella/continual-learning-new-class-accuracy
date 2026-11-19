@@ -2,6 +2,15 @@
 
 This package accompanies the manuscript on interpreting new-class accuracy in class-incremental learning. It contains the original experiment code, configurations, and saved numerical evidence. The reported statistics can be recomputed on a CPU without downloading images or installing PyTorch. Training the networks again is a separate, substantially longer GPU task.
 
+## Results in the paper
+
+| Comparison | Inputs and commands |
+| --- | --- |
+| Fixed exposure in CIFAR-100, including the transfer between images on the same update | [Remove the group loss](evidence/revisit_supervision/) · [Move the loss](evidence/shift_current_loss/) |
+| CIFAR-10 timing, including both orders of the same per-update weights | [CIFAR-10 timing](evidence/reservoir_supervision_timing/) |
+| Timing in Fashion-MNIST and twenty-task CIFAR-100 | [Fashion-MNIST](evidence/fashion_placement/) · [CIFAR-100](evidence/er_ace_timing_c100/) |
+| Offset transfer at matched training exposure | [ciFAIR-100 replacement images](evidence/cifair_replacements/) |
+
 ## Recompute the retention-target score comparison
 
 Three further sets of trained comparisons are supplied as plain NumPy-readable files:

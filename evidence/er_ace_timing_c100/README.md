@@ -21,3 +21,8 @@ python -B -s -u evidence/er_ace_timing_c100/train_c100.py --data-root DATA_ROOT 
 ```
 
 Use `--capacity 2000 --policies retrieval first_presentation` for the smaller memory run, and `--capacity 2000 --first-task-only` for its initial task predictions. Recompute the supplied smaller experiment with `smaller_measurements` and `smaller_first_task`.
+
+The summaries also give the raw and paired new-class accuracy for every
+later task, together with the paired changes and coverage at 20% measured
+old-class accuracy. The same seed-task pair must be available at updates
+25 and 250 for the matched comparison.

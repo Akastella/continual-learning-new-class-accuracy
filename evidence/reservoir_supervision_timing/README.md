@@ -22,3 +22,22 @@ python -B -s evidence/reservoir_supervision_timing/calibrate_timing.py --data ev
 ```
 
 The first calculation uses test labels to describe the region each model can reach, using the same available seed-task pairs at both measurements for each point. The second fits each offset on separate evaluation images and measures test accuracy and misses.
+
+## Reorder the same arriving-batch weights
+
+Seeds 5201–5210 use increasing expected-count weights, the same weights
+reversed over the full minibatches, and retrieval. Every branch for a
+later task starts from the common retrieval-trained model and reservoir.
+The numerical inputs contain per-update coefficients, test predictions,
+and group scores for all 40 paired tasks at the four recorded updates.
+
+Run from the repository root:
+
+```text
+python -B -s evidence/reservoir_supervision_timing/recompute.py --data evidence/reservoir_supervision_timing/order_measurements --reference increasing --output order_summary.json
+python -B -s evidence/reservoir_supervision_timing/frontiers.py --data evidence/reservoir_supervision_timing/order_measurements --policies increasing decreasing --output order_frontiers.json
+python -B -s -u evidence/reservoir_supervision_timing/train_order.py --data-root DATA_ROOT --output NEW_OUTPUT
+```
+
+The first two commands use the supplied predictions and require only
+NumPy. The third trains the classifiers again on CUDA.

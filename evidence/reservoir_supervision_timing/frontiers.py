@@ -29,12 +29,11 @@ def frontier(data):
     return points
 
 
-def compare(root, early):
+def compare(root, early, policies=("retrieval", "first_presentation")):
     training = json.loads((root/"training.json").read_text())
     keys = sorted({(row["seed"],row["task"]) for row in training})
     endpoint = max(int(k) for k in training[0]["dose_by_update"])
     steps = (early, endpoint)
-    policies = ("retrieval","first_presentation")
     scores = {}
     for seed,task in keys:
         for policy in policies:
@@ -71,8 +70,10 @@ def main():
     parser.add_argument("--data",type=Path,required=True)
     parser.add_argument("--output",type=Path,required=True)
     parser.add_argument("--early-update",type=int,default=16)
+    parser.add_argument("--policies", nargs=2, default=("retrieval", "first_presentation"),
+                        metavar=("REFERENCE", "COMPARISON"))
     args = parser.parse_args()
-    result = compare(args.data,args.early_update)
+    result = compare(args.data, args.early_update, args.policies)
     with args.output.open("x",encoding="utf-8") as stream:
         json.dump(result,stream,indent=2,allow_nan=False)
         stream.write("\n")
