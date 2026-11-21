@@ -44,3 +44,20 @@ The first three commands use the supplied predictions and require
 only NumPy. They report original scores, the tradeoff at measured
 old accuracy, and accuracy after fitting an offset on separate
 validation images. The final command trains the classifiers on CUDA.
+
+## Omit or reorder the same loss
+
+The omission comparison uses the same seeds, task starts, and batches as
+the order comparison above. It sets every arriving-batch group-loss
+weight to zero. The repeated retrieval histories reproduce the original
+recorded scores at all four updates. The three alternatives share the
+same reference model at the start of each later task. The supplied
+omission directory contains the 160 new score files. The retrieval
+predictions are supplied once, in the original order directory.
+
+    python -B -s -u evidence/reservoir_supervision_timing/train_order.py --data-root DATA_ROOT --omission-only --output NEW_OMISSION_RUN
+    python -B -s evidence/er_ace_timing_c100/summarize_order_c100.py --data evidence/reservoir_supervision_timing/order_omission_run --reference increasing --extra-reference evidence/reservoir_supervision_timing/order_measurements --policies increasing decreasing omit --additional-old-targets 30 40 --output order_omission_summary.json
+
+The second command uses NumPy alone. It joins the zero-weight branch
+with the previously measured increasing and decreasing schedules. The
+output gives common coverage and per-task and per-history results.

@@ -58,8 +58,6 @@ def main():
             memory = BalancedReservoir(500, seed+77001)
             seen = []
             for index, task in enumerate(tasks):
-                if time.monotonic()-began >= 1800:
-                    raise TimeoutError("The training exceeded 30 minutes.")
                 seen.extend(task["classes"])
                 record = train_task(model, memory, task, cfg, sorted(seen), policy, device)
                 if policy == POLICIES[0]:
@@ -70,8 +68,6 @@ def main():
                 evaluate(model, tasks, index, device, scores/f"s{seed}_{policy}_t{index+1}.npz")
         engine.atomic_json(args.output/"training.json", records)
         log(seed=seed, elapsed_seconds=time.monotonic()-began)
-        if seed == SEEDS.start and 1.5*(time.monotonic()-began)*len(SEEDS) >= 1740:
-            raise TimeoutError("The measured runtime exceeds the training budget.")
     log(status="complete", seconds=time.monotonic()-began)
 
 

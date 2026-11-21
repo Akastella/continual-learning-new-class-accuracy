@@ -40,8 +40,6 @@ def main():
                  "retrieval", None)
         for task, exposure in enumerate(stream[1:], 1):
             start_task = time.monotonic()
-            if start_task-started >= 3300:
-                raise TimeoutError("The experiment exceeded 55 minutes.")
             count = len(exposure[0])
             shared_count = count-SUFFIX
             profiles = schedules(task, count)
@@ -67,8 +65,6 @@ def main():
             if seed == SEEDS.start and task == 1:
                 seconds = time.monotonic()-start_task
                 log(trial_seconds=seconds, conservative_seconds=seconds*95*1.45+60)
-                if seconds*95*1.45+60 >= 3300:
-                    raise TimeoutError("The measured runtime exceeds the experiment budget.")
         record_file = args.output/"training.json"
         temporary = record_file.with_suffix(".tmp")
         temporary.write_text(json.dumps(records, indent=2), encoding="utf-8")

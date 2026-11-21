@@ -7,7 +7,7 @@ This package accompanies the manuscript on interpreting new-class accuracy in cl
 | Comparison | Inputs and commands |
 | --- | --- |
 | Fixed exposure in CIFAR-100, including the transfer between images on the same update | [Remove the group loss](evidence/revisit_supervision/) · [Move the loss](evidence/shift_current_loss/) |
-| CIFAR-10 timing, including both orders of the same per-update weights | [CIFAR-10 timing](evidence/reservoir_supervision_timing/) |
+| CIFAR-10 timing, including the common-start omission and weight reversal | [CIFAR-10 timing](evidence/reservoir_supervision_timing/) |
 | Timing in Fashion-MNIST and twenty-task CIFAR-100 | [Fashion-MNIST](evidence/fashion_placement/) · [CIFAR-100](evidence/er_ace_timing_c100/) |
 | Offset transfer at matched training exposure | [ciFAIR-100 replacement images](evidence/cifair_replacements/) |
 
@@ -30,6 +30,11 @@ python -B -X utf8 tools/recompute_score_frontier.py --artifact . --data evidence
 ```
 
 This NumPy-only command recomputes scalar choices, all selected old/current/all accuracies, test violations, and the old-class accuracy bounds. It does not require the original research directory, images, checkpoints, or PyTorch. The chosen scalar values were obtained on validation images; test images are only scored. Complete test curves describe the stored models and are not used to choose scalar values.
+
+For the 35% validation requirement and 30% test target, run
+`python -B -s tools/compare_fixed_margin.py --artifact . --data evidence/score_frontier --output recomputed_margin`.
+The program reports eligibility, scores, and misses for every policy.
+Its paired summary compares policies on the same eligible seeds.
 
 ## Recompute the other reported statistics
 

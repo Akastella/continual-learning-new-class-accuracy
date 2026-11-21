@@ -22,3 +22,14 @@ all three losses attain each specified old-class accuracy.
 
     python -B -s evidence/full_reservoir_placement/recompute.py --data evidence/full_reservoir_placement/balanced --old-targets 20 30 40 --output balanced_summary.json
     python -B -s -u evidence/full_reservoir_placement/train_balanced.py --data-root DATA_ROOT --output NEW_BALANCED_RUN
+
+To fit score offsets at 33% old accuracy on validation and test them
+against a 30% old-accuracy target on the other images, run:
+
+    python -B -s evidence/full_reservoir_placement/recompute.py --data evidence/full_reservoir_placement/balanced --old-targets 20 30 40 --validation-old-target 30 --output balanced_calibrated.json
+
+The output includes the common feasible task pairs, actual test scores,
+and misses under each policy. The measured-score rows in the uniform
+and balanced reports also list all eligible seed-task pairs. Their
+intersection supports comparisons on identical tasks across retrieval
+schemes.

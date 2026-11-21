@@ -60,13 +60,14 @@ def compare_points(source, result, reference, fitted=False):
                 steps=measured)
 
 
-def summarize(root, reference="increasing", targets=(), extra_reference=None):
-    result = compare(root, 20, reference, extra_reference)
+def summarize(root, reference="increasing", targets=(), extra_reference=None,
+              policies=None, original_label_split=False):
+    result = compare(root, 20, reference, extra_reference, policies)
     targets = sorted({20, *targets})
     points = {q: {} for q in targets}
     fitted = {}
     endpoint = {}
-    for source, row in records_in(root, reference, extra_reference):
+    for source, row in records_in(root, reference, extra_reference, policies):
         seed, task, policy = (row[key] for key in ("seed", "task", "policy"))
         folder = source/f"s{seed}_t{task}_{policy}"
         for step in result["summaries"]:
@@ -78,7 +79,8 @@ def summarize(root, reference="increasing", targets=(), extra_reference=None):
             for q in targets:
                 old, new = curve[q]
                 points[q][seed, task, policy, step] = None if new != new else dict(old=old, new=new)
-            fitted[seed, task, policy, step] = apply(path, 20)
+            class_order = row["class_order"] if original_label_split else None
+            fitted[seed, task, policy, step] = apply(path, 20, class_order)
     for q in targets:
         result[f"measured_old{q}"] = compare_points(points[q], result, reference)
     result["validation_fitted_old20"] = compare_points(fitted, result, reference, fitted=True)
@@ -102,9 +104,12 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--reference", default="increasing")
     parser.add_argument("--extra-reference", type=Path)
+    parser.add_argument("--policies", nargs="+")
+    parser.add_argument("--original-label-split", action="store_true")
     parser.add_argument("--additional-old-targets", type=int, nargs="*", default=())
     args = parser.parse_args()
-    result = summarize(args.data, args.reference, args.additional_old_targets, args.extra_reference)
+    result = summarize(args.data, args.reference, args.additional_old_targets, args.extra_reference,
+                       args.policies, args.original_label_split)
     with args.output.open("x", encoding="utf-8") as outfile:
         json.dump(result, outfile, indent=2, allow_nan=False)
         outfile.write("\n")

@@ -80,3 +80,27 @@ The last command fits a scalar offset to match the comparator's
 old-group accuracy on the validation images and evaluates it on
 separate images. Its output includes per-task feasibility, paired
 test accuracies and individual-prediction agreement.
+
+Adding --original-label-split to the order or exchange summary command
+uses an alternative validation split based on the original class label,
+so each image stays on the same side of the split across class orders.
+Append --additional-old-targets 10 25 30 for the full order sensitivity.
+The two reference outputs are original_identity_order.json and
+original_identity_exchange.json. The training commands for the order
+and exchange comparisons accept --seeds 7201 to run a single stream.
+
+## Continue both schedules into the next task
+
+At tasks 5, 10 and 15 in the same five histories, the descending and
+exchanged schedules receive the same batches and increasing weights
+on the next task. Predictions at 0, 25, 100 and 250 further updates
+use the preceding task's set of seen classes. Zero denotes the
+end of the original comparison.
+
+    python -B -s -u evidence/er_ace_timing_c100/train_continuation_c100.py --data-root DATA_ROOT --output NEW_CONTINUATION_RUN
+    python -B -s evidence/er_ace_timing_c100/summarize_order_c100.py --data evidence/er_ace_timing_c100/continuation_run --reference decreasing --additional-old-targets 10 30 --output continuation_summary.json
+
+Training can be run one history at a time with the --seeds option.
+The statistic command uses all five histories in the supplied data.
+The outputs contain original-score and matched-accuracy measures,
+paired differences at the four updates, and per-task coverage.

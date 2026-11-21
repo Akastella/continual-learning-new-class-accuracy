@@ -34,20 +34,22 @@ def metrics(data, q):
                 fixed_old=matched)
 
 
-def records_in(data_dir, reference_policy, extra_reference=None):
+def records_in(data_dir, reference_policy, extra_reference=None, policies=None):
     training = json.loads((data_dir/"training.json").read_text(encoding="utf-8"))
     for row in training:
-        yield data_dir, row
+        if policies is None or row["policy"] in policies:
+            yield data_dir, row
     if extra_reference is not None:
+        existing = {row["policy"] for row in training}
         training = json.loads((extra_reference/"training.json").read_text(encoding="utf-8"))
         for row in training:
-            if row["policy"] == reference_policy:
+            if row["policy"] in (policies or (reference_policy,)) and row["policy"] not in existing:
                 yield extra_reference, row
 
 
-def compare(data_dir, target, reference_policy="retrieval", extra_reference=None):
+def compare(data_dir, target, reference_policy="retrieval", extra_reference=None, policies=None):
     indexed = {}
-    for source, row in records_in(data_dir, reference_policy, extra_reference):
+    for source, row in records_in(data_dir, reference_policy, extra_reference, policies):
         key = row["seed"], row["task"], row["policy"]
         directory = source / f"s{key[0]}_t{key[1]}_{key[2]}"
         indexed[key] = {}

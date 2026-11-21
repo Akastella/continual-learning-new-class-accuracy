@@ -57,6 +57,22 @@ def main():
                           'sample_sd': float(v.std(ddof=1)) if len(v) > 1 else None}
             summaries.append(s)
     (a.output / 'summary.json').write_text(json.dumps(summaries, indent=2), encoding='utf-8')
+    paired = []
+    for dataset in ('cifar101', 'cifar102'):
+        available = {(row['policy'], row['seed']): row for row in rows
+                     if row['dataset'] == dataset and row['available']}
+        for policy in ('raw30', 'offset_usual'):
+            seeds = [seed for seed in range(201, 211)
+                     if (policy, seed) in available and ('offset30', seed) in available]
+            pairs = [(available[policy, seed], available['offset30', seed]) for seed in seeds]
+            differences = {name: [offset[metric]-baseline[metric] for baseline, offset in pairs]
+                           for name, metric in (('new', 'current'), ('old', 'old'))}
+            paired.append(dict(dataset=dataset, compared_to=policy, seeds=seeds,
+                               means={key: float(np.mean(values)) for key, values in differences.items()},
+                               differences=differences,
+                               violations=[sum(baseline['violation'] for baseline, _ in pairs),
+                                           sum(offset['violation'] for _, offset in pairs)]))
+    (a.output / 'paired_summary.json').write_text(json.dumps(paired, indent=2), encoding='utf-8')
     print(json.dumps(summaries))
 
 

@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 from statistics import mean, stdev
+import sys
 
 import numpy as np
 
@@ -116,15 +117,47 @@ def match_old_accuracy(source, targets):
     return result
 
 
+def validate_offset(source, target):
+    timing = Path(__file__).resolve().parents[1]/"reservoir_supervision_timing"
+    sys.path.insert(0, str(timing))
+    from calibrate_timing import apply
+
+    paired = []
+    for seed in SEEDS:
+        for task in range(2, 6):
+            fits = {}
+            for policy in POLICIES:
+                scores = source/"reader_data"/f"s{seed}_{policy}_t{task}.npz"
+                fits[policy] = apply(scores, target)
+            if all(value is not None for value in fits.values()):
+                paired.append(dict(seed=seed, task=task, **fits))
+    effects = {}
+    available_seeds = sorted({row["seed"] for row in paired})
+    for mode in POLICIES:
+        effects[mode] = {
+            measure: stats([
+                mean(row[mode][measure]-row["replay"][measure] for row in paired if row["seed"] == seed)
+                for seed in available_seeds
+            ])
+            for measure in ("new", "old")
+        }
+    return dict(target=target, common=len(paired), total=4*len(SEEDS), effects=effects,
+                misses={mode: sum(row[mode]["missed"] for row in paired) for mode in POLICIES},
+                pairs=paired)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--old-targets", type=int, nargs="*", default=())
+    parser.add_argument("--validation-old-target", type=int)
     args = parser.parse_args()
     result = compute(args.data)
     if args.old_targets:
         result["matched_old"] = match_old_accuracy(args.data, args.old_targets)
+    if args.validation_old_target is not None:
+        result["validation_old"] = validate_offset(args.data, args.validation_old_target)
     with args.output.open("x", encoding="utf-8") as stream:
         json.dump(result, stream, indent=2, allow_nan=False)
         stream.write("\n")

@@ -18,11 +18,12 @@ def validation_split(labels):
     return split
 
 
-def apply(path,target):
+def apply(path,target,original_order=None):
     data = load(path)
     labels = data["labels"]
     new = np.isin(labels,data["new_classes"])
-    split = validation_split(labels)
+    identities = labels if original_order is None else np.asarray(original_order)[labels]
+    split = validation_split(identities)
     old_ok = ~new & (data["old_prediction"] == labels)
     new_ok = new & (data["new_prediction"] == labels)
     gap = data["old_score"].astype(float)-data["new_score"].astype(float)

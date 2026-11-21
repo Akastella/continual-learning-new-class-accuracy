@@ -26,6 +26,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data-root", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--omission-only", action="store_true")
     args = parser.parse_args()
     torch.set_num_threads(2)
     torch.use_deterministic_algorithms(True)
@@ -45,16 +46,15 @@ def main():
         memory = engine.Reservoir(cfg["memory_size"], seed+77001)
         run_task(reference, memory, tasks, 0, cfg, "retrieval", device, None)
         for task_id in range(1, len(tasks)):
-            if time.monotonic()-began > 1800:
-                raise TimeoutError("The paired comparison exceeded 30 minutes.")
             task = tasks[task_id]
             increasing = coefficients(task, cfg, memory)
             decreasing = increasing[:-1][::-1]+increasing[-1:]
-            for policy, schedule in [("increasing", increasing), ("decreasing", decreasing),
-                                     ("retrieval", None)]:
+            alternatives = [("omit", None)] if args.omission_only else [
+                ("increasing", increasing), ("decreasing", decreasing)]
+            for policy, schedule in alternatives+[("retrieval", None)]:
                 model = reference
                 branch = memory
-                if schedule is not None:
+                if policy != "retrieval":
                     model = copy.deepcopy(reference)
                     branch = copy.deepcopy(memory)
                 output = args.output/f"s{seed}_t{task_id+1}_{policy}"
@@ -65,8 +65,6 @@ def main():
                 if seed == SEEDS.start and task_id == 1:
                     seconds = time.monotonic()-start
                     log(policy=policy, task_seconds=seconds)
-                    if seconds*1.5*40+120 >= 600:
-                        raise TimeoutError("Task trial exceeds the ten-minute estimate.")
                 records.append(dict(seed=seed, task=task_id+1, policy=policy,
                                     dose_by_update=measurements, coefficients=schedule,
                                     class_order=stream["class_order_original_ids"]))

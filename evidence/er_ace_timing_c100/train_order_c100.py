@@ -36,6 +36,7 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--exchange-windows", action="store_true")
+    parser.add_argument("--seeds", type=int, nargs="+", choices=SEEDS, default=SEEDS)
     args = parser.parse_args()
     torch.set_num_threads(2)
     torch.use_deterministic_algorithms(True)
@@ -48,7 +49,7 @@ def main():
     record_file = args.output/"training.json"
     records = json.loads(record_file.read_text(encoding="utf-8")) if args.resume else []
     completed = {row["seed"] for row in records}
-    expected = [(seed, task, policy) for seed in SEEDS if seed in completed
+    expected = [(seed, task, policy) for seed in args.seeds if seed in completed
                 for task in range(2, 21) for policy in schedules(task-1, 250, args.exchange_windows)]
     actual = [(row["seed"], row["task"], row["policy"]) for row in records]
     if actual != expected:
@@ -59,8 +60,7 @@ def main():
             raise FileNotFoundError(folder)
     started = time.monotonic()
     trial = []
-    limit = 3000 if args.exchange_windows else 3480
-    for seed in SEEDS:
+    for seed in args.seeds:
         if seed in completed:
             continue
         order = np.random.default_rng(seed+40000).permutation(100)
@@ -69,8 +69,6 @@ def main():
         stream = plan(training[2], seed, 10000)
         reference = model_for(seed, device)
         for task, exposure in enumerate(stream):
-            if time.monotonic()-started > limit:
-                raise TimeoutError("The comparison exceeded the planned runtime.")
             if not task:
                 optimizer = torch.optim.SGD(reference.parameters(), lr=.1)
                 run_task(reference, optimizer, training, evaluation, task, exposure, "retrieval", args.output)
@@ -83,18 +81,15 @@ def main():
                 began = time.monotonic()
                 doses = run_task(model, optimizer, training, evaluation, task, exposure,
                                  policy, folder, time_weights=weights)
-                if seed == SEEDS.start and task == 1:
+                if seed == args.seeds[0] and task == 1:
                     seconds = time.monotonic()-began
                     trial.append(seconds)
                     log(policy=policy, seconds=seconds)
                 records.append(dict(seed=seed, task=task+1, policy=policy,
                                     dose_by_update=doses, coefficients=weights,
                                     class_order=order.tolist()))
-            if seed == SEEDS.start and task == 1:
-                estimate = 1.5*sum(trial)*95+60
-                log(estimated_seconds=estimate)
-                if estimate >= limit:
-                    raise TimeoutError("Measured task runtimes put the study over budget.")
+            if seed == args.seeds[0] and task == 1:
+                log(estimated_seconds=1.5*sum(trial)*19*len(args.seeds)+60)
         pending_record = record_file.with_suffix(".tmp")
         with pending_record.open("w", encoding="utf-8") as output:
             json.dump(records, output, indent=2)
