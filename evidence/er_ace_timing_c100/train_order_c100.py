@@ -17,10 +17,14 @@ def reordered_labels(inputs, order):
     return images, torch.as_tensor(mapped, device=images.device), mapped
 
 
-def schedules(task, updates):
+def schedules(task, updates, exchange_windows=False):
     increasing = [j/(task*updates+j) for j in range(updates)]
+    decreasing = increasing[::-1]
+    if exchange_windows:
+        exchanged = decreasing[-SUFFIX:]+decreasing[SUFFIX:-SUFFIX]+decreasing[:SUFFIX]
+        return {"exchanged": exchanged, "increasing": increasing}
     return {
-        "decreasing": increasing[::-1],
+        "decreasing": decreasing,
         "reverse_prefix": increasing[:-SUFFIX][::-1]+increasing[-SUFFIX:],
         "increasing": increasing,
     }
@@ -31,6 +35,7 @@ def main():
     parser.add_argument("--data-root", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--exchange-windows", action="store_true")
     args = parser.parse_args()
     torch.set_num_threads(2)
     torch.use_deterministic_algorithms(True)
@@ -44,7 +49,7 @@ def main():
     records = json.loads(record_file.read_text(encoding="utf-8")) if args.resume else []
     completed = {row["seed"] for row in records}
     expected = [(seed, task, policy) for seed in SEEDS if seed in completed
-                for task in range(2, 21) for policy in schedules(task-1, 250)]
+                for task in range(2, 21) for policy in schedules(task-1, 250, args.exchange_windows)]
     actual = [(row["seed"], row["task"], row["policy"]) for row in records]
     if actual != expected:
         raise ValueError("The existing training record does not contain complete seed runs.")
@@ -54,6 +59,7 @@ def main():
             raise FileNotFoundError(folder)
     started = time.monotonic()
     trial = []
+    limit = 3000 if args.exchange_windows else 3480
     for seed in SEEDS:
         if seed in completed:
             continue
@@ -63,13 +69,13 @@ def main():
         stream = plan(training[2], seed, 10000)
         reference = model_for(seed, device)
         for task, exposure in enumerate(stream):
-            if time.monotonic()-started > 3480:
-                raise TimeoutError("The combined comparison exceeded 58 minutes.")
+            if time.monotonic()-started > limit:
+                raise TimeoutError("The comparison exceeded the planned runtime.")
             if not task:
                 optimizer = torch.optim.SGD(reference.parameters(), lr=.1)
                 run_task(reference, optimizer, training, evaluation, task, exposure, "retrieval", args.output)
                 continue
-            for policy, weights in schedules(task, len(exposure[0])).items():
+            for policy, weights in schedules(task, len(exposure[0]), args.exchange_windows).items():
                 model = reference if policy == "increasing" else copy.deepcopy(reference)
                 optimizer = torch.optim.SGD(model.parameters(), lr=.1)
                 folder = args.output/f"s{seed}_t{task+1}_{policy}"
@@ -87,7 +93,7 @@ def main():
             if seed == SEEDS.start and task == 1:
                 estimate = 1.5*sum(trial)*95+60
                 log(estimated_seconds=estimate)
-                if estimate >= 3480:
+                if estimate >= limit:
                     raise TimeoutError("Measured task runtimes put the study over budget.")
         pending_record = record_file.with_suffix(".tmp")
         with pending_record.open("w", encoding="utf-8") as output:

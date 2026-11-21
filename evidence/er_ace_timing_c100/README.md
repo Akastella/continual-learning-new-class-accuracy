@@ -62,3 +62,21 @@ task-end score files and their full coefficient schedules.
 For the earlier weight-order experiment, add the option
 --additional-old-targets 10 25 30 to the summary command to
 produce the multi-target output stored in order_targets.json.
+
+
+## Exchange equal-weight windows and compare fitted scores
+
+The window-exchange run swaps the first and last 63 coefficients
+of the fully reversed schedule and reuses its middle 124. The
+increasing model supplies the common task starts. The stored
+fully reversed comparator comes from order_measurements, and
+the re-created increasing runs have identical stored outputs.
+
+    python -B -s -u evidence/er_ace_timing_c100/train_order_c100.py --data-root DATA_ROOT --exchange-windows --output NEW_EXCHANGE_RUN
+    python -B -s evidence/er_ace_timing_c100/summarize_order_c100.py --data evidence/er_ace_timing_c100/exchange_run --reference decreasing --extra-reference evidence/er_ace_timing_c100/order_measurements --additional-old-targets 10 30 --output exchange_summary.json
+    python -B -s evidence/er_ace_timing_c100/compare_tail_offsets.py --data evidence/er_ace_timing_c100/tail_measurements --output tail_offset_summary.json
+
+The last command fits a scalar offset to match the comparator's
+old-group accuracy on the validation images and evaluates it on
+separate images. Its output includes per-task feasibility, paired
+test accuracies and individual-prediction agreement.

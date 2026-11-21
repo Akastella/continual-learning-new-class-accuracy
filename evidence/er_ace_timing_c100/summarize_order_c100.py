@@ -10,7 +10,7 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/"reservoir_supervision_timing"))
 from calibrate_timing import apply
 from frontiers import frontier
-from recompute import compare, load, stats
+from recompute import compare, load, records_in, stats
 
 
 def group_scores(data):
@@ -60,16 +60,15 @@ def compare_points(source, result, reference, fitted=False):
                 steps=measured)
 
 
-def summarize(root, reference="increasing", targets=()):
-    result = compare(root, 20, reference)
-    records = json.loads((root/"training.json").read_text(encoding="utf-8"))
+def summarize(root, reference="increasing", targets=(), extra_reference=None):
+    result = compare(root, 20, reference, extra_reference)
     targets = sorted({20, *targets})
     points = {q: {} for q in targets}
     fitted = {}
     endpoint = {}
-    for row in records:
+    for source, row in records_in(root, reference, extra_reference):
         seed, task, policy = (row[key] for key in ("seed", "task", "policy"))
-        folder = root/f"s{seed}_t{task}_{policy}"
+        folder = source/f"s{seed}_t{task}_{policy}"
         for step in result["summaries"]:
             path = folder/f"{step}.npz"
             data = load(path)
@@ -102,9 +101,10 @@ def main():
     parser.add_argument("--data", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--reference", default="increasing")
+    parser.add_argument("--extra-reference", type=Path)
     parser.add_argument("--additional-old-targets", type=int, nargs="*", default=())
     args = parser.parse_args()
-    result = summarize(args.data, args.reference, args.additional_old_targets)
+    result = summarize(args.data, args.reference, args.additional_old_targets, args.extra_reference)
     with args.output.open("x", encoding="utf-8") as outfile:
         json.dump(result, outfile, indent=2, allow_nan=False)
         outfile.write("\n")

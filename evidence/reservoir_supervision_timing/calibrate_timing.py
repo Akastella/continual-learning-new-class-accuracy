@@ -9,15 +9,20 @@ import numpy as np
 from recompute import load, stats
 
 
+def validation_split(labels):
+    split = np.zeros(len(labels), dtype=bool)
+    for label in np.unique(labels):
+        rows = np.flatnonzero(labels == label)
+        generator = np.random.default_rng(2026111807+int(label))
+        split[generator.permutation(rows)[:len(rows)//5]] = True
+    return split
+
+
 def apply(path,target):
     data = load(path)
     labels = data["labels"]
     new = np.isin(labels,data["new_classes"])
-    split = np.zeros(len(labels),dtype=bool)
-    for label in np.unique(labels):
-        rows = np.flatnonzero(labels == label)
-        generator = np.random.default_rng(2026111807 + int(label))
-        split[generator.permutation(rows)[:len(rows)//5]] = True
+    split = validation_split(labels)
     old_ok = ~new & (data["old_prediction"] == labels)
     new_ok = new & (data["new_prediction"] == labels)
     gap = data["old_score"].astype(float)-data["new_score"].astype(float)

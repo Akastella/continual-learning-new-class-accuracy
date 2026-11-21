@@ -34,12 +34,22 @@ def metrics(data, q):
                 fixed_old=matched)
 
 
-def compare(data_dir, target, reference_policy="retrieval"):
-    training = json.loads((data_dir/"training.json").read_text())
-    indexed = {}
+def records_in(data_dir, reference_policy, extra_reference=None):
+    training = json.loads((data_dir/"training.json").read_text(encoding="utf-8"))
     for row in training:
+        yield data_dir, row
+    if extra_reference is not None:
+        training = json.loads((extra_reference/"training.json").read_text(encoding="utf-8"))
+        for row in training:
+            if row["policy"] == reference_policy:
+                yield extra_reference, row
+
+
+def compare(data_dir, target, reference_policy="retrieval", extra_reference=None):
+    indexed = {}
+    for source, row in records_in(data_dir, reference_policy, extra_reference):
         key = row["seed"], row["task"], row["policy"]
-        directory = data_dir / f"s{key[0]}_t{key[1]}_{key[2]}"
+        directory = source / f"s{key[0]}_t{key[1]}_{key[2]}"
         indexed[key] = {}
         for step, dose in row["dose_by_update"].items():
             step = int(step)
