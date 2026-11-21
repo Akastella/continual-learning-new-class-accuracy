@@ -119,3 +119,15 @@ branches are supplied in the original order directory.
 The statistics place the three branches at the same measured old
 accuracy, fit offsets on disjoint image identities, and compare the
 score margins on images with the same correct within-group label.
+
+## Compare with the reference's own old accuracy
+
+Use the increasing model's original old accuracy as the target at each
+task. The test-curve comparison uses test labels to locate the point.
+The second comparison fits on validation images and reports the test
+accuracy and any misses relative to the increasing model.
+
+    python -B -s evidence/er_ace_timing_c100/compare_reference_offsets.py --reference evidence/er_ace_timing_c100/order_measurements --omission evidence/er_ace_timing_c100/omission_run --output reference_retention_c100.json
+
+For CIFAR-10, use the order_measurements and order_omission_run
+directories in evidence/reservoir_supervision_timing instead.
