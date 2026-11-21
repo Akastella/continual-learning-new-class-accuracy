@@ -51,7 +51,8 @@ def group_diagnostics(root, result, reference, extra_reference, policies):
         common_correct = np.logical_and.reduce(list(correct.values()))
         coverage.append(dict(seed=seed, task=task,
                              old=int((old & common_correct).sum()), new=int((new & common_correct).sum())))
-        for policy, scores in data.items():
+        for policy in sorted(data):
+            scores = data[policy]
             margin = scores["new_score"].astype(float)-scores["old_score"].astype(float)
             needed = (target*int(old.sum())+99)//100
             cutoff = np.sort(margin[old & correct[policy]])[needed-1]
