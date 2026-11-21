@@ -176,13 +176,13 @@ def build():
     print("ER minus SGD", means.round(6).tolist())
 
 
-def export(drawio, publication):
+def export(drawio, publication, stem=STEM):
     from playwright.sync_api import sync_playwright
     with tempfile.TemporaryDirectory(prefix="paa_comic_") as temporary:
         folder = Path(temporary)
         exported = folder / "drawing.svg"
         subprocess.run([drawio, "--export", "--format", "svg", "--border", "8", "--output", str(exported),
-                        str(STEM.with_suffix(".drawio"))], check=True)
+                        str(stem.with_suffix(".drawio"))], check=True)
         deadline = time.monotonic()+30
         while not exported.exists() and time.monotonic() < deadline:
             time.sleep(.2)
@@ -191,7 +191,7 @@ def export(drawio, publication):
         height = 4.72*view[3]/view[2]
         svg = re.sub(r'width="[^"]+"', 'width="4.72in"', svg, count=1)
         svg = re.sub(r'height="[^"]+"', f'height="{height:.6f}in"', svg, count=1)
-        STEM.with_suffix(".svg").write_text(svg, encoding="utf-8")
+        stem.with_suffix(".svg").write_text(svg, encoding="utf-8")
         html = (f'<!doctype html><meta charset="utf-8"><style>'
                 f'@page{{size:4.72in {height:.6f}in;margin:0}}'
                 'html,body{margin:0;padding:0;line-height:0;overflow:hidden}'
@@ -202,16 +202,16 @@ def export(drawio, publication):
             browser = playwright.chromium.launch(headless=True)
             page = browser.new_page(viewport={"width": 1888, "height": round(1888*view[3]/view[2])})
             page.goto((folder / "preview.html").as_uri())
-            page.screenshot(path=str(STEM.with_suffix(".png")), full_page=True)
+            page.screenshot(path=str(stem.with_suffix(".png")), full_page=True)
             if publication:
-                page.pdf(path=str(STEM.with_suffix(".pdf")), prefer_css_page_size=True,
+                page.pdf(path=str(stem.with_suffix(".pdf")), prefer_css_page_size=True,
                          print_background=True)
             browser.close()
-        with Image.open(STEM.with_suffix(".png")) as preview:
-            preview.convert("L").save(STEM.with_name("overview_gray.png"))
+        with Image.open(stem.with_suffix(".png")) as preview:
+            preview.convert("L").save(stem.with_name(stem.name+"_gray.png"))
         if publication:
-            subprocess.run(["pdftops", "-eps", str(STEM.with_suffix(".pdf")),
-                            str(STEM.with_suffix(".eps"))], check=True)
+            subprocess.run(["pdftops", "-eps", str(stem.with_suffix(".pdf")),
+                            str(stem.with_suffix(".eps"))], check=True)
     print("Comic Sans overview rendered.")
 
 

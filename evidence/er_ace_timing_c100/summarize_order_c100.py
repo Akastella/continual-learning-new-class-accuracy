@@ -13,15 +13,66 @@ from frontiers import frontier
 from recompute import compare, load, records_in, stats
 
 
+def ranking_auc(sorted_old, new):
+    left = np.searchsorted(sorted_old, new, side="left")
+    right = np.searchsorted(sorted_old, new, side="right")
+    return 100*float((left+right).mean())/(2*len(sorted_old))
+
+
 def group_scores(data):
     new = np.isin(data["labels"], data["new_classes"])
-    margins = data["new_score"].astype(float)-data["old_score"].astype(float)
-    old_margins = np.sort(margins[~new])
-    new_margins = margins[new]
-    left = np.searchsorted(old_margins, new_margins, side="left")
-    right = np.searchsorted(old_margins, new_margins, side="right")
-    return dict(old_margin=float(old_margins.mean()), new_margin=float(new_margins.mean()),
-                auc=100*float((left+right).mean())/(2*len(old_margins)))
+    margin = data["new_score"].astype(float)-data["old_score"].astype(float)
+    old_margin = np.sort(margin[~new])
+    return dict(old_margin=float(old_margin.mean()), new_margin=float(margin[new].mean()),
+                auc=ranking_auc(old_margin, margin[new]))
+
+
+def group_diagnostics(root, result, reference, extra_reference, policies):
+    step = max(result["summaries"])
+    target = result["matched_old_target"]
+    paired = result[f"measured_old{target}"]["steps"][step]
+    common = {(r["seed"], r["task"]) for r in paired[reference]["pairs"]}
+    by_case = {key: {} for key in common}
+    for source, row in records_in(root, reference, extra_reference, policies):
+        seed, task, policy = (row[k] for k in ("seed", "task", "policy"))
+        if (seed, task) in by_case:
+            by_case[seed, task][policy] = load(source/f"s{seed}_t{task}_{policy}"/f"{step}.npz")
+    rows, coverage = [], []
+    for (seed, task), data in sorted(by_case.items()):
+        baseline = data[reference]
+        y = baseline["labels"]
+        new = np.isin(y, baseline["new_classes"])
+        old = ~new
+        correct = {}
+        for policy, scores in data.items():
+            assert np.array_equal(scores["labels"], y)
+            assert np.array_equal(scores["new_classes"], baseline["new_classes"])
+            correct[policy] = np.where(new, scores["new_prediction"], scores["old_prediction"]) == y
+        common_correct = np.logical_and.reduce(list(correct.values()))
+        coverage.append(dict(seed=seed, task=task,
+                             old=int((old & common_correct).sum()), new=int((new & common_correct).sum())))
+        for policy, scores in data.items():
+            margin = scores["new_score"].astype(float)-scores["old_score"].astype(float)
+            needed = (target*int(old.sum())+99)//100
+            cutoff = np.sort(margin[old & correct[policy]])[needed-1]
+            eligible_new = new & correct[policy]
+            rows.append(dict(
+                seed=seed, task=task, policy=policy,
+                old_ceiling=100*float(correct[policy][old].mean()),
+                new_ceiling=100*float(correct[policy][new].mean()),
+                new_group_win=100*float((margin[eligible_new]>cutoff).mean()),
+                common_correct_auc=ranking_auc(np.sort(margin[old & common_correct]), margin[new & common_correct])))
+    means = {}
+    for policy in paired:
+        means[policy] = {}
+        for metric in ("old_ceiling", "new_ceiling", "new_group_win", "common_correct_auc"):
+            by_seed = {seed: mean(r[metric] for r in rows if r["seed"] == seed and r["policy"] == policy)
+                       for seed in sorted({r["seed"] for r in rows})}
+            means[policy][metric] = dict(absolute=stats(list(by_seed.values())),
+                                         paired=stats([value-mean(
+                                             r[metric] for r in rows if r["seed"] == seed and r["policy"] == reference)
+                                             for seed, value in by_seed.items()]))
+    return dict(total=len(common), estimates=means, common_correct_counts=coverage, cases=rows)
 
 
 def compare_points(source, result, reference, fitted=False):
@@ -61,7 +112,7 @@ def compare_points(source, result, reference, fitted=False):
 
 
 def summarize(root, reference="increasing", targets=(), extra_reference=None,
-              policies=None, original_label_split=False):
+              policies=None, original_label_split=False, describe_groups=False):
     result = compare(root, 20, reference, extra_reference, policies)
     targets = sorted({20, *targets})
     points = {q: {} for q in targets}
@@ -95,6 +146,8 @@ def summarize(root, reference="increasing", targets=(), extra_reference=None,
         }
         for policy in result["summaries"][max(result["summaries"])]
     }
+    if describe_groups:
+        result["correct_group_comparison"] = group_diagnostics(root, result, reference, extra_reference, policies)
     return result
 
 
@@ -106,10 +159,11 @@ def main():
     parser.add_argument("--extra-reference", type=Path)
     parser.add_argument("--policies", nargs="+")
     parser.add_argument("--original-label-split", action="store_true")
+    parser.add_argument("--describe-groups", action="store_true")
     parser.add_argument("--additional-old-targets", type=int, nargs="*", default=())
     args = parser.parse_args()
     result = summarize(args.data, args.reference, args.additional_old_targets, args.extra_reference,
-                       args.policies, args.original_label_split)
+                       args.policies, args.original_label_split, args.describe_groups)
     with args.output.open("x", encoding="utf-8") as outfile:
         json.dump(result, outfile, indent=2, allow_nan=False)
         outfile.write("\n")

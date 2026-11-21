@@ -61,3 +61,8 @@ predictions are supplied once, in the original order directory.
 The second command uses NumPy alone. It joins the zero-weight branch
 with the previously measured increasing and decreasing schedules. The
 output gives common coverage and per-task and per-history results.
+
+Add --describe-groups to compute the accuracy ceilings within each
+group and the score-margin ranking on images for which all three
+models identify the right class within its group. The summary and
+its per-task records are provided in order_omission_groups.json.

@@ -1,12 +1,16 @@
 """Generate the editable training and result overview from paired CIFAR-100 means."""
 
+import argparse
 import json
 from pathlib import Path
+import shutil
 import xml.etree.ElementTree as ET
 
 
 ROOT = Path(__file__).resolve().parents[1]
 SUMMARY = ROOT / "new_experiments/shift_current_loss/summary.json"
+if not SUMMARY.is_file():
+    SUMMARY = ROOT.parent / "evidence/shift_current_loss/summary.json"
 OUTPUT = ROOT / "figures/replay_supervision_overview.drawio"
 INK, MUTED, RULE = "#22252B", "#4F5965", "#CED5DD"
 BLUE, BLUE_PALE = "#305EA1", "#EEF4FC"
@@ -50,14 +54,14 @@ def build():
     cell("b", 30, 218, 1170, 48, "(b) Change which classes the loss uses", size=36, bold=True)
     cell("location-note", 30, 273, 290, 75, "All-class loss<br>on new images",
          text_color=MUTED, bold=True)
-    cell("loss-note", 328, 270, 550, 41, "Classes in the loss",
+    cell("loss-note", 328, 270, 496, 41, "Classes in the loss",
          align="center", text_color=MUTED)
-    cell("result-note", 896, 270, 303, 41, "New accuracy (%)",
-         align="center", bold=True, text_color=MUTED)
+    cell("result-note", 846, 270, 349, 41, "New / old accuracy (%)",
+         size=25, align="center", bold=True, text_color=MUTED)
     for i, name in enumerate(("1–32", "33–64", "Old", "Repeats")):
-        cell(f"header-{i}", 328+i*137, 310, 128, 38, name, align="center", text_color=MUTED)
+        cell(f"header-{i}", 328+i*126, 310, 118, 38, name, align="center", text_color=MUTED)
     for i, task in enumerate(("8", "10")):
-        cell(f"heading-{task}", 906+i*151, 310, 142, 38, f"Task {task}", align="center", text_color=MUTED)
+        cell(f"heading-{task}", 846+i*180, 310, 169, 38, f"Task {task}", align="center", text_color=MUTED)
     for index, (method, label, losses) in enumerate([
         ("mixed_restricted", "Repeated images", (False, False, True, True)),
         ("revisit_current10", "None", (False, False, True, False)),
@@ -66,16 +70,26 @@ def build():
         y = 355 + index * 60
         cell(f"condition-{index}", 30, y, 290, 58, label, size=29, bold=True)
         for i, all_seen in enumerate(losses):
-            cell(f"loss-{index}-{i}", 328+i*137, y+4, 128, 50,
+            cell(f"loss-{index}-{i}", 328+i*126, y+4, 118, 50,
                  "All seen" if all_seen else "10 new", align="center",
                  fill=TEAL_PALE if all_seen else BLUE_PALE,
                  stroke=TEAL if all_seen else BLUE, text_color=INK, extra=panel)
         for i, task in enumerate(("8", "10")):
-            cell(f"result-{index}-{task}", 906+i*151, y, 142, 58,
-                 f"{data[task][method]['new']['mean']:.2f}", size=37, align="center", bold=True)
+            scores = data[task][method]
+            new, old = scores["new"]["mean"], scores["old"]["mean"]
+            cell(f"result-{index}-{task}", 846+i*180, y, 169, 58,
+                 f"<b>{new:.2f}</b>&nbsp;/&nbsp;{old:.2f}", size=25, align="center")
     ET.indent(figure)
     ET.ElementTree(figure).write(OUTPUT, encoding="utf-8", xml_declaration=True)
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--export", action="store_true")
+    parser.add_argument("--drawio", default=shutil.which("drawio") or "C:/Program Files/draw.io/draw.io.exe")
+    args = parser.parse_args()
     build()
+    if args.export:
+        from make_overview import export
+
+        export(args.drawio, True, OUTPUT.with_suffix(""))

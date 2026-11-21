@@ -17,9 +17,11 @@ def reordered_labels(inputs, order):
     return images, torch.as_tensor(mapped, device=images.device), mapped
 
 
-def schedules(task, updates, exchange_windows=False):
+def schedules(task, updates, exchange_windows=False, omit_group_loss=False):
     increasing = [j/(task*updates+j) for j in range(updates)]
     decreasing = increasing[::-1]
+    if omit_group_loss:
+        return {"omit": [0.]*updates, "increasing": increasing}
     if exchange_windows:
         exchanged = decreasing[-SUFFIX:]+decreasing[SUFFIX:-SUFFIX]+decreasing[:SUFFIX]
         return {"exchanged": exchanged, "increasing": increasing}
@@ -35,7 +37,9 @@ def main():
     parser.add_argument("--data-root", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--resume", action="store_true")
-    parser.add_argument("--exchange-windows", action="store_true")
+    comparison = parser.add_mutually_exclusive_group()
+    comparison.add_argument("--exchange-windows", action="store_true")
+    comparison.add_argument("--omit-group-loss", action="store_true")
     parser.add_argument("--seeds", type=int, nargs="+", choices=SEEDS, default=SEEDS)
     args = parser.parse_args()
     torch.set_num_threads(2)
@@ -50,7 +54,7 @@ def main():
     records = json.loads(record_file.read_text(encoding="utf-8")) if args.resume else []
     completed = {row["seed"] for row in records}
     expected = [(seed, task, policy) for seed in args.seeds if seed in completed
-                for task in range(2, 21) for policy in schedules(task-1, 250, args.exchange_windows)]
+                for task in range(2, 21) for policy in schedules(task-1, 250, args.exchange_windows, args.omit_group_loss)]
     actual = [(row["seed"], row["task"], row["policy"]) for row in records]
     if actual != expected:
         raise ValueError("The existing training record does not contain complete seed runs.")
@@ -73,7 +77,8 @@ def main():
                 optimizer = torch.optim.SGD(reference.parameters(), lr=.1)
                 run_task(reference, optimizer, training, evaluation, task, exposure, "retrieval", args.output)
                 continue
-            for policy, weights in schedules(task, len(exposure[0]), args.exchange_windows).items():
+            profiles = schedules(task, len(exposure[0]), args.exchange_windows, args.omit_group_loss)
+            for policy, weights in profiles.items():
                 model = reference if policy == "increasing" else copy.deepcopy(reference)
                 optimizer = torch.optim.SGD(model.parameters(), lr=.1)
                 folder = args.output/f"s{seed}_t{task+1}_{policy}"

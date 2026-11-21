@@ -7,6 +7,8 @@ From this plotting directory, use Python 3.12:
 ```powershell
 python -m pip install -r requirements.txt
 python scripts/make_figures.py
+python scripts/make_replay_overview.py --export
+python scripts/make_order_c100_figure.py
 python scripts/make_overview.py --export --publication
 python scripts/make_supervision_figure.py
 python scripts/make_extra_tables.py
@@ -25,3 +27,9 @@ python scripts/make_c100_timing_table.py
 Run the overview command after `make_figures.py`. It reads the ten saved CIFAR-10 seed summaries and produces editable draw.io objects, SVG, PNG, PDF, EPS, and a numerical JSON. Complete export requires draw.io desktop, Comic Sans MS installed locally, Playwright Chromium (`python -m playwright install chromium`), and Poppler (`pdftops`). Supply `--drawio PATH` for a custom installation. Without `--export --publication`, the script rebuilds the draw.io source and numerical JSON.
 
 `make_supervision_figure.py` directly plots the five CIFAR-100 paired histories and validation-selected score results using Matplotlib. Its JSON/CSV inputs are supplied under `new_experiments/cross_group_supervision/`. This figure provides PDF/SVG/EPS, color PNG, and grayscale PNG. The manuscript source package supplies the article and all final vectors.
+
+The main replay-supervision diagram reads the paired new- and old-class
+means from the group-loss relocation experiment. Without --export, it
+writes the editable draw.io source. The weight-order figure reads the
+recorded coefficient schedules and the task-end and continuation
+results. It uses Matplotlib and saves editable SVG and vector PDF files.

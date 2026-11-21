@@ -1,6 +1,6 @@
 # Code and statistical materials
 
-This package accompanies the manuscript on interpreting new-class accuracy in class-incremental learning. It contains the original experiment code, configurations, and saved numerical evidence. The reported statistics can be recomputed on a CPU without downloading images or installing PyTorch. Training the networks again is a separate, substantially longer GPU task.
+This package accompanies the article *How Replay Supervision Changes New-Class Accuracy and Retention*. It contains the original experiment code, configurations, and saved numerical evidence. The reported statistics can be recomputed on a CPU without downloading images or installing PyTorch. Training the networks again is a separate, substantially longer GPU task.
 
 ## Results in the paper
 
@@ -83,8 +83,6 @@ The command runs eleven CPU analyses and writes a separate `command_N.log` for e
 Within `ijcnn/`, `accuracy_summary.csv` contains aggregate accuracies; `paired_comparisons.csv` and `paired_seed_values.csv` contain paired summaries and individual seed values; `endpoint_accuracies.csv` contains individual model scores; and `selection.csv` contains model-selection results. Each seed is averaged over the specified tasks before computing paired differences and sample standard deviations. The two history controls each contain 120 evaluated models and 480 rows of integer counts.
 
 The package includes integer counts and saved per-example predictions, labels, official sample indices, and task identifiers where used by these analyses. Compact prediction files retain both the original argmax and the prediction among current classes. Some external-test analyses also include saved logits. These commands recompute statistics from saved evidence; they do not rerun network inference or training. The research workspace retains selected model states for the main comparisons and the original numerical outputs. The training commands recreate other model states.
-
-The PAA preparation run completed all eleven commands on 7 November 2026 with Python 3.12.9 and NumPy 1.26.4. The recorded elapsed time was approximately 24 seconds; the full run logs remain in the authors' working directory.
 
 ## Recompute the cross-group supervision comparison
 

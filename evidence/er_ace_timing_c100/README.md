@@ -104,3 +104,18 @@ Training can be run one history at a time with the --seeds option.
 The statistic command uses all five histories in the supplied data.
 The outputs contain original-score and matched-accuracy measures,
 paired differences at the four updates, and per-task coverage.
+
+## Omit the group loss from the same CIFAR-100 task starts
+
+At each of the 95 random-order task starts, the added branch sets
+all arriving-batch group weights to zero. The original timing and
+replay settings apply throughout. The published numerical inputs
+provide the new omission predictions; the increasing and descending
+branches are supplied in the original order directory.
+
+    python -B -s -u evidence/er_ace_timing_c100/train_order_c100.py --data-root DATA_ROOT --omit-group-loss --output NEW_OMISSION_RUN
+    python -B -s evidence/er_ace_timing_c100/summarize_order_c100.py --data evidence/er_ace_timing_c100/omission_run --reference increasing --extra-reference evidence/er_ace_timing_c100/order_measurements --policies increasing decreasing omit --additional-old-targets 10 25 30 --original-label-split --describe-groups --output omission_summary.json
+
+The statistics place the three branches at the same measured old
+accuracy, fit offsets on disjoint image identities, and compare the
+score margins on images with the same correct within-group label.
