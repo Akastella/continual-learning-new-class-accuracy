@@ -91,6 +91,11 @@ def compare(evidence):
                 test = ~x["calibration"] & (x["mapped_labels"] < seen)
                 test_old_n = int((test & (x["mapped_labels"] < old)).sum())
                 test_new_n = int(test.sum()) - test_old_n
+                old_test = test & (x["mapped_labels"] < old)
+                new_test = test & ~old_test
+                original_ok = (ox & (mx >= offset)) | (nx & (mx < offset))
+                cleaned_ok = original_ok.copy()
+                cleaned_ok[rows] = (oy & (my >= offset)) | (ny & (my < offset))
                 points = {
                     q: at_old_target(mx, test & ox, test & nx, test_old_n, q)
                     for q in (5, 10, 20)
@@ -100,6 +105,9 @@ def compare(evidence):
                     old_n=old_n, old_cap_correct=cap, old_correct=actual,
                     matched_n=matched_n, original_matched_correct=first,
                     replacement_matched_correct=second, fixed_old_correct=fixed_old_correct,
+                    original_test_old_correct=int(original_ok[old_test].sum()),
+                    cleaned_test_old_correct=int(cleaned_ok[old_test].sum()),
+                    cleaned_test_new_correct=int(cleaned_ok[new_test].sum()),
                     fixed_new_correct=fixed_new_correct, fixed_old_n=test_old_n, fixed_new_n=test_new_n,
                     group_auc=group_auroc(x, test, old), test_selected_points=points,
                     replacement_fixed=replacement_fixed, replacement_new_n=len(my)-old_n))
@@ -118,6 +126,10 @@ def summarize(records):
                 replacement_matched_old=stats([100*r["replacement_matched_correct"]/r["matched_n"] for r in group]),
                 old_cap_below20=sum(5*r["old_cap_correct"] < r["old_n"] for r in group),
                 old_adjusted_below20=sum(5*r["old_correct"] < r["old_n"] for r in group),
+                original_test_old=stats([100*r["original_test_old_correct"]/r["fixed_old_n"] for r in group]),
+                cleaned_test_old=stats([100*r["cleaned_test_old_correct"]/r["fixed_old_n"] for r in group]),
+                cleaned_test_old_below20=sum(5*r["cleaned_test_old_correct"] < r["fixed_old_n"] for r in group),
+                cleaned_test_new=stats([100*r["cleaned_test_new_correct"]/r["fixed_new_n"] for r in group]),
                 fixed_old_actual=stats([100*r["fixed_old_correct"]/r["fixed_old_n"] for r in group]),
             )
         full, restricted = ([r for r in rows if r["condition"] == c] for c in ("full", "restricted"))

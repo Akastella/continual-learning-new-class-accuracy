@@ -36,8 +36,11 @@ Run from the repository root:
 ```text
 python -B -s evidence/reservoir_supervision_timing/recompute.py --data evidence/reservoir_supervision_timing/order_measurements --reference increasing --output order_summary.json
 python -B -s evidence/reservoir_supervision_timing/frontiers.py --data evidence/reservoir_supervision_timing/order_measurements --policies increasing decreasing --output order_frontiers.json
+python -B -s evidence/reservoir_supervision_timing/calibrate_timing.py --data evidence/reservoir_supervision_timing/order_measurements --old-target 20 --reference increasing --output order_calibrated.json
 python -B -s -u evidence/reservoir_supervision_timing/train_order.py --data-root DATA_ROOT --output NEW_OUTPUT
 ```
 
-The first two commands use the supplied predictions and require only
-NumPy. The third trains the classifiers again on CUDA.
+The first three commands use the supplied predictions and require
+only NumPy. They report original scores, the tradeoff at measured
+old accuracy, and accuracy after fitting an offset on separate
+validation images. The final command trains the classifiers on CUDA.

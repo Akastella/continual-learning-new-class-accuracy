@@ -33,7 +33,7 @@ def apply(path,target):
                 old=float(test_old), new=float(test_new), missed=bool(test_old<target))
 
 
-def compare(root,target):
+def compare(root,target,reference="retrieval"):
     records = json.loads((root/"training.json").read_text())
     results = {}
     for row in records:
@@ -48,7 +48,7 @@ def compare(root,target):
     for step in steps:
         options = {}
         for policy in policies:
-            baseline = {pair: results[(*pair,"retrieval",step)] for pair in keys}
+            baseline = {pair: results[(*pair,reference,step)] for pair in keys}
             alternative = {pair: results[(*pair,policy,step)] for pair in keys}
             common = []
             by_seed = {}
@@ -81,8 +81,9 @@ def main():
     parser.add_argument("--data",type=Path,required=True)
     parser.add_argument("--output",type=Path,required=True)
     parser.add_argument("--old-target",type=int,required=True)
+    parser.add_argument("--reference", default="retrieval")
     args = parser.parse_args()
-    report = compare(args.data,args.old_target)
+    report = compare(args.data,args.old_target,args.reference)
     with args.output.open("x",encoding="utf-8") as stream:
         json.dump(report,stream,indent=2,allow_nan=False)
         stream.write("\n")

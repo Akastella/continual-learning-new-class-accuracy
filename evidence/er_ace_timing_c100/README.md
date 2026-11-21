@@ -26,3 +26,39 @@ The summaries also give the raw and paired new-class accuracy for every
 later task, together with the paired changes and coverage at 20% measured
 old-class accuracy. The same seed-task pair must be available at updates
 25 and 250 for the matched comparison.
+
+## Reorder the loss weights on random class streams
+
+Five seeds (7201–7205) each use a different random ordering of the
+100 labels. At each later task, three branches share the same model,
+arrivals and replay images. The weight of the group loss on arriving
+images follows the expected count, the same weights in reverse order,
+or reverse order through update 187 followed by the original weights
+at updates 188–250. The increasing branch continues the history.
+
+The first command recomputes the original-score, measured-retention,
+and validation-fitted results from the supplied predictions. The
+second command reruns training using the original data.
+
+    python -B -s evidence/er_ace_timing_c100/summarize_order_c100.py --data evidence/er_ace_timing_c100/order_measurements --output c100_order.json
+    python -B -s -u evidence/er_ace_timing_c100/train_order_c100.py --data-root DATA_ROOT --output NEW_RUN
+
+The measurements include 570 prediction and score files and the
+class order, per-update coefficients and cumulative weight of each
+branch. See the paper's supplement for the sampling and fitting rules.
+
+## Changing only the last 63 weights
+
+From the model after update 187 under the fully reversed schedule,
+train each remaining minibatch with its original small weights
+or with the 63 larger weights from the increasing schedule, in
+either order. The increasing-weight history supplies task starts
+as in the previous comparison. The data contain 285 paired
+task-end score files and their full coefficient schedules.
+
+    python -B -s evidence/er_ace_timing_c100/summarize_order_c100.py --data evidence/er_ace_timing_c100/tail_measurements --reference decreasing --additional-old-targets 10 30 --output tail_summary.json
+    python -B -s -u evidence/er_ace_timing_c100/train_tail_c100.py --data-root DATA_ROOT --output NEW_TAIL_RUN
+
+For the earlier weight-order experiment, add the option
+--additional-old-targets 10 25 30 to the summary command to
+produce the multi-target output stored in order_targets.json.

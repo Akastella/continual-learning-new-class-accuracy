@@ -111,16 +111,19 @@ def evaluate(model,test,task,path):
                         new_classes=np.arange(old_n,n_seen))
 
 
-def run_task(model,optimizer,training,test,task,schedule,policy,output):
+def run_task(model,optimizer,training,test,task,schedule,policy,output,time_weights=None,
+             start_update=0, stop_update=None):
     x,y,labels = training
     device = x.device
     scheduled,retrieved,weights = schedule
     old_n = task*TASK_SIZE
     group = torch.arange(100,device=device)>=old_n
-    seen_max = old_n-1
+    seen_max = int(labels[scheduled[:start_update]].max()) if start_update else old_n-1
     measured = {}
-    dose, realized = 0.,0.
-    for j,(incoming,replay) in enumerate(zip(scheduled,retrieved),1):
+    dose = sum(time_weights[:start_update]) if start_update else 0.
+    realized = 0.
+    updates = zip(scheduled[start_update:stop_update], retrieved[start_update:stop_update])
+    for j,(incoming,replay) in enumerate(updates,start_update+1):
         model.train()
         seen_max = max(seen_max,int(labels[incoming].max()))
         y_in = y[incoming]
@@ -142,6 +145,11 @@ def run_task(model,optimizer,training,test,task,schedule,policy,output):
                 realized += m/BATCH
                 if policy == "retrieval":
                     dose += m/BATCH
+                elif time_weights is not None:
+                    transfer = time_weights[j-1]
+                    penalty = incoming_scores.logsumexp(1)-incoming_scores[:,old_n:].logsumexp(1)
+                    loss += transfer*penalty.mean()
+                    dose += transfer
                 elif policy in ("same_step","expected_count"):
                     transfer = m/BATCH if policy == "same_step" else (j-1)/(task*len(scheduled)+j-1)
                     penalty = incoming_scores.logsumexp(1)-incoming_scores[:,old_n:].logsumexp(1)
@@ -158,10 +166,10 @@ def run_task(model,optimizer,training,test,task,schedule,policy,output):
         optimizer.zero_grad(set_to_none=True)
         loss.backward()
         optimizer.step()
-        if task and j in (25,len(scheduled)):
+        if output is not None and task and j in (25,len(scheduled)):
             evaluate(model,test,task,output/f"{j}.npz")
             measured[j] = dose
-    if task and policy != "expected_count":
+    if task and time_weights is None and policy != "expected_count":
         assert abs(dose-realized)<1e-9,(dose,realized)
     return measured
 

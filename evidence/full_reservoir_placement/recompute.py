@@ -75,12 +75,56 @@ def compute(source):
     return {"results": results, "rows": rows}
 
 
+def match_old_accuracy(source, targets):
+    points = {}
+    for seed in SEEDS:
+        for task in range(2, 6):
+            for policy in POLICIES:
+                path = source/"reader_data"/f"s{seed}_{policy}_t{task}.npz"
+                with np.load(path, allow_pickle=False) as data:
+                    y = data["labels"]
+                    new = np.isin(y, data["new_classes"])
+                    old_ok = ~new & (data["old_prediction"] == y)
+                    new_ok = new & (data["new_prediction"] == y)
+                    margin = data["old_score"].astype(float)-data["new_score"].astype(float)
+                old_scores = np.sort(margin[old_ok])
+                for target in targets:
+                    required = (target*int((~new).sum())+99)//100
+                    if len(old_scores) >= required:
+                        offset = old_scores[-required]
+                        points[seed, task, policy, target] = dict(
+                            old=100*float((margin[old_ok]>=offset).sum())/int((~new).sum()),
+                            new=100*float((margin[new_ok]<offset).sum())/int(new.sum()))
+    result = {}
+    for target in targets:
+        paired = []
+        for seed in SEEDS:
+            for task in range(2, 6):
+                values = {p: points.get((seed, task, p, target)) for p in POLICIES}
+                if all(value is not None for value in values.values()):
+                    paired.append(dict(seed=seed, task=task, **values))
+        effect = {}
+        for mode in ("incoming", "omit"):
+            within_seed = []
+            for seed in SEEDS:
+                differences = [row[mode]["new"]-row["replay"]["new"]
+                               for row in paired if row["seed"] == seed]
+                if differences:
+                    within_seed.append(mean(differences))
+            effect[mode] = stats(within_seed) if len(within_seed)>1 else None
+        result[target] = dict(coverage=len(paired), delta_new=effect, individual=paired)
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--data", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--old-targets", type=int, nargs="*", default=())
     args = parser.parse_args()
     result = compute(args.data)
+    if args.old_targets:
+        result["matched_old"] = match_old_accuracy(args.data, args.old_targets)
     with args.output.open("x", encoding="utf-8") as stream:
         json.dump(result, stream, indent=2, allow_nan=False)
         stream.write("\n")
