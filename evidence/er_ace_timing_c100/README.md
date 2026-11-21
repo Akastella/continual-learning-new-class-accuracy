@@ -131,3 +131,8 @@ accuracy and any misses relative to the increasing model.
 
 For CIFAR-10, use the order_measurements and order_omission_run
 directories in evidence/reservoir_supervision_timing instead.
+
+For the two directions of the window comparison, use --exchange
+in place of --omission:
+
+    python -B -s evidence/er_ace_timing_c100/compare_reference_offsets.py --reference evidence/er_ace_timing_c100/order_measurements --exchange evidence/er_ace_timing_c100/exchange_run --output window_reference_retention.json
