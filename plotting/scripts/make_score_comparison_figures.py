@@ -104,7 +104,7 @@ def key_effects():
          saved_effect(c100, "omission_summary.json", "250", "omit", "decreasing")),
         ("Exchange vs reversal\nTask end, 95 cases",
          saved_effect(c100, "exchange_summary.json", "250", "exchanged")),
-        ("Exchange vs reversal\n100 updates later, 15 cases",
+        ("Exchange vs reversal\n100 updates, 15 cases",
          saved_effect(c100, "continuation_summary.json", "100", "exchanged")),
     ]
     fig = plt.figure(figsize=(6.35, 3.95))
