@@ -129,7 +129,7 @@ def key_effects():
             rounded = Decimal(f"{value:.8f}").quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
             numbers.text(x, y, f"{rounded:+.2f}", fontsize=10.2, ha="right", va="center", color=color)
     numbers.text(.32, 1.02, "Original", transform=numbers.transAxes, fontsize=10, ha="right")
-    numbers.text(.88, 1.02, "At 20% old", transform=numbers.transAxes,
+    numbers.text(.88, 1.02, "At 20%", transform=numbers.transAxes,
                  fontsize=10, ha="right", color=OLD)
     ax.set_xlim(-73, 23)
     ax.set_xticks([-70, -50, -30, -10, 0, 20])
