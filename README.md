@@ -227,7 +227,7 @@ The four-epoch history directory contains `split_cifar10_classil_er_s201` and co
 
 ## Code availability
 
-The accompanying files include experiment code, numerical evidence, original data-source links, dependency versions, and the commands above. Original image datasets remain subject to their providers' terms. Third-party licenses are retained with the corresponding source files. The publication repository will be released after author approval.
+The accompanying files include experiment code, numerical evidence, original data-source links, dependency versions, and the commands above. Original image datasets remain subject to their providers' terms. Third-party licenses are retained with the corresponding source files.
 
 The additional fixed-margin comparison can be recomputed from the same inputs:
 
