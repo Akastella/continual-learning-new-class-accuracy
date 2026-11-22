@@ -55,7 +55,7 @@ def score_shift():
         ax.tick_params(axis="x", length=0, pad=4, labelsize=9.7)
     fig.supxlabel("Highest new score minus highest old score", fontsize=9.5, y=.02)
     fig.legend(*axes[0].get_legend_handles_labels(), loc="upper center",
-               bbox_to_anchor=(.5, .99), ncol=2, frameon=False, fontsize=9)
+               bbox_to_anchor=(.5, .99), ncol=2, frameon=False, fontsize=9.5)
     fig.subplots_adjust(left=.03, right=.985, bottom=.24, top=.77, wspace=.22)
     save(fig, "score_shift_concept")
 
@@ -128,11 +128,12 @@ def key_effects():
         for x, value, color in ((.32, raw, INK), (.88, matched, OLD)):
             rounded = Decimal(f"{value:.8f}").quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
             numbers.text(x, y, f"{rounded:+.2f}", fontsize=10.2, ha="right", va="center", color=color)
-    numbers.text(.32, 1.02, "Original", transform=numbers.transAxes, fontsize=9.1, ha="right")
+    numbers.text(.32, 1.02, "Original", transform=numbers.transAxes, fontsize=10, ha="right")
     numbers.text(.88, 1.02, "At 20% old", transform=numbers.transAxes,
-                 fontsize=9.1, ha="right", color=OLD)
+                 fontsize=10, ha="right", color=OLD)
     ax.set_xlim(-73, 23)
     ax.set_xticks([-70, -50, -30, -10, 0, 20])
+    ax.tick_params(axis="x", labelsize=10)
     ax.set_xlabel("New-class accuracy difference (pp)", fontsize=10)
     ax.spines[["top", "left", "right"]].set_visible(False)
     handles = [
