@@ -8,6 +8,7 @@ From this plotting directory, use Python 3.12:
 python -m pip install -r requirements.txt
 python scripts/make_figures.py
 python scripts/make_replay_overview.py --export
+python scripts/make_score_comparison_figures.py
 python scripts/make_order_c100_figure.py
 python scripts/make_overview.py --export --publication
 python scripts/make_supervision_figure.py
@@ -33,3 +34,5 @@ means from the group-loss relocation experiment. Without --export, it
 writes the editable draw.io source. The weight-order figure reads the
 recorded coefficient schedules and the task-end and continuation
 results. It uses Matplotlib and saves editable SVG and vector PDF files.
+
+`make_score_comparison_figures.py` draws the score-cutoff illustration and calculates the paired effects in the main comparison figure. For each contrast, both measurements use the same model pairs and test images. The updated measurements use each model’s score cutoff at exactly 20% old-class accuracy. The calculation uses the saved scores and effect summaries in the parent evidence directory.
