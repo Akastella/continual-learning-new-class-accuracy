@@ -221,7 +221,8 @@ The four-epoch history directory contains `split_cifar10_classil_er_s201` and co
 - [CIFAR-10 timing](evidence/reservoir_supervision_timing/README.md) compares identical new-image supervision at first presentation and at retrieval, plus an expected-count rule. It includes CPU commands for old, new, and overall accuracy during each task and at its endpoint.
 - [Twenty-task CIFAR-100 timing](evidence/er_ace_timing_c100/README.md) gives paired residual-network placement runs, old-task forgetting, matched retention, and a separate validation-offset comparison.
 - [Fashion-MNIST placement](evidence/fashion_placement/README.md) provides a second set of whole-stream training runs, the original data links, and the commands for the two measured-retention comparisons.
-- `python -B -s tools/compare_same_candidates.py --artifact . --output same_candidates.json` compares the same two or thirty models with and without fitted offsets.
+- `python -B -s tools/compare_same_candidates.py --artifact . --output same_candidates.json` compares the same two or thirty models with and without fitted offsets. It also measures the offset effect on the original choice and the change from selecting again.
+- `python -B -s tools/compare_window_cohorts.py --data evidence/er_ace_timing_c100 --output window_cohorts.json` compares window exchange at different old-accuracy targets using the same task instances.
 
 
 ## Code availability

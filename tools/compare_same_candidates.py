@@ -2,7 +2,7 @@
 import argparse
 import json
 from pathlib import Path
-from statistics import mean
+from statistics import mean, stdev
 
 import numpy as np
 
@@ -34,6 +34,14 @@ def evaluate(root, seed, dataset, choice):
         return dict(metrics, name=name, offset=offset)
 
 
+def paired_change(before, after, seeds):
+    result = {}
+    for metric in ("current", "old"):
+        differences = [after[seed][metric] - before[seed][metric] for seed in seeds]
+        result[metric] = {"mean": mean(differences), "sd": stdev(differences)}
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--artifact", type=Path, required=True)
@@ -60,12 +68,27 @@ def main():
                               old_change_common=mean(b[s]["old"]-a[s]["old"] for s in common),
                               misses_common=[sum(values[s]["old"] < 30 for s in common)
                                              for values in (a,b)])
+            if menu == "thirty":
+                fixed = {}
+                for seed in sorted(common):
+                    name = a[seed]["name"]
+                    scores, labels = loadval(args.artifact, seed, name)
+                    offset = optimal(scores, labels, 30)
+                    assert offset is not None and calc(scores, labels, offset)["old"] >= 30
+                    fixed[seed] = evaluate(args.artifact, seed, dataset, (name, offset))
+                rows[menu]["fixed_choice"] = fixed
+                rows[menu]["offset_and_reselection"] = {
+                    "adjust_fixed_choice": paired_change(a, fixed, sorted(common)),
+                    "reselect_after_adjustment": paired_change(fixed, b, sorted(common)),
+                }
+                rows[menu]["fixed_choice_misses"] = sum(values["old"] < 30
+                                                        for values in fixed.values())
         result[dataset] = rows
     with args.output.open("x", encoding="utf-8") as stream:
         json.dump(result, stream, indent=2)
         stream.write("\n")
     for dataset, rows in result.items():
-        print(dataset, {k: {a:b for a,b in v.items() if a != "choices"} for k,v in rows.items()})
+        print(dataset, {k: {a:b for a,b in v.items() if a not in {"choices", "fixed_choice"}} for k,v in rows.items()})
 
 
 if __name__ == "__main__":

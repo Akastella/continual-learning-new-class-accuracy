@@ -102,9 +102,9 @@ def key_effects():
          saved_effect(c10, "order_omission_summary.json", "157", "omit", "decreasing")),
         ("Omission vs reversal\nCIFAR-100, random order",
          saved_effect(c100, "omission_summary.json", "250", "omit", "decreasing")),
-        ("Window exchange\nvs reversal at task end",
+        ("Exchange vs reversal\nTask end, 95 cases",
          saved_effect(c100, "exchange_summary.json", "250", "exchanged")),
-        ("Same comparison after\n100 next-task updates",
+        ("Exchange vs reversal\n100 updates later, 15 cases",
          saved_effect(c100, "continuation_summary.json", "100", "exchanged")),
     ]
     fig = plt.figure(figsize=(6.35, 3.95))
